@@ -1,0 +1,5 @@
+modelo,familia,hiperparametros,supuesto,interpretabilidad,riesgo
+OLS,lineal,sin hiperparámetros,relación lineal y aditiva,alta,sensible a colinealidad
+Ridge,lineal regularizado,alpha=1.0,linealidad + penalización,alta,alpha fijado a priori
+Random Forest,no lineal (bagging),"n=300, leaf=3",interacciones y umbrales,media,no extrapola; requiere n grande
+LightGBM,no lineal (boosting),"n=300, lr=0.05, leaves=7",interacciones y no linealidad,baja,sobreajuste con n pequeño

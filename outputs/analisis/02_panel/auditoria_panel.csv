@@ -1,0 +1,12 @@
+metrica,valor
+filas,49113
+regiones,27
+productos,9
+nulos,0
+duplicados fecha-region-producto,0
+atipicos detectados,72
+atipicos (%),0.147
+primer mes,1997-01
+ultimo mes,2026-11
+cobertura 2012-2023 (%),85.7
+cobertura 2002-2026 (%),67.3

@@ -1,0 +1,26 @@
+# Entorno y caché
+.venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.DS_Store
+.idea/
+.vscode/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Datos crudos descargados (se regeneran con el pipeline)
+data/raw/*.html
+
+# Documentos editoriales generados
+informe.docx
+informe.pdf
+*.docx
+*.pdf
+
+# Cuaderno auxiliar no versionado
+notebooks/02_guia_detallada.ipynb
+
+# Generador editorial local (no forma parte del repositorio de investigación)
+scripts/informe/08_generar_informe.py

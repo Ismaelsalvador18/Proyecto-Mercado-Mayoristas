@@ -1,0 +1,353 @@
+region,producto,unidades
+Lima,Zanahoria,5
+Cajamarca,Huevos rosados,4
+Ucayali,Tomate marzano,4
+Cajamarca,Papa amarilla,4
+Cajamarca,Papa canchan,4
+Cajamarca,Tomate marzano,4
+San Martin,Aceite clásico botella x 1l,4
+Puno,Zanahoria,4
+Tacna,Arroz corriente,4
+Puno,Huevos rosados,4
+Cajamarca,Limon sutil bolsa,4
+Ucayali,Limon sutil cajon,3
+Junin,Tomate marzano,3
+Loreto,Aceite clásico botella x 1l,3
+La Libertad,Aceite clásico botella x 1l,3
+La Libertad,Arroz corriente,3
+Madre de Dios,Arroz corriente,3
+Puno,Cebolla cabeza roja,3
+Andahuaylas,Cebolla cabeza roja,3
+Andahuaylas,Limon sutil bolsa,3
+Cajamarca,Azucar blanca nacional (granel),3
+Andahuaylas,Zanahoria,3
+Lambayeque,Papa perricholi,3
+Lima,Limon sutil bolsa,3
+Lima,Limon sutil cajon,3
+Arequipa,Aceite clásico botella x 1l,3
+Ica,Aceite clásico botella x 1l,3
+Cusco,Papa amarilla,3
+Cusco,Aceite clásico botella x 1l,3
+Lambayeque,Papa unica,3
+Tacna,Aceite clásico botella x 1l,3
+Tacna,Arroz superior,3
+Junin,Aceite clásico botella x 1l,3
+Amazonas,Papa huayro,3
+Chota,Aceite clásico botella x 1l,3
+Junin,Huevos rosados,3
+Jaen,Tomate marzano,3
+Tumbes,Aceite clásico botella x 1l,3
+Cajamarca,Zanahoria,3
+Cajamarca,Papa unica,3
+Moquegua,Arroz superior,3
+Lambayeque,Tomate marzano,3
+Madre de Dios,Arroz superior,3
+Amazonas,Zanahoria,3
+Amazonas,Aceite clásico botella x 1l,3
+Ancash,Aceite clásico botella x 1l,3
+Ancash,Arroz extra,3
+Lambayeque,Papa yungay,3
+Ancash,Papa amarilla,3
+Ucayali,Papa huayro,3
+Ica,Zanahoria,3
+Ucayali,Papa amarilla,3
+Lima,Tomate marzano,3
+Lima,Huevos rosados,2
+Lima,Arroz superior,2
+Lima,Papa blanca,2
+Lima,Arroz corriente,2
+Loreto,Arroz corriente,2
+Loreto,Arroz superior,2
+Loreto,Azucar blanca nacional (granel),2
+Loreto,Azucar rubia nacional (granel),2
+Loreto,Huevos rosados,2
+Loreto,Limon sutil bolsa,2
+Loreto,Papa peruanita,2
+Loreto,Papa yungay,2
+Loreto,Zanahoria,2
+Madre de Dios,Aceite clásico botella x 1l,2
+Madre de Dios,Arroz extra,2
+Madre de Dios,Azucar blanca nacional (granel),2
+Madre de Dios,Azucar rubia nacional (granel),2
+Madre de Dios,Limon sutil bolsa,2
+Lima,Arroz extra,2
+La Libertad,Limon sutil bolsa,2
+La Libertad,Azucar rubia nacional (granel),2
+La Libertad,Azucar blanca nacional (granel),2
+La Libertad,Arroz superior,2
+Junin,Zanahoria,2
+Junin,Papa yungay,2
+Junin,Papa unica,2
+Junin,Papa peruanita,2
+Lambayeque,Azucar blanca nacional (granel),2
+Junin,Papa negra andina,2
+Junin,Papa huayro,2
+Junin,Papa huamantanga,2
+Junin,Papa canchan,2
+Junin,Papa amarilla,2
+Junin,Limon sutil cajon,2
+Junin,Limon sutil bolsa,2
+Junin,Cebolla cabeza roja,2
+Junin,Azucar rubia nacional (granel),2
+Junin,Papa perricholi,2
+Lima,Aceite clásico botella x 1l,2
+Lambayeque,Zanahoria,2
+Lambayeque,Papa peruanita,2
+Lambayeque,Papa negra andina,2
+Lambayeque,Papa canchan,2
+Lambayeque,Papa amarilla,2
+Lambayeque,Limon sutil bolsa,2
+Lambayeque,Cebolla cabeza roja,2
+La Libertad,Papa amarilla,2
+Madre de Dios,Papa huayro,2
+Lambayeque,Arroz superior,2
+Lambayeque,Arroz corriente,2
+Lambayeque,Aceite clásico botella x 1l,2
+La Libertad,Tomate marzano,2
+La Libertad,Papa yungay,2
+La Libertad,Papa peruanita,2
+La Libertad,Papa perricholi,2
+La Libertad,Papa huayro,2
+Lambayeque,Azucar rubia nacional (granel),2
+Ucayali,Azucar blanca nacional (granel),2
+Ucayali,Arroz superior,2
+Ucayali,Arroz corriente,2
+Ucayali,Aceite clásico botella x 1l,2
+Tumbes,Tomate marzano,2
+San Martin,Azucar rubia nacional (granel),2
+San Martin,Azucar blanca nacional (granel),2
+San Martin,Arroz superior,2
+Moquegua,Limon sutil bolsa,2
+San Martin,Arroz corriente,2
+Puno,Tomate marzano,2
+Puno,Papa yungay,2
+Puno,Papa unica,2
+Puno,Papa peruanita,2
+Puno,Papa huayro,2
+Puno,Papa canchan,2
+Puno,Papa amarilla,2
+Puno,Limon sutil cajon,2
+San Martin,Arroz extra,2
+Amazonas,Papa yungay,2
+Amazonas,Papa peruanita,2
+Amazonas,Papa canchan,2
+Amazonas,Papa amarilla,2
+Amazonas,Limon sutil bolsa,2
+Amazonas,Huevos rosados,2
+Amazonas,Cebolla cabeza roja,2
+Amazonas,Azucar rubia nacional (granel),2
+Amazonas,Azucar blanca nacional (granel),2
+Ucayali,Azucar rubia nacional (granel),2
+Amazonas,Arroz extra,2
+Amazonas,Arroz corriente,2
+Amazonas,Aceite clásico botella 900 ml,2
+Ucayali,Zanahoria,2
+Ucayali,Papa yungay,2
+Ucayali,Papa canchan,2
+Ucayali,Limon sutil bolsa,2
+Ucayali,Huevos rosados,2
+Ucayali,Cebolla cabeza roja,2
+Amazonas,Arroz superior,2
+Pasco,Zanahoria,2
+Pasco,Tomate marzano,2
+Pasco,Limon sutil bolsa,2
+Pasco,Azucar rubia nacional (granel),2
+Pasco,Arroz superior,2
+Pasco,Arroz corriente,2
+Pasco,Aceite clásico botella x 1l,2
+Moquegua,Zanahoria,2
+Moquegua,Tomate marzano,2
+Puno,Azucar rubia nacional (granel),2
+Moquegua,Papa canchan,2
+Moquegua,Papa amarilla,2
+Junin,Azucar blanca nacional (granel),2
+Moquegua,Cebolla cabeza roja,2
+Moquegua,Azucar rubia nacional (granel),2
+Moquegua,Azucar blanca nacional (granel),2
+Moquegua,Arroz corriente,2
+Moquegua,Aceite clásico botella x 1l,2
+Madre de Dios,Tomate marzano,2
+Moquegua,Papa perricholi,2
+Puno,Azucar blanca nacional (granel),2
+Puno,Arroz superior,2
+Puno,Arroz corriente,2
+Puno,Aceite clásico botella x 1l,2
+Piura,Zanahoria,2
+Piura,Tomate marzano,2
+Piura,Papa yungay,2
+Piura,Papa unica,2
+Piura,Papa perricholi,2
+Piura,Aceite clásico botella x 1l,2
+Piura,Papa canchan,2
+Piura,Papa amarilla,2
+Piura,Limon sutil bolsa,2
+Piura,Huevos rosados,2
+Piura,Cebolla cabeza roja,2
+Piura,Azucar rubia nacional (granel),2
+Piura,Azucar blanca nacional (granel),2
+Piura,Arroz superior,2
+Piura,Arroz corriente,2
+Piura,Papa huayro,2
+Arequipa,Papa huayro,2
+Arequipa,Papa canchan,2
+Arequipa,Papa amarilla,2
+Arequipa,Limon sutil cajon,2
+Arequipa,Limon sutil bolsa,2
+Arequipa,Huevos rosados,2
+Arequipa,Cebolla cabeza roja,2
+Arequipa,Azucar rubia nacional (granel),2
+Arequipa,Azucar blanca nacional (granel),2
+Jaen,Arroz superior,2
+Arequipa,Arroz extra,2
+Arequipa,Arroz corriente,2
+Arequipa,Aceite clásico botella 900 ml,2
+Apurimac,Zanahoria,2
+Apurimac,Tomate marzano,2
+Apurimac,Papa yungay,2
+Apurimac,Papa unica,2
+Apurimac,Papa peruanita,2
+Apurimac,Papa huayro,2
+Arequipa,Arroz superior,2
+Cajamarca,Arroz superior,2
+Cajamarca,Arroz corriente,2
+Cajamarca,Aceite clásico botella x 1l,2
+Ayacucho,Tomate marzano,2
+Ayacucho,Tomate,2
+Ayacucho,Papa unica,2
+Ayacucho,Papa negra andina,2
+Ayacucho,Papa huamantanga,2
+Ayacucho,Limon sutil bolsa,2
+Arequipa,Papa perricholi,2
+Ayacucho,Azucar rubia nacional (granel),2
+Ayacucho,Azucar blanca nacional (granel),2
+Ayacucho,Arroz superior,2
+Ayacucho,Arroz corriente,2
+Ayacucho,Aceite clásico botella x 1l,2
+Arequipa,Zanahoria,2
+Arequipa,Tomate marzano,2
+Arequipa,Papa unica,2
+Arequipa,Papa peruanita,2
+Ayacucho,Huevos rosados,2
+Ancash,Papa canchan,2
+Ancash,Limon sutil bolsa,2
+Ancash,Azucar rubia nacional (granel),2
+Ancash,Arroz superior,2
+Ancash,Arroz corriente,2
+Ancash,Aceite clásico botella 900 ml,2
+Amazonas,Tomate marzano,2
+Tumbes,Cebolla cabeza roja,2
+Tumbes,Azucar rubia nacional (granel),2
+Apurimac,Papa canchan,2
+Tumbes,Arroz superior,2
+Tumbes,Arroz extra,2
+Tumbes,Arroz corriente,2
+Tacna,Tomate marzano,2
+Tacna,Limon sutil bolsa,2
+Tacna,Huevos rosados,2
+Tacna,Azucar rubia nacional (granel),2
+Tacna,Azucar blanca nacional (granel),2
+San Martin,Cebolla cabeza roja,2
+Tumbes,Azucar blanca nacional (granel),2
+Apurimac,Papa amarilla,2
+Apurimac,Limon sutil cajon,2
+Apurimac,Limon sutil bolsa,2
+Apurimac,Huevos rosados,2
+Apurimac,Azucar rubia nacional (granel),2
+Apurimac,Azucar blanca nacional (granel),2
+Apurimac,Arroz superior,2
+Apurimac,Arroz corriente,2
+Apurimac,Aceite clásico botella x 1l,2
+Ancash,Papa yungay,2
+Andahuaylas,Papa amarilla,2
+Andahuaylas,Huevos rosados,2
+Andahuaylas,Azucar rubia nacional (granel),2
+Andahuaylas,Azucar blanca nacional (granel),2
+Andahuaylas,Arroz superior,2
+Andahuaylas,Arroz extra,2
+Andahuaylas,Arroz corriente,2
+Andahuaylas,Aceite clásico botella x 1l,2
+Ancash,Zanahoria,2
+Ancash,Tomate marzano,2
+Andahuaylas,Tomate marzano,2
+Ica,Huevos rosados,2
+Ica,Azucar rubia nacional (granel),2
+Ica,Azucar blanca nacional (granel),2
+Ica,Arroz superior,2
+Ica,Arroz extra,2
+Ica,Arroz corriente,2
+Huanuco,Zanahoria,2
+Huanuco,Tomate marzano,2
+Huanuco,Limon sutil bolsa,2
+Cajamarca,Azucar rubia nacional (granel),2
+Huanuco,Azucar blanca nacional (granel),2
+Huanuco,Arroz superior,2
+Huanuco,Arroz corriente,2
+Huanuco,Aceite clásico botella x 1l,2
+Huancavelica,Zanahoria,2
+Huancavelica,Tomate marzano,2
+Huancavelica,Papa perricholi,2
+Huancavelica,Papa huayro,2
+Huancavelica,Papa canchan,2
+Huanuco,Azucar rubia nacional (granel),2
+Junin,Arroz superior,2
+Junin,Arroz corriente,2
+Junin,Aceite clásico botella 900 ml,2
+Jaen,Zanahoria,2
+Jaen,Tomate,2
+Jaen,Papa amarilla,2
+Jaen,Limon sutil bolsa,2
+Jaen,Huevos rosados,2
+Jaen,Cebolla cabeza roja,2
+Ica,Limon sutil bolsa,2
+Jaen,Azucar blanca nacional (granel),2
+Amazonas,Tomate,2
+Jaen,Arroz corriente,2
+Jaen,Aceite clásico botella x 1l,2
+Ica,Tomate marzano,2
+Ica,Papa yungay,2
+Ica,Papa huayro,2
+Ica,Papa canchan,2
+Ica,Papa amarilla,2
+Ica,Limon sutil cajon,2
+Jaen,Azucar rubia nacional (granel),2
+Chota,Tomate,2
+Chota,Papa yungay,2
+Chota,Papa unica,2
+Chota,Papa peruanita,2
+Chota,Papa perricholi,2
+Chota,Papa canchan,2
+Chota,Papa amarilla,2
+Chota,Cebolla cabeza roja,2
+Chota,Azucar rubia nacional (granel),2
+Huancavelica,Papa amarilla,2
+Chota,Arroz superior,2
+Chota,Arroz extra,2
+Chota,Arroz corriente,2
+Cajamarca,Papa yungay,2
+Cajamarca,Papa peruanita,2
+Cajamarca,Papa perricholi,2
+Cajamarca,Papa huayro,2
+Cajamarca,Limon sutil cajon,2
+Cajamarca,Cebolla cabeza roja,2
+Chota,Azucar blanca nacional (granel),2
+Huancavelica,Limon sutil bolsa,2
+Huancavelica,Cebolla cabeza roja,2
+Huancavelica,Azucar rubia nacional (granel),2
+Huancavelica,Azucar blanca nacional (granel),2
+Huancavelica,Arroz superior,2
+Huancavelica,Arroz corriente,2
+Huancavelica,Aceite clásico botella x 1l,2
+Cusco,Zanahoria,2
+Cusco,Tomate marzano,2
+Chota,Tomate marzano,2
+Cusco,Papa huayro,2
+Cusco,Papa canchan,2
+Cusco,Limon sutil cajon,2
+Cusco,Cebolla cabeza roja,2
+Cusco,Azucar rubia nacional (granel),2
+Cusco,Azucar blanca nacional (granel),2
+Cusco,Arroz superior,2
+Cusco,Arroz extra,2
+Cusco,Arroz corriente,2
+Cusco,Aceite clásico botella 900 ml,2
+Cusco,Papa peruanita,2

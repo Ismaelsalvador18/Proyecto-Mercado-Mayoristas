@@ -1,0 +1,5 @@
+modelo,hiperparametros,familia
+OLS,sin hiperparámetros,"lineal, interpretable"
+Ridge,"alpha=1.0, estandarización",lineal regularizado
+Random Forest,"n=300, leaf=3","no lineal, bagging"
+LightGBM,"n=300, lr=0.05, leaves=7","no lineal, boosting"

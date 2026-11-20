@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Ejecuta el pipeline completo en el orden metodologico.
+set -euo pipefail
+cd "$(dirname "$0")/.."
+PY=".venv/bin/python"
+
+$PY scripts/pipeline/01_descargar_sisap.py
+$PY scripts/analisis/01.1_auditoria_fuente.py
+
+$PY scripts/pipeline/02_construir_panel.py
+$PY scripts/analisis/02.1_auditoria_panel.py
+
+$PY scripts/pipeline/03_limpiar_panel.py
+$PY scripts/analisis/03.1_verificacion_limpieza.py
+$PY scripts/analisis/03.2_descripcion_datos.py
+$PY scripts/analisis/03.3_estacionariedad.py
+$PY scripts/analisis/03.4_seleccion_rezagos.py
+$PY scripts/analisis/03.5_estructura_mercados.py
+
+$PY scripts/pipeline/04_ecm.py
+$PY scripts/analisis/04.1_diagnostico_ecm.py
+
+$PY scripts/pipeline/05_torneo_modelos.py
+$PY scripts/analisis/05.1_representacion_modelos.py
+$PY scripts/analisis/05.2_evaluacion_modelos.py
+
+$PY scripts/pipeline/06_robustez.py
+$PY scripts/analisis/06.1_robustez_visual.py
+
+$PY scripts/informe/07_resultados_informe.py
+
+# El generador editorial es una utilidad local y no se versiona.
+if [ -f scripts/informe/08_generar_informe.py ]; then
+  $PY scripts/informe/08_generar_informe.py
+  if command -v soffice >/dev/null 2>&1; then
+    soffice --headless --convert-to pdf --outdir . informe.docx >/dev/null 2>&1 || true
+  fi
+fi
+
+echo "Pipeline completo. Artefactos en outputs/."

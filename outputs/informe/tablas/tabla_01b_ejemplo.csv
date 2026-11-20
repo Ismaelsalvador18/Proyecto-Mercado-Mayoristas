@@ -1,0 +1,9 @@
+fecha,anio,mes,region,categoria,n_registros,precio_kg
+2008-09-01,2008,9,Amazonas,Aceite,1,5.56
+2008-10-01,2008,10,Amazonas,Aceite,1,6.39
+2008-11-01,2008,11,Amazonas,Aceite,1,6.72
+2008-12-01,2008,12,Amazonas,Aceite,1,6.64
+2009-01-01,2009,1,Amazonas,Aceite,1,6.34
+2009-02-01,2009,2,Amazonas,Aceite,1,5.71
+2009-03-01,2009,3,Amazonas,Aceite,1,5.54
+2009-04-01,2009,4,Amazonas,Aceite,1,5.66
