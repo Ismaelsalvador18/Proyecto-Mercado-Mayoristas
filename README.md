@@ -5,9 +5,10 @@
 [![statsmodels](https://img.shields.io/badge/statsmodels-0.15-4C72B0)](https://www.statsmodels.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.9-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
 
-Estudio econométrico de la transmisión de precios mayoristas desde Lima hacia las regiones del Perú.
-Combina un modelo de corrección de error (ECM), pruebas de estacionariedad, análisis geográfico y un
-torneo de modelos de nowcast y pronóstico.
+Proyecto de **ciencia de datos y EDA** aplicado a la transmisión de precios mayoristas desde Lima
+hacia las regiones del Perú. Combina un modelo de corrección de error (ECM), pruebas de
+estacionariedad, análisis geográfico, ingeniería de variables y un torneo de modelos de nowcast y
+pronóstico.
 
 **Pregunta:** ¿cuánto y con qué rezago responde el precio mayorista regional al de Lima, y qué valor
 predictivo tiene esa relación?
@@ -73,6 +74,46 @@ Más detalle en [`docs/diccionario_datos.md`](docs/diccionario_datos.md).
 El protocolo de evaluación distingue **nowcast** (cambio del mes corriente) de **pronóstico**
 (precio del mes siguiente). La selección del modelo se hace por rango promedio de R² en desarrollo,
 no por el mejor resultado de un solo producto.
+
+## Enfoque computacional
+
+El proyecto está pensado también como un ejercicio de **análisis exploratorio y estructura de
+datos**, no solo como una estimación econométrica:
+
+- el panel se mantiene en formato tidy: una fila por región-categoría-mes;
+- cada producto se transforma con una tabla pivote (`región × fecha`);
+- el calendario mensual se repone antes de calcular diferencias y rezagos;
+- la matriz de diseño se construye con `diff` y `shift`, sin mezclar meses faltantes;
+- la validación es temporal: entrenamiento, desarrollo y holdout;
+- se comparan cuatro familias de modelos y se evalúan con R², MAE y una lectura direccional.
+
+La matriz de diseño, las predicciones del holdout y las matrices de confusión se guardan como
+artefactos reproducibles en `outputs/analisis/06_modelos/`.
+
+### Del panel a la matriz de diseño
+
+Para el nowcast de cada producto, la variable objetivo es el cambio logarítmico del precio de Puno
+en el mes `t`. Los predictores son:
+
+| Predictor | Construcción |
+|---|---|
+| `dl0` | cambio logarítmico de Lima en `t` |
+| `dl1`–`dl3` | cambios de Lima en `t−1`, `t−2`, `t−3` |
+| `dp1`, `dp2` | cambios propios de Puno en `t−1`, `t−2` |
+| `sin1`, `cos1` | armónicos anuales para estacionalidad |
+
+El modelo se entrena con observaciones anteriores a 2018, se evalúa en desarrollo 2018–2020 y se
+prueba una sola vez en el holdout 2021–octubre de 2026. La muestra de la matriz está en
+`outputs/analisis/06_modelos/matriz_diseno.csv` y las predicciones completas en
+`outputs/analisis/06_modelos/predicciones_holdout.csv`.
+
+### Evaluación por dirección
+
+Además de R² y MAE, se convierte el signo del cambio en una clasificación binaria para evaluar
+aciertos, falsos positivos y falsos negativos. Los meses con cambio exactamente cero se excluyen de
+esa lectura porque no tienen dirección. Las matrices agregadas están en
+`outputs/analisis/06_modelos/matriz_confusion_modelos.csv` y por producto en
+`matriz_confusion_producto.csv`.
 
 ---
 
@@ -190,6 +231,7 @@ Si `jupyter` no está en el `PATH`, usa el binario de tu instalación. Por ejemp
 - `data/processed/`: panel limpio y auditorías.
 - `outputs/analisis/`: resultados intermedios por fase.
 - `outputs/`: tablas y figuras listas para consulta.
+- `outputs/analisis/06_modelos/`: matriz de diseño, predicciones del holdout y matrices de confusión.
 - `notebooks/01_resultados.ipynb`: recorrido ejecutivo con tablas y figuras.
 
 El índice de tablas y figuras se genera dentro de `outputs/`.

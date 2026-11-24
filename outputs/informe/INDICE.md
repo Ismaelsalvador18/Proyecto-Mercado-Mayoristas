@@ -1,4 +1,4 @@
-# Indice de artefactos del informe
+# Indice de artefactos de resultados
 
 | Figura | Archivo |
 |---|---|
@@ -26,6 +26,7 @@
 | 21_adf_region | `21_adf_region.png` |
 | 22_aic_bic | `22_aic_bic.png` |
 | 23_verificacion_limpieza | `23_verificacion_limpieza.png` |
+| 24_matriz_confusion | `24_matriz_confusion.png` |
 
 | Tabla | Archivo |
 |---|---|
@@ -53,3 +54,5 @@
 | tabla_21_normalidad | `tabla_21_normalidad.csv` |
 | tabla_22_verificacion_limpieza | `tabla_22_verificacion_limpieza.csv` |
 | tabla_23_pronostico_holdout | `tabla_23_pronostico_holdout.csv` |
+| tabla_24_matriz_diseno | `tabla_24_matriz_diseno.csv` |
+| tabla_25_confusion_modelos | `tabla_25_confusion_modelos.csv` |

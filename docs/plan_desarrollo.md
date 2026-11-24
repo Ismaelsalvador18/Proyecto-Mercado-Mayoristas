@@ -95,11 +95,11 @@ antes de `03.3`.
 
 ---
 
-## 5. Artefactos del informe
+## 5. Artefactos de resultados
 
 | Artefacto | Script |
 |---|---|
-| Flujo KDD | `informe/07` |
+| Flujo KDD | `07` |
 | Tabla del dataset | `03.2` + `07` |
 | Auditoría de panel | `02.1` + `07` |
 | Verificación de limpieza | `03.1` + `07` |
@@ -136,7 +136,6 @@ antes de `03.3`.
 .venv/bin/python scripts/pipeline/06_robustez.py
 .venv/bin/python scripts/analisis/06.1_robustez_visual.py
 .venv/bin/python scripts/informe/07_resultados_informe.py
-.venv/bin/python scripts/informe/08_generar_informe.py
 ```
 
 ---
@@ -170,8 +169,7 @@ antes de `03.3`.
 
 - Dataset final y auditoría.
 - Pipeline reproducible (19 scripts).
-- 24 figuras de artefactos (23 numeradas en el manuscrito) y 24 tablas de artefactos (20 numeradas; incluye la mejora de MAE del pronóstico por modelo).
+- 25 figuras de artefactos (24 numeradas) y 26 tablas de artefactos (22 numeradas; incluye matriz de diseño, predicciones y matrices de confusión).
 - Dos cuadernos: resultados ejecutivos y guía detallada.
 - `docs/metodologia.md`, `docs/referencias.md`, `docs/diccionario_datos.md`.
 - README con ejecución de inicio a fin.
-- `informe.docx` y `informe.pdf` (30 páginas).

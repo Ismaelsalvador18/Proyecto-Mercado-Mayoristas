@@ -146,6 +146,33 @@ curva de aprendizaje de cebolla usa 33, 46, 56 o 67 observaciones mensuales de e
 anteriores a 2018 y evalúa en sus 17 observaciones válidas de 2018–2020. El ranking se debe leer
 como ganador entre cuatro productos elegibles, no como una comparación equilibrada de seis.
 
+### 5.5 Matriz de diseño
+
+Para cada producto y región, el nowcast se construye así:
+
+1. Se hace una tabla pivote de `precio_kg` con fechas en filas y regiones en columnas.
+2. Se repone el calendario mensual completo para no convertir un hueco en un mes consecutivo.
+3. Se calcula `y = Δlog(Puno)` y los predictores `dl0–dl3`, `dp1–dp2`, `sin1` y `cos1`.
+4. Se eliminan las filas sin historia suficiente.
+5. Se separan entrenamiento (antes de 2018), desarrollo (2018–2020) y holdout (2021–octubre de 2026).
+
+La matriz completa y una muestra legible se guardan en `matriz_diseno.csv` y
+`matriz_diseno_muestra.csv`; las predicciones del holdout se guardan en `predicciones_holdout.csv`.
+El objetivo se mantiene como variable continua; la matriz de confusión se obtiene después,
+clasificando el signo del cambio observado y del predicho.
+
+### 5.6 Evaluación direccional
+
+Para cada modelo se construye una matriz 2×2 en el holdout:
+
+| | Predice baja | Predice sube |
+|---|---:|---:|
+| Real baja | TN | FP |
+| Real sube | FN | TP |
+
+Los meses con cambio observado exactamente cero se excluyen porque no tienen dirección. Esta matriz
+no reemplaza R² ni MAE: muestra los errores de signo que las métricas agregadas pueden ocultar.
+
 ## 6. Métricas
 
 - **R²:** proporción de varianza explicada. En niveles es engañoso; se usa en cambios.
@@ -183,7 +210,7 @@ registros de noviembre quedan en el panel y no se califican como erróneos o inc
 
 ## Anexo. Formulación matemática
 
-Las ecuaciones se numeran igual que en el informe. Se incluyen para que la implementación y el documento sean verificables.
+Las ecuaciones se numeran igual que en los resultados. Se incluyen para que la implementación y el análisis sean verificables.
 
 **Retorno logarítmico (1).**
 

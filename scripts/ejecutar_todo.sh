@@ -29,12 +29,4 @@ $PY scripts/analisis/06.1_robustez_visual.py
 
 $PY scripts/informe/07_resultados_informe.py
 
-# El generador editorial es una utilidad local y no se versiona.
-if [ -f scripts/informe/08_generar_informe.py ]; then
-  $PY scripts/informe/08_generar_informe.py
-  if command -v soffice >/dev/null 2>&1; then
-    soffice --headless --convert-to pdf --outdir . informe.docx >/dev/null 2>&1 || true
-  fi
-fi
-
 echo "Pipeline completo. Artefactos en outputs/."

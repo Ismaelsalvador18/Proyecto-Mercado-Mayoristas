@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Artefactos del informe: flujo KDD, tablas numeradas y figuras numeradas.
+"""Artefactos de resultados: flujo KDD, tablas numeradas y figuras numeradas.
 
 Corre despues de 06.1. No recalcula analisis: copia y numera resultados.
 Genera:
-  outputs/informe/tablas/tabla_01...tabla_23
-  outputs/informe/figuras/01...18
+  outputs/informe/tablas/tabla_01...tabla_25
+  outputs/informe/figuras/01...24
   outputs/informe/INDICE.md
 """
 
@@ -81,6 +81,7 @@ def copiar_figuras() -> None:
         "07_adf_resumen.png": ("calidad", "adf_resumen.png"),
         "22_aic_bic.png": ("calidad", "aic_bic.png"),
         "23_verificacion_limpieza.png": ("calidad", "efecto_limpieza.png"),
+        "24_matriz_confusion.png": ("modelos", "matriz_confusion.png"),
     }
     for destino, (carpeta, origen) in mapa.items():
         ruta = DIRECTORIOS[carpeta] / origen
@@ -111,6 +112,8 @@ def copiar_tablas() -> None:
         "tabla_20_transformacion_log.csv": ("calidad", "transformacion_log.csv"),
         "tabla_21_normalidad.csv": ("calidad", "normalidad.csv"),
         "tabla_22_verificacion_limpieza.csv": ("calidad", "verificacion_limpieza.csv"),
+        "tabla_24_matriz_diseno.csv": ("modelos", "matriz_diseno_muestra.csv"),
+        "tabla_25_confusion_modelos.csv": ("modelos", "matriz_confusion_modelos.csv"),
     }
     for destino, (carpeta, origen) in mapa.items():
         ruta = DIRECTORIOS[carpeta] / origen
@@ -168,7 +171,7 @@ def pronostico_holdout() -> None:
 
 
 def indice() -> None:
-    lineas = ["# Indice de artefactos del informe\n",
+    lineas = ["# Indice de artefactos de resultados\n",
               "| Figura | Archivo |", "|---|---|"]
     for ruta in sorted(FIG.glob("*.png")):
         lineas.append(f"| {ruta.stem} | `{ruta.name}` |")
@@ -189,8 +192,8 @@ def main() -> None:
     software()
     pronostico_holdout()
     indice()
-    print(f"Figuras del informe: {len(list(FIG.glob('*.png')))}")
-    print(f"Tablas del informe:  {len(list(TAB.glob('*.csv')))}")
+    print(f"Figuras de resultados: {len(list(FIG.glob('*.png')))}")
+    print(f"Tablas de resultados:  {len(list(TAB.glob('*.csv')))}")
     print("Indice:", INFORME / "INDICE.md")
 
 
