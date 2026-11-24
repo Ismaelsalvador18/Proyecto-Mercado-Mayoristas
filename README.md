@@ -111,7 +111,9 @@ prueba una sola vez en el holdout 2021–octubre de 2026. La muestra de la matri
 
 Además de R² y MAE, se convierte el signo del cambio en una clasificación binaria para evaluar
 aciertos, falsos positivos y falsos negativos. Los meses con cambio exactamente cero se excluyen de
-esa lectura porque no tienen dirección. Las matrices agregadas están en
+esa lectura porque no tienen dirección. LightGBM acierta más el signo en el holdout (62,2 % frente a
+58,0 %), pero eso no cambia al ganador: la selección usa R² en desarrollo y el acierto ignora la
+magnitud del error. Las matrices agregadas están en
 `outputs/analisis/06_modelos/matriz_confusion_modelos.csv` y por producto en
 `matriz_confusion_producto.csv`.
 

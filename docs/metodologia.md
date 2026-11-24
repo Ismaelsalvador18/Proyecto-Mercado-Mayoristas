@@ -173,6 +173,15 @@ Para cada modelo se construye una matriz 2×2 en el holdout:
 Los meses con cambio observado exactamente cero se excluyen porque no tienen dirección. Esta matriz
 no reemplaza R² ni MAE: muestra los errores de signo que las métricas agregadas pueden ocultar.
 
+Por eso LightGBM puede tener mayor acierto agregado en el holdout (62,2 % frente a 58,0 % de Random
+Forest) y no ser el ganador. El acierto solo mira el signo: un acierto con error de 0,1 % pesa lo
+mismo que uno con error de 5 %. La selección se hizo en desarrollo con R², donde Random Forest tiene
+rango promedio 1,50 y acierto medio 46,9 %, frente a 4,00 y 42,8 % de LightGBM. En el holdout,
+Random Forest conserva menor MAE en cinco de seis productos y R² positivo en papa, cebolla y
+zanahoria, mientras LightGBM tiene R² muy negativo en arroz (−4,04) y zanahoria (−0,28). Elegir al
+ganador según el holdout sería seleccionar sobre el conjunto de prueba; la matriz de confusión se
+usa como diagnóstico complementario, no como criterio de selección.
+
 ## 6. Métricas
 
 - **R²:** proporción de varianza explicada. En niveles es engañoso; se usa en cambios.

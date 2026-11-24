@@ -235,6 +235,15 @@ def main() -> None:
             dm_filas.append({"producto": cat, "modelo": nombre, "dm": stat, "p": p})
     tabla(pd.DataFrame(dm_filas), "torneo_nowcast_dm.csv", "modelos")
 
+    predicciones = predecir_holdout(panel)
+    confusion, confusion_producto = matriz_confusion(predicciones)
+    confusion_idx = confusion.set_index("modelo")["acierto"]
+    hold_modelos = nowcast[(nowcast.periodo == "holdout") &
+                           (nowcast.conjunto == "principal")]
+    mae_rf = hold_modelos[hold_modelos.modelo == "Random Forest"].set_index("producto")["mae"]
+    mae_lgbm = hold_modelos[hold_modelos.modelo == "LightGBM"].set_index("producto")["mae"]
+    rf_mejora = int((mae_rf < mae_lgbm.reindex(mae_rf.index)).sum())
+
     ganador = ranking.index[0]
     hold = nowcast[(nowcast.periodo == "holdout") & (nowcast.modelo == ganador)].set_index("producto")
     productos_r2 = int((hold.r2 > 0).sum())
@@ -275,6 +284,20 @@ def main() -> None:
                  "y 20 de evaluación. El R2 es la metrica principal del nowcast porque el MAE sobre cambios "
                  "favorece predecir cero. El holdout 2021-01 a 2026-10 se uso una sola vez; noviembre "
                  "queda fuera porque no se verifico su fecha de cierre/publicacion.\n\n")
+        fh.write(
+            f"Por que no gana LightGBM si tiene mayor acierto en el holdout? LightGBM acierta el signo "
+            f"en {confusion_idx['LightGBM']:.1f} % de los meses, frente a "
+            f"{confusion_idx['Random Forest']:.1f} % de Random Forest, pero el acierto es una lectura "
+            f"binaria: trata igual un error de 0,1 % que uno de 5 %. El ganador se eligio en "
+            f"desarrollo con R2, donde Random Forest tiene rango promedio "
+            f"{ranking.loc['Random Forest', 'rank_promedio']:.2f} y acierto medio "
+            f"{ranking.loc['Random Forest', 'acierto_medio']:.1f} %, contra "
+            f"{ranking.loc['LightGBM', 'rank_promedio']:.2f} y "
+            f"{ranking.loc['LightGBM', 'acierto_medio']:.1f} % de LightGBM. En el holdout Random Forest "
+            f"tiene menor MAE que LightGBM en {rf_mejora} de 6 productos y R2 positivo en papa, cebolla "
+            f"y zanahoria; LightGBM tiene R2 muy negativo en arroz y zanahoria. Cambiar el ganador "
+            f"segun el holdout seria seleccionar sobre el conjunto de prueba. La matriz de confusion "
+            f"se reporta como diagnostico complementario, no como criterio de seleccion.\n\n")
         fh.write("## Pronostico a un mes: holdout\n\n")
         fh.write("Cambio porcentual del MAE frente a la caminata aleatoria: positivo = mejora; "
                  "negativo = empeora.\n\n")
@@ -301,11 +324,9 @@ def main() -> None:
     ax.set_title("Torneo de nowcast: cuarteto principal (4 productos elegibles)")
     guardar(fig, "ranking_torneo.png", "modelos")
 
-    predicciones = predecir_holdout(panel)
     tabla(predicciones, "predicciones_holdout.csv", "modelos")
     graficar_predicciones(predicciones)
 
-    confusion, confusion_producto = matriz_confusion(predicciones)
     tabla(confusion, "matriz_confusion_modelos.csv", "modelos")
     tabla(confusion_producto, "matriz_confusion_producto.csv", "modelos")
     graficar_confusion(confusion)

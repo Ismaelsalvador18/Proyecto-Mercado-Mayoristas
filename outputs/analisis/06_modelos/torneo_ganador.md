@@ -26,6 +26,8 @@
 
 La ventana de desarrollo es 2018-2020 (36 meses calendario) y se usa para evaluar/rankear; cada modelo se entrena con las observaciones disponibles antes de 2018. Solo se rankean productos con al menos 60 observaciones de entrenamiento y 20 de evaluación. El R2 es la metrica principal del nowcast porque el MAE sobre cambios favorece predecir cero. El holdout 2021-01 a 2026-10 se uso una sola vez; noviembre queda fuera porque no se verifico su fecha de cierre/publicacion.
 
+Por que no gana LightGBM si tiene mayor acierto en el holdout? LightGBM acierta el signo en 62.2 % de los meses, frente a 58.0 % de Random Forest, pero el acierto es una lectura binaria: trata igual un error de 0,1 % que uno de 5 %. El ganador se eligio en desarrollo con R2, donde Random Forest tiene rango promedio 1.50 y acierto medio 46.9 %, contra 4.00 y 42.8 % de LightGBM. En el holdout Random Forest tiene menor MAE que LightGBM en 5 de 6 productos y R2 positivo en papa, cebolla y zanahoria; LightGBM tiene R2 muy negativo en arroz y zanahoria. Cambiar el ganador segun el holdout seria seleccionar sobre el conjunto de prueba. La matriz de confusion se reporta como diagnostico complementario, no como criterio de seleccion.
+
 ## Pronostico a un mes: holdout
 
 Cambio porcentual del MAE frente a la caminata aleatoria: positivo = mejora; negativo = empeora.
