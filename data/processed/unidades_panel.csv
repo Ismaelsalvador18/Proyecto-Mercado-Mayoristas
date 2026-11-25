@@ -1,217 +1,217 @@
-region,producto,unidad,equivalencia_kg,n,prioridad
-Amazonas,Aceite clásico botella x 1l,Litro,1.0,59,1
-Amazonas,Arroz superior,Saco,50.0,155,1
-Amazonas,Azucar rubia nacional (granel),Bolsa,50.0,157,1
-Amazonas,Cebolla cabeza roja,Saco,40.0,156,1
-Amazonas,Huevos rosados,Kilogramo,1.0,188,0
-Amazonas,Limon sutil bolsa,Kilogramo,1.0,167,0
-Amazonas,Papa canchan,Saco,50.0,14,1
-Amazonas,Tomate marzano,Kilogramo,1.0,139,0
-Amazonas,Zanahoria,Saco chico,50.0,155,1
-Ancash,Aceite clásico botella x 1l,Caja,12.0,179,1
-Ancash,Arroz superior,Bolsa,50.0,213,1
-Ancash,Azucar rubia nacional (granel),Bolsa,50.0,213,1
-Ancash,Cebolla cabeza roja,Kilogramo,1.0,288,0
-Ancash,Huevos rosados,Kilogramo,1.0,290,0
-Ancash,Limon sutil bolsa,Bolsa,45.0,210,1
-Ancash,Papa canchan,Saco,100.0,213,1
-Ancash,Tomate marzano,Caja,28.0,179,1
-Ancash,Zanahoria,Saco,80.0,213,1
-Apurimac,Aceite clásico botella x 1l,Caja,12.0,175,1
-Apurimac,Arroz superior,Saco mediano,50.0,203,1
-Apurimac,Azucar rubia nacional (granel),Saco mediano,50.0,203,1
-Apurimac,Cebolla cabeza roja,Kilogramo,1.0,280,0
-Apurimac,Huevos rosados,Paquete,11.5,200,1
-Apurimac,Limon sutil bolsa,Kilogramo,1.0,202,0
-Apurimac,Papa canchan,Arroba,11.5,168,1
-Apurimac,Tomate marzano,Caja madera,22.0,168,1
-Apurimac,Zanahoria,Arroba,11.5,155,1
-Arequipa,Aceite clásico botella x 1l,Caja,12.0,182,1
-Arequipa,Arroz superior,Saco,50.0,216,1
-Arequipa,Azucar rubia nacional (granel),Bolsa,50.0,216,1
-Arequipa,Cebolla cabeza roja,Kilogramo,1.0,294,0
-Arequipa,Huevos rosados,Kilogramo,1.0,294,0
-Arequipa,Limon sutil bolsa,Kilogramo,1.0,77,0
-Arequipa,Papa canchan,Kilogramo,1.0,217,0
-Arequipa,Tomate marzano,Cajon,22.0,187,1
-Arequipa,Zanahoria,Saco,120.0,216,1
-Ayacucho,Aceite clásico botella x 1l,Caja,12.0,175,1
-Ayacucho,Arroz superior,Saco,50.0,206,1
-Ayacucho,Azucar rubia nacional (granel),Saco,50.0,206,1
-Ayacucho,Cebolla cabeza roja,Kilogramo,1.0,286,0
-Ayacucho,Huevos rosados,Kilogramo,1.0,280,0
-Ayacucho,Limon sutil bolsa,Bolsa,42.0,209,1
-Ayacucho,Papa canchan,Kilogramo,1.0,208,0
-Ayacucho,Tomate marzano,Kilogramo,1.0,174,0
-Ayacucho,Zanahoria,Kilogramo,1.0,286,0
-Cajamarca,Aceite clásico botella x 1l,Caja,12.0,180,1
-Cajamarca,Arroz superior,Saco,49.0,170,1
-Cajamarca,Azucar rubia nacional (granel),Bolsa,50.0,214,1
-Cajamarca,Cebolla cabeza roja,Kilogramo,1.0,247,0
-Cajamarca,Huevos rosados,Kilogramo,1.0,218,0
-Cajamarca,Limon sutil bolsa,Kilogramo,1.0,127,0
-Cajamarca,Papa canchan,Arroba,11.5,170,1
-Cajamarca,Tomate marzano,Kilogramo,1.0,213,0
-Cajamarca,Zanahoria,Arroba,11.5,170,1
-Cusco,Aceite clásico botella x 1l,Litro,1.0,105,1
-Cusco,Arroz superior,Saco,50.0,163,1
-Cusco,Azucar rubia nacional (granel),Bolsa,50.0,168,1
-Cusco,Cebolla cabeza roja,Kilogramo,1.0,242,0
-Cusco,Huevos rosados,Kilogramo,1.0,283,0
-Cusco,Limon sutil bolsa,Kilogramo,1.0,160,0
-Cusco,Papa canchan,Saco,100.0,124,1
-Cusco,Tomate marzano,Kilogramo,1.0,204,0
-Cusco,Zanahoria,Kilogramo,1.0,274,0
-Huancavelica,Aceite clásico botella x 1l,Caja,12.0,179,1
-Huancavelica,Arroz superior,Saco,50.0,216,1
-Huancavelica,Azucar rubia nacional (granel),Saco,50.0,216,1
-Huancavelica,Cebolla cabeza roja,Saco,60.0,216,1
-Huancavelica,Huevos rosados,Kilogramo,1.0,272,0
-Huancavelica,Limon sutil bolsa,Bolsa,40.0,216,1
-Huancavelica,Papa canchan,Kilogramo,1.0,68,0
-Huancavelica,Tomate marzano,Cajon,28.0,183,1
-Huancavelica,Zanahoria,Saco normal,85.0,216,1
-Huanuco,Aceite clásico botella x 1l,Caja,12.0,179,1
-Huanuco,Arroz superior,Saco,50.0,213,1
-Huanuco,Azucar rubia nacional (granel),Bolsa,50.0,213,1
-Huanuco,Cebolla cabeza roja,Kilogramo,1.0,290,0
-Huanuco,Huevos rosados,Kilogramo,1.0,290,0
-Huanuco,Limon sutil bolsa,Bolsa,45.0,213,1
-Huanuco,Papa canchan,Kilogramo,1.0,213,0
-Huanuco,Tomate marzano,Cajon,23.0,179,1
-Huanuco,Zanahoria,Saco,60.0,213,1
-Ica,Aceite clásico botella x 1l,Caja,12.0,177,1
-Ica,Arroz superior,Saco,50.0,199,1
-Ica,Azucar rubia nacional (granel),Bolsa,50.0,211,1
-Ica,Cebolla cabeza roja,Kilogramo,1.0,295,0
-Ica,Huevos rosados,Kilogramo,1.0,295,0
-Ica,Limon sutil bolsa,Kilogramo,1.0,110,0
-Ica,Papa canchan,Kilogramo,1.0,216,0
-Ica,Tomate marzano,Cajon,20.0,168,1
-Ica,Zanahoria,Kilogramo,1.0,295,0
-Junin,Aceite clásico botella x 1l,Caja,12.0,182,1
-Junin,Arroz superior,Saco,50.0,219,1
-Junin,Azucar rubia nacional (granel),Saco,50.0,219,1
-Junin,Cebolla cabeza roja,Kilogramo,1.0,290,0
-Junin,Huevos rosados,Kilogramo,1.0,195,0
-Junin,Limon sutil bolsa,Kilogramo,1.0,158,0
-Junin,Papa canchan,Kilogramo,1.0,138,0
-Junin,Tomate marzano,Cajon chico,23.0,122,1
-Junin,Zanahoria,Saco,60.0,219,1
-La Libertad,Aceite clásico botella x 1l,Caja,12.0,181,1
-La Libertad,Arroz superior,Saco,49.0,216,1
-La Libertad,Azucar rubia nacional (granel),Bolsa,50.0,216,1
-La Libertad,Cebolla cabeza roja,Kilogramo,1.0,294,0
-La Libertad,Huevos rosados,Kilogramo,1.0,294,0
-La Libertad,Limon sutil bolsa,Bolsa,48.0,216,1
-La Libertad,Papa canchan,Arroba,11.5,216,1
-La Libertad,Tomate marzano,Cajon,20.0,182,1
-La Libertad,Zanahoria,Kilogramo,1.0,294,0
-Lambayeque,Aceite clásico botella x 1l,Caja,12.0,182,1
-Lambayeque,Arroz superior,Saco,50.0,216,1
-Lambayeque,Azucar rubia nacional (granel),Bolsa,50.0,217,1
-Lambayeque,Cebolla cabeza roja,Saco mediano,46.0,193,1
-Lambayeque,Huevos rosados,Kilogramo,1.0,294,0
-Lambayeque,Limon sutil bolsa,Bolsa,45.0,193,1
-Lambayeque,Papa canchan,Saco,46.0,74,1
-Lambayeque,Tomate marzano,Cajon,20.0,152,1
-Lambayeque,Zanahoria,Saco mediano,78.0,193,1
-Lima,Aceite clásico botella x 1l,Caja,12.0,181,1
-Lima,Arroz superior,Saco,49.0,205,1
-Lima,Azucar rubia nacional (granel),Saco,50.0,105,1
-Lima,Cebolla cabeza roja,Kilogramo,1.0,359,0
-Lima,Huevos rosados,Kilogramo,1.0,229,0
-Lima,Limon sutil bolsa,Bolsa,45.0,359,1
-Lima,Papa canchan,Kilogramo,1.0,235,0
-Lima,Tomate marzano,Cajon chico,27.0,128,1
-Lima,Zanahoria,Saco chico,65.0,202,1
-Loreto,Aceite clásico botella x 1l,Paquete,12.0,99,1
-Loreto,Arroz superior,Kilogramo,1.0,159,0
-Loreto,Azucar rubia nacional (granel),Kilogramo,1.0,159,0
-Loreto,Cebolla cabeza roja,Kilogramo,1.0,294,0
-Loreto,Huevos rosados,Kilogramo,1.0,294,0
-Loreto,Limon sutil bolsa,Kilogramo,1.0,294,0
-Loreto,Papa canchan,Saco,100.0,161,1
-Loreto,Tomate marzano,Kilogramo,1.0,260,0
-Loreto,Zanahoria,Kilogramo,1.0,294,0
-Madre de Dios,Aceite clásico botella x 1l,Caja,12.0,184,1
-Madre de Dios,Arroz superior,Saco,50.0,141,1
-Madre de Dios,Azucar rubia nacional (granel),Bolsa,50.0,214,1
-Madre de Dios,Cebolla cabeza roja,Kilogramo,1.0,294,0
-Madre de Dios,Huevos rosados,Kilogramo,1.0,288,0
-Madre de Dios,Limon sutil bolsa,Kilogramo,1.0,77,0
-Madre de Dios,Papa canchan,Kilogramo,1.0,215,0
-Madre de Dios,Tomate marzano,Kilogramo,1.0,261,0
-Madre de Dios,Zanahoria,Kilogramo,1.0,294,0
-Moquegua,Aceite clásico botella x 1l,Litro,12.0,180,1
-Moquegua,Arroz superior,Saco,50.0,173,1
-Moquegua,Azucar rubia nacional (granel),Bolsa,50.0,215,1
-Moquegua,Cebolla cabeza roja,Saco,100.0,215,1
-Moquegua,Huevos rosados,Kilogramo,1.0,292,0
-Moquegua,Limon sutil bolsa,Kilogramo,1.0,77,0
-Moquegua,Papa canchan,Saco,100.0,214,1
-Moquegua,Tomate marzano,Jaba,20.0,180,1
-Moquegua,Zanahoria,Saco,100.0,215,1
-Pasco,Aceite clásico botella x 1l,Caja,12.0,183,1
-Pasco,Arroz superior,Saco,50.0,217,1
-Pasco,Azucar rubia nacional (granel),Saco,50.0,217,1
-Pasco,Cebolla cabeza roja,Kilogramo,1.0,294,0
-Pasco,Huevos rosados,Kilogramo,1.0,294,0
-Pasco,Limon sutil bolsa,Kilogramo,1.0,77,0
-Pasco,Papa canchan,Kilogramo,1.0,86,0
-Pasco,Tomate marzano,Cajon chico,27.0,183,1
-Pasco,Zanahoria,Saco chico,65.0,217,1
-Piura,Aceite clásico botella x 1l,Caja chica,12.0,183,1
-Piura,Arroz superior,Saco normal,50.0,217,1
-Piura,Azucar rubia nacional (granel),Saco normal,50.0,217,1
-Piura,Cebolla cabeza roja,Saco,50.0,201,1
-Piura,Huevos rosados,Jaba,26.0,217,1
-Piura,Limon sutil bolsa,Bolsa,50.0,217,1
-Piura,Papa canchan,Saco mediano,50.0,200,1
-Piura,Tomate marzano,Cajon chico,22.0,188,1
-Piura,Zanahoria,Saco grande,46.0,198,1
-Puno,Aceite clásico botella x 1l,Caja,12.0,182,1
-Puno,Arroz superior,Saco,50.0,162,1
-Puno,Azucar rubia nacional (granel),Saco,50.0,213,1
-Puno,Cebolla cabeza roja,Saco1,90.0,160,1
-Puno,Huevos rosados,Paquete,12.0,147,1
-Puno,Limon sutil bolsa,Kilogramo,1.0,93,0
-Puno,Papa canchan,Kilogramo,1.0,168,0
-Puno,Tomate marzano,Caja,20.0,182,1
-Puno,Zanahoria,Saco1,90.0,151,1
-San Martin,Aceite clásico botella x 1l,Docena,12.0,112,1
-San Martin,Arroz superior,Saco,50.0,190,1
-San Martin,Azucar rubia nacional (granel),Saco,50.0,189,1
-San Martin,Cebolla cabeza roja,Kilogramo,1.0,286,0
-San Martin,Huevos rosados,Kilogramo,1.0,264,0
-San Martin,Limon sutil bolsa,Kilogramo,1.0,252,0
-San Martin,Papa canchan,Kilogramo,1.0,206,0
-San Martin,Tomate marzano,Kilogramo,1.0,251,0
-San Martin,Zanahoria,Kilogramo,1.0,286,0
-Tacna,Aceite clásico botella x 1l,Caja,12.0,177,1
-Tacna,Arroz superior,Saco,50.0,177,1
-Tacna,Azucar rubia nacional (granel),Saco,50.0,216,1
-Tacna,Cebolla cabeza roja,Kilogramo,1.0,295,0
-Tacna,Huevos rosados,Kilogramo,1.0,264,0
-Tacna,Limon sutil bolsa,Bolsa,50.0,217,1
-Tacna,Papa canchan,Kilogramo,1.0,218,0
-Tacna,Tomate marzano,Caja madera,25.0,184,1
-Tacna,Zanahoria,Kilogramo,1.0,295,0
-Tumbes,Aceite clásico botella x 1l,Caja,12.0,151,1
-Tumbes,Arroz superior,Saco,49.0,189,1
-Tumbes,Azucar rubia nacional (granel),Saco,50.0,167,1
-Tumbes,Cebolla cabeza roja,Kilogramo,1.0,176,0
-Tumbes,Huevos rosados,Kilogramo,1.0,291,0
-Tumbes,Limon sutil bolsa,Kilogramo,1.0,291,0
-Tumbes,Papa canchan,Kilogramo,1.0,213,0
-Tumbes,Tomate marzano,Cajon,22.0,160,1
-Tumbes,Zanahoria,Kilogramo,1.0,291,0
-Ucayali,Aceite clásico botella x 1l,Caja,12.0,181,1
-Ucayali,Arroz superior,Saco,50.0,216,1
-Ucayali,Azucar rubia nacional (granel),Saco,50.0,216,1
-Ucayali,Cebolla cabeza roja,Kilogramo,1.0,197,0
-Ucayali,Huevos rosados,Caja,30.0,216,1
-Ucayali,Limon sutil bolsa,Kilogramo,1.0,77,0
-Ucayali,Papa canchan,Kilogramo,1.0,120,0
-Ucayali,Tomate marzano,Caja,25.0,95,1
-Ucayali,Zanahoria,Kilogramo,1.0,166,0
+departamento_id,region,producto,unidad,equivalencia_kg,n,prioridad
+PE-AMA,Amazonas,Aceite clásico botella x 1l,Litro,1.0,59,1
+PE-AMA,Amazonas,Arroz superior,Saco,50.0,155,1
+PE-AMA,Amazonas,Azucar rubia nacional (granel),Bolsa,50.0,157,1
+PE-AMA,Amazonas,Cebolla cabeza roja,Saco,40.0,156,1
+PE-AMA,Amazonas,Huevos rosados,Kilogramo,1.0,188,0
+PE-AMA,Amazonas,Limon sutil bolsa,Kilogramo,1.0,167,0
+PE-AMA,Amazonas,Papa canchan,Saco,50.0,14,1
+PE-AMA,Amazonas,Tomate marzano,Kilogramo,1.0,139,0
+PE-AMA,Amazonas,Zanahoria,Saco chico,50.0,155,1
+PE-ANC,Ancash,Aceite clásico botella x 1l,Caja,12.0,179,1
+PE-ANC,Ancash,Arroz superior,Bolsa,50.0,213,1
+PE-ANC,Ancash,Azucar rubia nacional (granel),Bolsa,50.0,213,1
+PE-ANC,Ancash,Cebolla cabeza roja,Kilogramo,1.0,288,0
+PE-ANC,Ancash,Huevos rosados,Kilogramo,1.0,290,0
+PE-ANC,Ancash,Limon sutil bolsa,Bolsa,45.0,210,1
+PE-ANC,Ancash,Papa canchan,Saco,100.0,213,1
+PE-ANC,Ancash,Tomate marzano,Caja,28.0,179,1
+PE-ANC,Ancash,Zanahoria,Saco,80.0,213,1
+PE-APU,Apurimac,Aceite clásico botella x 1l,Caja,12.0,175,1
+PE-APU,Apurimac,Arroz superior,Saco mediano,50.0,203,1
+PE-APU,Apurimac,Azucar rubia nacional (granel),Saco mediano,50.0,203,1
+PE-APU,Apurimac,Cebolla cabeza roja,Kilogramo,1.0,280,0
+PE-APU,Apurimac,Huevos rosados,Paquete,11.5,200,1
+PE-APU,Apurimac,Limon sutil bolsa,Kilogramo,1.0,202,0
+PE-APU,Apurimac,Papa canchan,Arroba,11.5,168,1
+PE-APU,Apurimac,Tomate marzano,Caja madera,22.0,168,1
+PE-APU,Apurimac,Zanahoria,Arroba,11.5,155,1
+PE-ARE,Arequipa,Aceite clásico botella x 1l,Caja,12.0,182,1
+PE-ARE,Arequipa,Arroz superior,Saco,50.0,216,1
+PE-ARE,Arequipa,Azucar rubia nacional (granel),Bolsa,50.0,216,1
+PE-ARE,Arequipa,Cebolla cabeza roja,Kilogramo,1.0,294,0
+PE-ARE,Arequipa,Huevos rosados,Kilogramo,1.0,294,0
+PE-ARE,Arequipa,Limon sutil bolsa,Kilogramo,1.0,77,0
+PE-ARE,Arequipa,Papa canchan,Kilogramo,1.0,217,0
+PE-ARE,Arequipa,Tomate marzano,Cajon,22.0,187,1
+PE-ARE,Arequipa,Zanahoria,Saco,120.0,216,1
+PE-AYA,Ayacucho,Aceite clásico botella x 1l,Caja,12.0,175,1
+PE-AYA,Ayacucho,Arroz superior,Saco,50.0,206,1
+PE-AYA,Ayacucho,Azucar rubia nacional (granel),Saco,50.0,206,1
+PE-AYA,Ayacucho,Cebolla cabeza roja,Kilogramo,1.0,286,0
+PE-AYA,Ayacucho,Huevos rosados,Kilogramo,1.0,280,0
+PE-AYA,Ayacucho,Limon sutil bolsa,Bolsa,42.0,209,1
+PE-AYA,Ayacucho,Papa canchan,Kilogramo,1.0,208,0
+PE-AYA,Ayacucho,Tomate marzano,Kilogramo,1.0,174,0
+PE-AYA,Ayacucho,Zanahoria,Kilogramo,1.0,286,0
+PE-CAJ,Cajamarca,Aceite clásico botella x 1l,Caja,12.0,180,1
+PE-CAJ,Cajamarca,Arroz superior,Saco,49.0,170,1
+PE-CAJ,Cajamarca,Azucar rubia nacional (granel),Bolsa,50.0,214,1
+PE-CAJ,Cajamarca,Cebolla cabeza roja,Kilogramo,1.0,247,0
+PE-CAJ,Cajamarca,Huevos rosados,Kilogramo,1.0,218,0
+PE-CAJ,Cajamarca,Limon sutil bolsa,Kilogramo,1.0,127,0
+PE-CAJ,Cajamarca,Papa canchan,Arroba,11.5,170,1
+PE-CAJ,Cajamarca,Tomate marzano,Kilogramo,1.0,213,0
+PE-CAJ,Cajamarca,Zanahoria,Arroba,11.5,170,1
+PE-CUS,Cusco,Aceite clásico botella x 1l,Litro,1.0,105,1
+PE-CUS,Cusco,Arroz superior,Saco,50.0,163,1
+PE-CUS,Cusco,Azucar rubia nacional (granel),Bolsa,50.0,168,1
+PE-CUS,Cusco,Cebolla cabeza roja,Kilogramo,1.0,242,0
+PE-CUS,Cusco,Huevos rosados,Kilogramo,1.0,283,0
+PE-CUS,Cusco,Limon sutil bolsa,Kilogramo,1.0,160,0
+PE-CUS,Cusco,Papa canchan,Saco,100.0,124,1
+PE-CUS,Cusco,Tomate marzano,Kilogramo,1.0,204,0
+PE-CUS,Cusco,Zanahoria,Kilogramo,1.0,274,0
+PE-HUC,Huanuco,Aceite clásico botella x 1l,Caja,12.0,179,1
+PE-HUC,Huanuco,Arroz superior,Saco,50.0,213,1
+PE-HUC,Huanuco,Azucar rubia nacional (granel),Bolsa,50.0,213,1
+PE-HUC,Huanuco,Cebolla cabeza roja,Kilogramo,1.0,290,0
+PE-HUC,Huanuco,Huevos rosados,Kilogramo,1.0,290,0
+PE-HUC,Huanuco,Limon sutil bolsa,Bolsa,45.0,213,1
+PE-HUC,Huanuco,Papa canchan,Kilogramo,1.0,213,0
+PE-HUC,Huanuco,Tomate marzano,Cajon,23.0,179,1
+PE-HUC,Huanuco,Zanahoria,Saco,60.0,213,1
+PE-HUV,Huancavelica,Aceite clásico botella x 1l,Caja,12.0,179,1
+PE-HUV,Huancavelica,Arroz superior,Saco,50.0,216,1
+PE-HUV,Huancavelica,Azucar rubia nacional (granel),Saco,50.0,216,1
+PE-HUV,Huancavelica,Cebolla cabeza roja,Saco,60.0,216,1
+PE-HUV,Huancavelica,Huevos rosados,Kilogramo,1.0,272,0
+PE-HUV,Huancavelica,Limon sutil bolsa,Bolsa,40.0,216,1
+PE-HUV,Huancavelica,Papa canchan,Kilogramo,1.0,68,0
+PE-HUV,Huancavelica,Tomate marzano,Cajon,28.0,183,1
+PE-HUV,Huancavelica,Zanahoria,Saco normal,85.0,216,1
+PE-ICA,Ica,Aceite clásico botella x 1l,Caja,12.0,177,1
+PE-ICA,Ica,Arroz superior,Saco,50.0,199,1
+PE-ICA,Ica,Azucar rubia nacional (granel),Bolsa,50.0,211,1
+PE-ICA,Ica,Cebolla cabeza roja,Kilogramo,1.0,295,0
+PE-ICA,Ica,Huevos rosados,Kilogramo,1.0,295,0
+PE-ICA,Ica,Limon sutil bolsa,Kilogramo,1.0,110,0
+PE-ICA,Ica,Papa canchan,Kilogramo,1.0,216,0
+PE-ICA,Ica,Tomate marzano,Cajon,20.0,168,1
+PE-ICA,Ica,Zanahoria,Kilogramo,1.0,295,0
+PE-JUN,Junin,Aceite clásico botella x 1l,Caja,12.0,182,1
+PE-JUN,Junin,Arroz superior,Saco,50.0,219,1
+PE-JUN,Junin,Azucar rubia nacional (granel),Saco,50.0,219,1
+PE-JUN,Junin,Cebolla cabeza roja,Kilogramo,1.0,290,0
+PE-JUN,Junin,Huevos rosados,Kilogramo,1.0,195,0
+PE-JUN,Junin,Limon sutil bolsa,Kilogramo,1.0,158,0
+PE-JUN,Junin,Papa canchan,Kilogramo,1.0,138,0
+PE-JUN,Junin,Tomate marzano,Cajon chico,23.0,122,1
+PE-JUN,Junin,Zanahoria,Saco,60.0,219,1
+PE-LAL,La Libertad,Aceite clásico botella x 1l,Caja,12.0,181,1
+PE-LAL,La Libertad,Arroz superior,Saco,49.0,216,1
+PE-LAL,La Libertad,Azucar rubia nacional (granel),Bolsa,50.0,216,1
+PE-LAL,La Libertad,Cebolla cabeza roja,Kilogramo,1.0,294,0
+PE-LAL,La Libertad,Huevos rosados,Kilogramo,1.0,294,0
+PE-LAL,La Libertad,Limon sutil bolsa,Bolsa,48.0,216,1
+PE-LAL,La Libertad,Papa canchan,Arroba,11.5,216,1
+PE-LAL,La Libertad,Tomate marzano,Cajon,20.0,182,1
+PE-LAL,La Libertad,Zanahoria,Kilogramo,1.0,294,0
+PE-LAM,Lambayeque,Aceite clásico botella x 1l,Caja,12.0,182,1
+PE-LAM,Lambayeque,Arroz superior,Saco,50.0,216,1
+PE-LAM,Lambayeque,Azucar rubia nacional (granel),Bolsa,50.0,217,1
+PE-LAM,Lambayeque,Cebolla cabeza roja,Saco mediano,46.0,193,1
+PE-LAM,Lambayeque,Huevos rosados,Kilogramo,1.0,294,0
+PE-LAM,Lambayeque,Limon sutil bolsa,Bolsa,45.0,193,1
+PE-LAM,Lambayeque,Papa canchan,Saco,46.0,74,1
+PE-LAM,Lambayeque,Tomate marzano,Cajon,20.0,152,1
+PE-LAM,Lambayeque,Zanahoria,Saco mediano,78.0,193,1
+PE-LIM,Lima,Aceite clásico botella x 1l,Caja,12.0,181,1
+PE-LIM,Lima,Arroz superior,Saco,49.0,205,1
+PE-LIM,Lima,Azucar rubia nacional (granel),Saco,50.0,105,1
+PE-LIM,Lima,Cebolla cabeza roja,Kilogramo,1.0,359,0
+PE-LIM,Lima,Huevos rosados,Kilogramo,1.0,229,0
+PE-LIM,Lima,Limon sutil bolsa,Bolsa,45.0,359,1
+PE-LIM,Lima,Papa canchan,Kilogramo,1.0,235,0
+PE-LIM,Lima,Tomate marzano,Cajon chico,27.0,128,1
+PE-LIM,Lima,Zanahoria,Saco chico,65.0,202,1
+PE-LOR,Loreto,Aceite clásico botella x 1l,Paquete,12.0,99,1
+PE-LOR,Loreto,Arroz superior,Kilogramo,1.0,159,0
+PE-LOR,Loreto,Azucar rubia nacional (granel),Kilogramo,1.0,159,0
+PE-LOR,Loreto,Cebolla cabeza roja,Kilogramo,1.0,294,0
+PE-LOR,Loreto,Huevos rosados,Kilogramo,1.0,294,0
+PE-LOR,Loreto,Limon sutil bolsa,Kilogramo,1.0,294,0
+PE-LOR,Loreto,Papa canchan,Saco,100.0,161,1
+PE-LOR,Loreto,Tomate marzano,Kilogramo,1.0,260,0
+PE-LOR,Loreto,Zanahoria,Kilogramo,1.0,294,0
+PE-MDD,Madre de Dios,Aceite clásico botella x 1l,Caja,12.0,184,1
+PE-MDD,Madre de Dios,Arroz superior,Saco,50.0,141,1
+PE-MDD,Madre de Dios,Azucar rubia nacional (granel),Bolsa,50.0,214,1
+PE-MDD,Madre de Dios,Cebolla cabeza roja,Kilogramo,1.0,294,0
+PE-MDD,Madre de Dios,Huevos rosados,Kilogramo,1.0,288,0
+PE-MDD,Madre de Dios,Limon sutil bolsa,Kilogramo,1.0,77,0
+PE-MDD,Madre de Dios,Papa canchan,Kilogramo,1.0,215,0
+PE-MDD,Madre de Dios,Tomate marzano,Kilogramo,1.0,261,0
+PE-MDD,Madre de Dios,Zanahoria,Kilogramo,1.0,294,0
+PE-MOQ,Moquegua,Aceite clásico botella x 1l,Litro,12.0,180,1
+PE-MOQ,Moquegua,Arroz superior,Saco,50.0,173,1
+PE-MOQ,Moquegua,Azucar rubia nacional (granel),Bolsa,50.0,215,1
+PE-MOQ,Moquegua,Cebolla cabeza roja,Saco,100.0,215,1
+PE-MOQ,Moquegua,Huevos rosados,Kilogramo,1.0,292,0
+PE-MOQ,Moquegua,Limon sutil bolsa,Kilogramo,1.0,77,0
+PE-MOQ,Moquegua,Papa canchan,Saco,100.0,214,1
+PE-MOQ,Moquegua,Tomate marzano,Jaba,20.0,180,1
+PE-MOQ,Moquegua,Zanahoria,Saco,100.0,215,1
+PE-PAS,Pasco,Aceite clásico botella x 1l,Caja,12.0,183,1
+PE-PAS,Pasco,Arroz superior,Saco,50.0,217,1
+PE-PAS,Pasco,Azucar rubia nacional (granel),Saco,50.0,217,1
+PE-PAS,Pasco,Cebolla cabeza roja,Kilogramo,1.0,294,0
+PE-PAS,Pasco,Huevos rosados,Kilogramo,1.0,294,0
+PE-PAS,Pasco,Limon sutil bolsa,Kilogramo,1.0,77,0
+PE-PAS,Pasco,Papa canchan,Kilogramo,1.0,86,0
+PE-PAS,Pasco,Tomate marzano,Cajon chico,27.0,183,1
+PE-PAS,Pasco,Zanahoria,Saco chico,65.0,217,1
+PE-PIU,Piura,Aceite clásico botella x 1l,Caja chica,12.0,183,1
+PE-PIU,Piura,Arroz superior,Saco normal,50.0,217,1
+PE-PIU,Piura,Azucar rubia nacional (granel),Saco normal,50.0,217,1
+PE-PIU,Piura,Cebolla cabeza roja,Saco,50.0,201,1
+PE-PIU,Piura,Huevos rosados,Jaba,26.0,217,1
+PE-PIU,Piura,Limon sutil bolsa,Bolsa,50.0,217,1
+PE-PIU,Piura,Papa canchan,Saco mediano,50.0,200,1
+PE-PIU,Piura,Tomate marzano,Cajon chico,22.0,188,1
+PE-PIU,Piura,Zanahoria,Saco grande,46.0,198,1
+PE-PUN,Puno,Aceite clásico botella x 1l,Caja,12.0,182,1
+PE-PUN,Puno,Arroz superior,Saco,50.0,162,1
+PE-PUN,Puno,Azucar rubia nacional (granel),Saco,50.0,213,1
+PE-PUN,Puno,Cebolla cabeza roja,Saco1,90.0,160,1
+PE-PUN,Puno,Huevos rosados,Paquete,12.0,147,1
+PE-PUN,Puno,Limon sutil bolsa,Kilogramo,1.0,93,0
+PE-PUN,Puno,Papa canchan,Kilogramo,1.0,168,0
+PE-PUN,Puno,Tomate marzano,Caja,20.0,182,1
+PE-PUN,Puno,Zanahoria,Saco1,90.0,151,1
+PE-SAM,San Martin,Aceite clásico botella x 1l,Docena,12.0,112,1
+PE-SAM,San Martin,Arroz superior,Saco,50.0,190,1
+PE-SAM,San Martin,Azucar rubia nacional (granel),Saco,50.0,189,1
+PE-SAM,San Martin,Cebolla cabeza roja,Kilogramo,1.0,286,0
+PE-SAM,San Martin,Huevos rosados,Kilogramo,1.0,264,0
+PE-SAM,San Martin,Limon sutil bolsa,Kilogramo,1.0,252,0
+PE-SAM,San Martin,Papa canchan,Kilogramo,1.0,206,0
+PE-SAM,San Martin,Tomate marzano,Kilogramo,1.0,251,0
+PE-SAM,San Martin,Zanahoria,Kilogramo,1.0,286,0
+PE-TAC,Tacna,Aceite clásico botella x 1l,Caja,12.0,177,1
+PE-TAC,Tacna,Arroz superior,Saco,50.0,177,1
+PE-TAC,Tacna,Azucar rubia nacional (granel),Saco,50.0,216,1
+PE-TAC,Tacna,Cebolla cabeza roja,Kilogramo,1.0,295,0
+PE-TAC,Tacna,Huevos rosados,Kilogramo,1.0,264,0
+PE-TAC,Tacna,Limon sutil bolsa,Bolsa,50.0,217,1
+PE-TAC,Tacna,Papa canchan,Kilogramo,1.0,218,0
+PE-TAC,Tacna,Tomate marzano,Caja madera,25.0,184,1
+PE-TAC,Tacna,Zanahoria,Kilogramo,1.0,295,0
+PE-TUM,Tumbes,Aceite clásico botella x 1l,Caja,12.0,151,1
+PE-TUM,Tumbes,Arroz superior,Saco,49.0,189,1
+PE-TUM,Tumbes,Azucar rubia nacional (granel),Saco,50.0,167,1
+PE-TUM,Tumbes,Cebolla cabeza roja,Kilogramo,1.0,176,0
+PE-TUM,Tumbes,Huevos rosados,Kilogramo,1.0,291,0
+PE-TUM,Tumbes,Limon sutil bolsa,Kilogramo,1.0,291,0
+PE-TUM,Tumbes,Papa canchan,Kilogramo,1.0,213,0
+PE-TUM,Tumbes,Tomate marzano,Cajon,22.0,160,1
+PE-TUM,Tumbes,Zanahoria,Kilogramo,1.0,291,0
+PE-UCA,Ucayali,Aceite clásico botella x 1l,Caja,12.0,181,1
+PE-UCA,Ucayali,Arroz superior,Saco,50.0,216,1
+PE-UCA,Ucayali,Azucar rubia nacional (granel),Saco,50.0,216,1
+PE-UCA,Ucayali,Cebolla cabeza roja,Kilogramo,1.0,197,0
+PE-UCA,Ucayali,Huevos rosados,Caja,30.0,216,1
+PE-UCA,Ucayali,Limon sutil bolsa,Kilogramo,1.0,77,0
+PE-UCA,Ucayali,Papa canchan,Kilogramo,1.0,120,0
+PE-UCA,Ucayali,Tomate marzano,Caja,25.0,95,1
+PE-UCA,Ucayali,Zanahoria,Kilogramo,1.0,166,0

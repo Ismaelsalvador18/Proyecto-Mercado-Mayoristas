@@ -9,6 +9,7 @@ $PY scripts/validar_fase1.py
 $PY scripts/analisis/01.1_auditoria_fuente.py
 
 $PY scripts/pipeline/02_construir_panel.py
+$PY scripts/validar_fase2.py
 $PY scripts/analisis/02.1_auditoria_panel.py
 
 $PY scripts/pipeline/03_limpiar_panel.py

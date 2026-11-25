@@ -1,0 +1,42 @@
+{
+  "fase": "02_validacion",
+  "ok": true,
+  "filas": 43921,
+  "departamentos": 24,
+  "categorias": 9,
+  "series_potenciales": 216,
+  "series_observadas": 216,
+  "fecha_min": "1997-01-01",
+  "fecha_max": "2026-11-01",
+  "filas_por_departamento": {
+    "PE-AMA": 1190,
+    "PE-ANC": 1998,
+    "PE-APU": 1754,
+    "PE-ARE": 1899,
+    "PE-AYA": 2030,
+    "PE-CAJ": 1709,
+    "PE-CUS": 1723,
+    "PE-HUC": 2003,
+    "PE-HUV": 1782,
+    "PE-ICA": 1966,
+    "PE-JUN": 1742,
+    "PE-LAL": 2109,
+    "PE-LAM": 1714,
+    "PE-LIM": 2003,
+    "PE-LOR": 2014,
+    "PE-MDD": 1968,
+    "PE-MOQ": 1761,
+    "PE-PAS": 1768,
+    "PE-PIU": 1838,
+    "PE-PUN": 1458,
+    "PE-SAM": 2036,
+    "PE-TAC": 2043,
+    "PE-TUM": 1929,
+    "PE-UCA": 1484
+  },
+  "hashes": {
+    "panel_precios.csv": "7eba79e31ec107b18b6ac5a30cc8b73c6dc1fed86e6851868167fe95a1b22a5b",
+    "cobertura_panel.csv": "9ac55d9de985e33ec6c3b8802870aa04a5b9c269259e4ab7ba209149be7653d0",
+    "unidades_panel.csv": "754abd416e0b659eeed194b5a94a138616158413a579b165e2591e17061e62ce"
+  }
+}

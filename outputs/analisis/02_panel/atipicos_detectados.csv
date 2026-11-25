@@ -29,7 +29,7 @@ fecha,region,categoria,precio_kg
 2008-10-01,Tumbes,Cebolla,0.97
 2004-05-01,Ucayali,Cebolla,1.31
 2020-11-01,Cusco,Limon,2.55
-2015-03-01,Huanuco,Limon,1.3417777777777777
+2015-01-01,Huancavelica,Limon,2.8125
 2005-02-01,Ica,Limon,0.95
 2005-05-01,Ica,Limon,1.0
 2005-06-01,Ica,Limon,0.91
@@ -55,7 +55,7 @@ fecha,region,categoria,precio_kg
 2019-07-01,Piura,Tomate,2.6313636363636363
 2019-08-01,Piura,Tomate,2.3895454545454546
 2020-09-01,Puno,Tomate,2.1325
-2016-12-01,Huanuco,Zanahoria,1.1846666666666665
+2016-10-01,Huancavelica,Zanahoria,1.1176470588235294
 2016-02-01,Lambayeque,Zanahoria,1.8232051282051283
 2016-03-01,Lambayeque,Zanahoria,2.2774358974358972
 2016-04-01,Lambayeque,Zanahoria,2.2908974358974357
