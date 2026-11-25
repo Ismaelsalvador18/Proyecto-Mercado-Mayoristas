@@ -12,6 +12,7 @@ __pycache__/
 
 # Datos crudos descargados (se regeneran con el pipeline)
 data/raw/*.html
+data/raw/_excluidos/
 
 # Documentos editoriales generados
 informe.docx

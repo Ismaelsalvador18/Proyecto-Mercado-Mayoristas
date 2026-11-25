@@ -8,8 +8,9 @@ El portal no ofrece una descarga unica: hay que consultar departamento por depar
 Este script reproduce la consulta que hace el formulario web (GET a
 /resumenes/filtrar con ajax=true) y guarda:
 
-  data/raw/ciudades_<region>.html   respuesta cruda de cada region
-  data/processed/precios_ciudades_largo.csv  una fila por region-producto-mes
+  data/raw/ciudades_<codigo>.html   respuesta cruda de cada departamento
+  data/processed/precios_ciudades_largo.csv
+  outputs/_manifests/01_fuente.json  manifiesto de la fase
 
 Variables descargadas:
   may_precio_prom = precio promedio mayorista
@@ -21,8 +22,13 @@ Uso:
 from __future__ import annotations
 
 import csv
+import hashlib
+import json
 import re
+import sys
 import time
+from collections import Counter
+from datetime import datetime, timezone
 from pathlib import Path
 
 import requests
@@ -31,41 +37,21 @@ from bs4 import BeautifulSoup
 RAIZ = Path(__file__).resolve().parent.parent.parent
 RAW = RAIZ / "data" / "raw"
 PROCESADOS = RAIZ / "data" / "processed"
+MANIFIESTOS = RAIZ / "outputs" / "_manifests"
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from catalogo import cargar_catalogo, mapa_codigos  # noqa: E402
+
+CATALOGO = cargar_catalogo()
+REGIONES = mapa_codigos(CATALOGO)
 
 BASE = "http://sistemas.midagri.gob.pe/sisap/portal2/ciudades"
 VARIABLE = "may_precio_prom"
 ANIOS = [str(a) for a in range(1997, 2027)]
 MESES = [f"{m:02d}" for m in range(1, 13)]
 
-# 24 departamentos. No se consultan Callao (provincia constitucional) ni
-# los mercados provinciales 030201 (Andahuaylas), 060401 (Chota) y
-# 060801 (Jaen): pertenecen a Apurimac y Cajamarca y no son departamentos.
-REGIONES = {
-    "010000": "Amazonas",
-    "020000": "Ancash",
-    "030000": "Apurimac",
-    "040000": "Arequipa",
-    "050000": "Ayacucho",
-    "060000": "Cajamarca",
-    "080000": "Cusco",
-    "090000": "Huancavelica",
-    "100000": "Huanuco",
-    "110000": "Ica",
-    "120000": "Junin",
-    "130000": "La Libertad",
-    "140000": "Lambayeque",
-    "150000": "Lima",
-    "160000": "Loreto",
-    "170000": "Madre de Dios",
-    "180000": "Moquegua",
-    "190000": "Pasco",
-    "200000": "Piura",
-    "210000": "Puno",
-    "220000": "San Martin",
-    "230000": "Tacna",
-    "240000": "Tumbes",
-    "250000": "Ucayali",
-}
+# El catalogo define los 24 codigos SISAP permitidos. No se consultan Callao
+# ni los mercados provinciales Andahuaylas, Chota y Jaen.
 
 # Codigos de genero (categoria amplia). El portal devuelve todas las variedades.
 PRODUCTOS = {
@@ -82,6 +68,8 @@ PRODUCTOS = {
 }
 
 CABECERA = [
+    "departamento_id",
+    "departamento",
     "region_codigo",
     "region",
     "codigo_producto",
@@ -153,7 +141,13 @@ def numero(texto: str) -> float | None:
         return None
 
 
-def parsear(html: str, region_codigo: str, region: str) -> list[dict]:
+def parsear(
+    html: str,
+    region_codigo: str,
+    region: str,
+    departamento_id: str,
+    departamento: str,
+) -> list[dict]:
     sopa = BeautifulSoup(html, "lxml")
     tabla = sopa.find("table")
     if tabla is None:
@@ -197,6 +191,8 @@ def parsear(html: str, region_codigo: str, region: str) -> list[dict]:
                 continue
             registros.append(
                 {
+                    "departamento_id": departamento_id,
+                    "departamento": departamento,
                     "region_codigo": region_codigo,
                     "region": region,
                     "codigo_producto": codigo,
@@ -212,45 +208,96 @@ def parsear(html: str, region_codigo: str, region: str) -> list[dict]:
     return registros
 
 
+def sha256_archivo(ruta: Path) -> str:
+    digest = hashlib.sha256()
+    with ruta.open("rb") as archivo:
+        for bloque in iter(lambda: archivo.read(1024 * 1024), b""):
+            digest.update(bloque)
+    return digest.hexdigest()
+
+
 def main() -> None:
     RAW.mkdir(parents=True, exist_ok=True)
     PROCESADOS.mkdir(parents=True, exist_ok=True)
+    MANIFIESTOS.mkdir(parents=True, exist_ok=True)
 
     sesion = crear_sesion()
     postid = obtener_postid(sesion)
     print(f"postID obtenido: {postid}")
 
     todos: list[dict] = []
-    for region_codigo, region in REGIONES.items():
+    for region_codigo, meta in REGIONES.items():
+        region = meta["departamento_ascii"]
+        departamento_id = meta["departamento_id"]
+        departamento = meta["departamento"]
         destino = RAW / f"ciudades_{region_codigo}.html"
         if destino.exists() and destino.stat().st_size > 5000:
             html = destino.read_text(encoding="utf-8", errors="ignore")
-            print(f"{region:16s} cache")
+            print(f"{departamento:16s} cache")
         else:
             html = descargar_region(sesion, postid, region_codigo)
             destino.write_text(html, encoding="utf-8")
-            print(f"{region:16s} descargado ({len(html):,} bytes)")
+            print(f"{departamento:16s} descargado ({len(html):,} bytes)")
             time.sleep(0.6)
 
-        registros = parsear(html, region_codigo, region)
+        registros = parsear(html, region_codigo, region, departamento_id, departamento)
         todos.extend(registros)
         print(f"{'':16s} {len(registros):5d} filas")
         if not registros:
-            print(f"  AVISO: sin datos para {region}")
+            print(f"  AVISO: sin datos para {departamento}")
+
+    codigos_observados = {fila["region_codigo"] for fila in todos}
+    ids_observados = {fila["departamento_id"] for fila in todos}
+    if codigos_observados != set(REGIONES):
+        raise RuntimeError(
+            "La descarga no cubre exactamente los codigos del catalogo: "
+            f"faltan={sorted(set(REGIONES) - codigos_observados)}, "
+            f"sobran={sorted(codigos_observados - set(REGIONES))}"
+        )
+    if ids_observados != set(CATALOGO["departamento_id"]):
+        raise RuntimeError(
+            "La descarga no cubre exactamente los 24 departamentos: "
+            f"faltan={sorted(set(CATALOGO['departamento_id']) - ids_observados)}, "
+            f"sobran={sorted(ids_observados - set(CATALOGO['departamento_id']))}"
+        )
 
     salida = PROCESADOS / "precios_ciudades_largo.csv"
     with salida.open("w", newline="", encoding="utf-8") as archivo:
-        escritor = csv.DictWriter(archivo, fieldnames=CABECERA)
+        escritor = csv.DictWriter(archivo, fieldnames=CABECERA, lineterminator="\n")
         escritor.writeheader()
         escritor.writerows(todos)
 
-    regiones_datos = len({fila["region"] for fila in todos})
+    conteo = Counter(fila["departamento_id"] for fila in todos)
     categorias_datos = len({str(fila["codigo_producto"]).zfill(6)[:4] for fila in todos})
     variedades_datos = len({fila["producto"] for fila in todos})
+    manifiesto = {
+        "fase": "01_fuente",
+        "generado_en": datetime.now(timezone.utc).isoformat(),
+        "catalogo": str((RAIZ / "data" / "reference" / "departamentos.csv").relative_to(RAIZ)),
+        "catalogo_sha256": sha256_archivo(RAIZ / "data" / "reference" / "departamentos.csv"),
+        "departamentos": int(len(CATALOGO)),
+        "departamentos_ids": sorted(ids_observados),
+        "codigos_sisap": sorted(codigos_observados),
+        "filas": len(todos),
+        "categorias": categorias_datos,
+        "variedades": variedades_datos,
+        "anio_min": min(fila["anio"] for fila in todos),
+        "anio_max": max(fila["anio"] for fila in todos),
+        "filas_por_departamento": dict(sorted(conteo.items())),
+        "salida": str(salida.relative_to(RAIZ)),
+        "salida_sha256": sha256_archivo(salida),
+    }
+    destino_manifiesto = MANIFIESTOS / "01_fuente.json"
+    destino_manifiesto.write_text(
+        json.dumps(manifiesto, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
     print(f"\nTotal: {len(todos):,} filas -> {salida.relative_to(RAIZ)}")
     print(f"Consultas: {len(REGIONES)} departamentos, {len(PRODUCTOS)} categorías solicitadas")
-    print(f"Con datos: {regiones_datos} departamentos | {categorias_datos} categorías | "
+    print(f"Con datos: {len(ids_observados)} departamentos | {categorias_datos} categorías | "
           f"{variedades_datos} variedades")
+    print(f"Manifiesto: {destino_manifiesto.relative_to(RAIZ)}")
 
 
 if __name__ == "__main__":

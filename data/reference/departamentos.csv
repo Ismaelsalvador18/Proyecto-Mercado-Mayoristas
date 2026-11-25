@@ -1,0 +1,25 @@
+departamento_id,departamento,departamento_ascii,codigo_sisap,latitud,longitud,zona_natural,es_referencia_lima
+PE-AMA,Amazonas,Amazonas,010000,-6.23,-77.87,Sierra,0
+PE-ANC,Áncash,Ancash,020000,-9.53,-77.53,Sierra,0
+PE-APU,Apurímac,Apurimac,030000,-13.63,-72.88,Sierra,0
+PE-ARE,Arequipa,Arequipa,040000,-16.41,-71.54,Costa,0
+PE-AYA,Ayacucho,Ayacucho,050000,-13.16,-74.22,Sierra,0
+PE-CAJ,Cajamarca,Cajamarca,060000,-7.16,-78.51,Sierra,0
+PE-CUS,Cusco,Cusco,080000,-13.53,-71.97,Sierra,0
+PE-HUV,Huancavelica,Huancavelica,090000,-12.79,-74.97,Sierra,0
+PE-HUC,Huánuco,Huanuco,100000,-9.93,-76.24,Sierra,0
+PE-ICA,Ica,Ica,110000,-14.07,-75.73,Costa,0
+PE-JUN,Junín,Junin,120000,-12.07,-75.21,Sierra,0
+PE-LAL,La Libertad,La Libertad,130000,-8.11,-79.03,Costa,0
+PE-LAM,Lambayeque,Lambayeque,140000,-6.77,-79.84,Costa,0
+PE-LIM,Lima,Lima,150000,-12.05,-77.04,Costa,1
+PE-LOR,Loreto,Loreto,160000,-3.75,-73.25,Selva,0
+PE-MDD,Madre de Dios,Madre de Dios,170000,-12.59,-69.18,Selva,0
+PE-MOQ,Moquegua,Moquegua,180000,-17.19,-70.94,Costa,0
+PE-PAS,Pasco,Pasco,190000,-10.68,-76.26,Sierra,0
+PE-PIU,Piura,Piura,200000,-5.19,-80.63,Costa,0
+PE-PUN,Puno,Puno,210000,-15.84,-70.02,Sierra,0
+PE-SAM,San Martín,San Martin,220000,-6.03,-76.97,Selva,0
+PE-TAC,Tacna,Tacna,230000,-18.01,-70.25,Costa,0
+PE-TUM,Tumbes,Tumbes,240000,-3.57,-80.45,Costa,0
+PE-UCA,Ucayali,Ucayali,250000,-8.38,-74.55,Selva,0

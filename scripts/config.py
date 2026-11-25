@@ -16,6 +16,11 @@ from matplotlib.ticker import FuncFormatter
 import pandas as pd
 import seaborn as sns
 
+try:
+    from catalogo import EXCLUIDOS, cargar_catalogo
+except ModuleNotFoundError:  # permite importar scripts.config desde la raiz
+    from scripts.catalogo import EXCLUIDOS, cargar_catalogo
+
 # --------------------------------------------------------------------------
 # Rutas
 # --------------------------------------------------------------------------
@@ -48,21 +53,13 @@ UNIDADES = PROCESADOS / "unidades_panel.csv"
 # --------------------------------------------------------------------------
 # Unidad transversal
 # --------------------------------------------------------------------------
-# 24 departamentos. Se excluyen Callao (provincia constitucional) y los
-# mercados provinciales Andahuaylas, Chota y Jaen, que SISAP reporta aparte
-# pero pertenecen a Apurimac y Cajamarca. Incluirlos como "departamentos"
-# duplicaria la unidad de analisis y romperia la comparacion Lima-Puno.
-DEPARTAMENTOS = [
-    "Amazonas", "Ancash", "Apurimac", "Arequipa", "Ayacucho", "Cajamarca",
-    "Cusco", "Huancavelica", "Huanuco", "Ica", "Junin", "La Libertad",
-    "Lambayeque", "Lima", "Loreto", "Madre de Dios", "Moquegua", "Pasco",
-    "Piura", "Puno", "San Martin", "Tacna", "Tumbes", "Ucayali",
-]
-SUBDEPARTAMENTOS = {
-    "Andahuaylas": "Apurimac",
-    "Chota": "Cajamarca",
-    "Jaen": "Cajamarca",
-}
+# El catalogo es la unica fuente de verdad. Se excluyen Callao (provincia
+# constitucional) y los mercados provinciales Andahuaylas, Chota y Jaen, que
+# SISAP reporta aparte pero pertenecen a Apurimac y Cajamarca.
+CATALOGO = cargar_catalogo()
+DEPARTAMENTOS = CATALOGO["departamento_ascii"].tolist()
+DEPARTAMENTOS_ID = CATALOGO["departamento_id"].tolist()
+SUBDEPARTAMENTOS = {nombre: descripcion for nombre, descripcion in EXCLUIDOS.values()}
 
 # --------------------------------------------------------------------------
 # Productos
@@ -101,27 +98,12 @@ LAGS_ECM_MAX = 4
 # Geografia
 # --------------------------------------------------------------------------
 COORDENADAS = {
-    "Lima": (-12.05, -77.04), "Ica": (-14.07, -75.73), "Huanuco": (-9.93, -76.24),
-    "Arequipa": (-16.41, -71.54), "La Libertad": (-8.11, -79.03),
-    "Ayacucho": (-13.16, -74.22), "Cusco": (-13.53, -71.97), "Puno": (-15.84, -70.02),
-    "Piura": (-5.19, -80.63), "Loreto": (-3.75, -73.25), "Tumbes": (-3.57, -80.45),
-    "Junin": (-12.07, -75.21), "Ancash": (-9.53, -77.53), "Cajamarca": (-7.16, -78.51),
-    "Amazonas": (-6.23, -77.87), "San Martin": (-6.03, -76.97),
-    "Ucayali": (-8.38, -74.55), "Madre de Dios": (-12.59, -69.18),
-    "Moquegua": (-17.19, -70.94), "Pasco": (-10.68, -76.26),
-    "Huancavelica": (-12.79, -74.97), "Apurimac": (-13.63, -72.88),
-    "Tacna": (-18.01, -70.25), "Lambayeque": (-6.77, -79.84),
+    fila.departamento_ascii: (fila.latitud, fila.longitud)
+    for fila in CATALOGO.itertuples(index=False)
 }
-
 ZONAS = {
-    "Lima": "Costa", "Ica": "Costa", "Arequipa": "Costa", "La Libertad": "Costa",
-    "Piura": "Costa", "Tumbes": "Costa", "Lambayeque": "Costa", "Moquegua": "Costa",
-    "Tacna": "Costa", "Ancash": "Sierra", "Cajamarca": "Sierra",
-    "Huancavelica": "Sierra", "Huanuco": "Sierra", "Junin": "Sierra",
-    "Pasco": "Sierra", "Ayacucho": "Sierra", "Apurimac": "Sierra", "Cusco": "Sierra",
-    "Puno": "Sierra", "Amazonas": "Sierra",
-    "Loreto": "Selva", "San Martin": "Selva", "Ucayali": "Selva",
-    "Madre de Dios": "Selva",
+    fila.departamento_ascii: fila.zona_natural
+    for fila in CATALOGO.itertuples(index=False)
 }
 
 # --------------------------------------------------------------------------

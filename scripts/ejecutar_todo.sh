@@ -5,6 +5,7 @@ cd "$(dirname "$0")/.."
 PY=".venv/bin/python"
 
 $PY scripts/pipeline/01_descargar_sisap.py
+$PY scripts/validar_fase1.py
 $PY scripts/analisis/01.1_auditoria_fuente.py
 
 $PY scripts/pipeline/02_construir_panel.py
