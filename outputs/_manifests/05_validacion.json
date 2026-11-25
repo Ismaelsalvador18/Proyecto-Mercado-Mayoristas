@@ -1,0 +1,20 @@
+{
+  "fase": "05_validacion",
+  "ok": true,
+  "departamentos": 24,
+  "departamentos_sin_lima": 23,
+  "productos": 6,
+  "ecm_puno_filas": 6,
+  "ecm_region_filas": 130,
+  "pares_max": 23,
+  "robustez_filas": 37,
+  "archivos_validados": 6,
+  "hashes": {
+    "outputs/analisis/05_ecm/asimetria.csv": "8a05f331d2bca3021c30d0feb4b0436edbd9917a5365653cefce9b6c5562aa05",
+    "outputs/analisis/05_ecm/diagnostico_ecm.csv": "79edb8e03802d12e183794e72ba4cbe4affc3e944b4fee7ceec12788a07b6a24",
+    "outputs/analisis/05_ecm/ecm_producto.csv": "e31fb01110b9e39354cb58396b0b6ca957dba06cd33b46befc9226cc3f93450c",
+    "outputs/analisis/05_ecm/ecm_puno.csv": "573b66ddbc1e72b6bcc41fe1f2b19f01ce5a6bedfb3c8c51832ca6f025ac5dd3",
+    "outputs/analisis/05_ecm/ecm_region.csv": "046d8b16f21041344b2f23a5f7cbbe71161e945583b2e52a993031bda38a1f89",
+    "outputs/analisis/07_robustez/ecm_robustez.csv": "60e12c18f9681bca8294c84f50ea71ddfce3394e638bbe270405193404c68f5d"
+  }
+}

@@ -30,6 +30,7 @@ $PY scripts/analisis/05.2_evaluacion_modelos.py
 
 $PY scripts/pipeline/06_robustez.py
 $PY scripts/analisis/06.1_robustez_visual.py
+$PY scripts/validar_fase5.py
 
 $PY scripts/informe/07_resultados_informe.py
 
