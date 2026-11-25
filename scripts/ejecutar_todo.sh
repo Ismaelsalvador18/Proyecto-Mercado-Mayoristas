@@ -27,6 +27,7 @@ $PY scripts/analisis/04.1_diagnostico_ecm.py
 $PY scripts/pipeline/05_torneo_modelos.py
 $PY scripts/analisis/05.1_representacion_modelos.py
 $PY scripts/analisis/05.2_evaluacion_modelos.py
+$PY scripts/validar_fase6.py
 
 $PY scripts/pipeline/06_robustez.py
 $PY scripts/analisis/06.1_robustez_visual.py

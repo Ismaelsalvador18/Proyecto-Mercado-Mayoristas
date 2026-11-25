@@ -1,0 +1,27 @@
+{
+  "fase": "06_modelos",
+  "catalogo_sha256": "42dfa4c6af6422092085fb3e1c0129fe16e607dcc134fc53b7e47ea0384cab15",
+  "panel_limpio_sha256": "91f3f3983aae2594c93338f19d5677b0a59859bef6a83cc6e75daa5c0d0e9eac",
+  "departamentos": 24,
+  "productos_holdout": 6,
+  "modelos": 4,
+  "predicciones_holdout": 1060,
+  "archivos": {
+    "outputs/analisis/06_modelos/coeficientes.csv": "75af3ab9ec29401233c83cc84c545bf8ca453efc414c6f1b2d1ea36ca459139e",
+    "outputs/analisis/06_modelos/curvas_aprendizaje.csv": "c21f75872dfdcc4b19c2232e12f5b03fd4edf0e5c87238a8766eb9a3a9cf3427",
+    "outputs/analisis/06_modelos/hiperparametros.csv": "b8bab6a8ccb8f4240064923047e3b968c4e19ba741e177b54894784e861b8bbf",
+    "outputs/analisis/06_modelos/matriz_confusion_modelos.csv": "8a54b23e715aa6c527107121d63b7c6ac7b3693970a12416706a15f73160db16",
+    "outputs/analisis/06_modelos/matriz_confusion_producto.csv": "f3c0bac10858983fc2698a14ef4a496396576a5f96f3849eb21f63f91c92cff0",
+    "outputs/analisis/06_modelos/matriz_diseno.csv": "1d91f81a8070dc1b8a640a881c793c30867fd46d0851b5a7f56e74d95aaa34c8",
+    "outputs/analisis/06_modelos/matriz_diseno_muestra.csv": "4f71cef818a27ffe2fdbbe67ea1be016a50c3dc1b54538c0088f1df9bf6cf360",
+    "outputs/analisis/06_modelos/model_cards.csv": "30530125a335baeda72b01426b4a1ac07cf95f97a906945e3cd21bd47aa42bf7",
+    "outputs/analisis/06_modelos/predicciones_holdout.csv": "22b0324cdc09789746de8fcbe3b0e467389c0b4c28acfebe7628ec561a856425",
+    "outputs/analisis/06_modelos/torneo_complemento.csv": "95ab4f083f0012a5236f835cbf5160e66d69b9f1ca0b90de620033d871513529",
+    "outputs/analisis/06_modelos/torneo_forecast_metricas.csv": "7d447228c65fd32186b50840ff667e436efd4f95f2ef90463e6bb56367cab55d",
+    "outputs/analisis/06_modelos/torneo_forecast_ranking.csv": "33c7779874c2392e2fc8461ecbcec2dd9b5c7ba955baf63163ce1be41fd0dcc9",
+    "outputs/analisis/06_modelos/torneo_nowcast_dm.csv": "6f4354e763e1eebed1cec337f7f06a7352f2bf3c20fcb7047664eef0587704cb",
+    "outputs/analisis/06_modelos/torneo_nowcast_metricas.csv": "3e4629ac3538a1f0e74385357ac405b64bfb374735114f9a1927bec5c39a2ba9",
+    "outputs/analisis/06_modelos/torneo_nowcast_ranking.csv": "2b87b532ad38cc0ec6578d74924083c15187fa02cdf13807dc210322bccd8d27",
+    "outputs/analisis/06_modelos/torneo_ganador.md": "2c9d843e83c1ffb7ec65bf9b7d09825084cb556eedd79cffa191f721189ae37f"
+  }
+}
