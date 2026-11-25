@@ -35,5 +35,6 @@ $PY scripts/validar_fase5.py
 
 $PY scripts/informe/07_resultados_informe.py
 $PY scripts/validar_fase7.py
+$PY scripts/validar_fase8.py
 
 echo "Pipeline completo. Artefactos en outputs/."

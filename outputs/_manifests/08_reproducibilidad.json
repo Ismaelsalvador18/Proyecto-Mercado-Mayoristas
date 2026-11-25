@@ -1,0 +1,11 @@
+{
+  "fase": "08_reproducibilidad",
+  "ok": true,
+  "csv_comparados": 75,
+  "diferencias_csv": 0,
+  "tolerancia_numerica": 1e-08,
+  "pdf_paginas_run1": 32,
+  "pdf_paginas_run2": 32,
+  "texto_pdf_identico": true,
+  "nota": "Los hashes de los CSV son idénticos entre corridas; los metadatos de fecha de PDF/cuaderno pueden cambiar."
+}

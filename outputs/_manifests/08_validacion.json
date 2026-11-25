@@ -1,0 +1,15 @@
+{
+  "fase": "08_cierre",
+  "ok": true,
+  "departamentos": 24,
+  "departamentos_sin_lima": 23,
+  "filas_crudas": 43921,
+  "filas_limpias": 43855,
+  "atipicos": 66,
+  "series": 216,
+  "productos_holdout": 6,
+  "modelos": 4,
+  "predicciones_holdout": 1060,
+  "tablas": 26,
+  "figuras": 25
+}
