@@ -10,7 +10,7 @@ hacia los departamentos del Perú. Combina un modelo de corrección de error (EC
 estacionariedad, análisis geográfico, ingeniería de variables y un torneo de modelos de nowcast y
 pronóstico.
 
-**Pregunta:** ¿cuánto y con qué rezago responde el precio mayorista regional al de Lima, y qué valor
+**Pregunta:** ¿cuánto y con qué rezago responde el precio mayorista departamental al de Lima, y qué valor
 predictivo tiene esa relación?
 
 ---
@@ -131,6 +131,7 @@ magnitud del error. Las matrices agregadas están en
 proyecto-mercados-mayoristas/
 ├── data/
 │   ├── raw/                         respuestas HTML de la fuente (no versionadas)
+│   ├── reference/                   catálogo de los 24 departamentos
 │   └── processed/                   panel crudo, panel limpio y auditorías
 ├── docs/
 │   ├── plan_desarrollo.md           decisiones y fases del proyecto
@@ -142,10 +143,12 @@ proyecto-mercados-mayoristas/
 ├── outputs/                         resultados intermedios, tablas y figuras
 ├── scripts/
 │   ├── config.py                    rutas, ventanas y parámetros
+│   ├── catalogo.py                  validación de los 24 departamentos
 │   ├── modelos.py                   variables y métricas compartidas
 │   ├── ecm.py                       construcción y estimación del ECM
 │   ├── pipeline/                    datos y modelos
 │   ├── analisis/                    auditorías y diagnóstico
+│   ├── validar_fase1.py ... 8.py    gates de integridad por fase
 │   └── ...                          artefactos de resultados
 ├── requirements.txt
 └── README.md
@@ -240,7 +243,9 @@ Si `jupyter` no está en el `PATH`, usa el binario de tu instalación. Por ejemp
 - `outputs/analisis/`: resultados intermedios por fase.
 - `outputs/`: tablas y figuras listas para consulta.
 - `outputs/analisis/06_modelos/`: matriz de diseño, predicciones del holdout y matrices de confusión.
+- `outputs/_manifests/`: manifiestos y hashes de cada fase.
 - `notebooks/01_resultados.ipynb`: recorrido ejecutivo con tablas y figuras.
+- `notebooks/02_guia_detallada.ipynb`: guía local no versionada, útil para lectura paso a paso.
 
 El índice de tablas y figuras se genera dentro de `outputs/`.
 
@@ -252,6 +257,7 @@ El índice de tablas y figuras se genera dentro de `outputs/`.
 - Versiones de software registradas en los artefactos de `outputs/`.
 - Descarga con caché: si `data/raw/*.html` existe, no se consulta el portal.
 - Pipeline completo: aproximadamente 10–15 minutos, dependiendo de la descarga y del torneo.
+- `scripts/ejecutar_todo.sh` ejecuta los gates 1–8; si una fase no cuadra con la anterior, se detiene.
 
 La fuente se consulta con `scripts/pipeline/01_descargar_sisap.py`. Los HTML crudos no se versionan.
 

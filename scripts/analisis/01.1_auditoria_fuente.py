@@ -5,7 +5,7 @@ Corre despues de 01 y antes de 02.
 Genera:
   outputs/analisis/01_fuente/auditoria_fuente.csv
   outputs/analisis/01_fuente/cobertura_anual.png
-  outputs/analisis/01_fuente/filas_por_region.png
+  outputs/analisis/01_fuente/filas_por_departamento.png
 """
 
 from __future__ import annotations
@@ -45,9 +45,10 @@ def main() -> None:
                                              variedades=("producto", "nunique"),
                                              anio_min=("anio", "min"),
                                              anio_max=("anio", "max")).reset_index()
-    tabla(por_region, "filas_por_region.csv", "fuente")
+    por_region = por_region.rename(columns={"region": "departamento"})
+    tabla(por_region, "filas_por_departamento.csv", "fuente")
 
-    anio = crudo.groupby("anio").agg(regiones=("region", "nunique"),
+    anio = crudo.groupby("anio").agg(departamentos=("region", "nunique"),
                                      categorias=("categoria_codigo", "nunique"),
                                      filas=("valor", "size")).reset_index()
     tabla(anio, "cobertura_anual.csv", "fuente")
@@ -60,7 +61,7 @@ def main() -> None:
     print("Rango:", crudo.anio.min(), "-", crudo.anio.max())
 
     fig, ax = plt.subplots(figsize=(11, 4))
-    ax.plot(anio.anio, anio.regiones, marker="o", label="departamentos")
+    ax.plot(anio.anio, anio.departamentos, marker="o", label="departamentos")
     ax.plot(anio.anio, anio.categorias, marker="s", label="categorias")
     ax.set_title("Cobertura anual de la fuente")
     ax.set_xlabel("año")
@@ -70,11 +71,11 @@ def main() -> None:
 
     fig, ax = plt.subplots(figsize=(10, 5))
     orden = por_region.sort_values("filas", ascending=False)
-    sns.barplot(data=orden, y="region", x="filas", color="#0e7490", ax=ax)
+    sns.barplot(data=orden, y="departamento", x="filas", color="#0e7490", ax=ax)
     ax.set_title("Filas descargadas por departamento")
     ax.set_xlabel("filas")
     ax.set_ylabel("")
-    guardar(fig, "filas_por_region.png", "fuente")
+    guardar(fig, "filas_por_departamento.png", "fuente")
 
     print("\nTablas y figuras de fuente generadas en", DIRECTORIOS["fuente"])
 

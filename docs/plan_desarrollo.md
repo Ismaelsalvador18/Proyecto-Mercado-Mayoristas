@@ -9,7 +9,7 @@
 
 ## 1. Pregunta e hipótesis
 
-**Pregunta:** ¿cuánto y con qué rezago responde el precio mayorista regional al de Lima, y qué
+**Pregunta:** ¿cuánto y con qué rezago responde el precio mayorista departamental al de Lima, y qué
 valor predictivo tiene esa relación?
 
 **Sub-preguntas:**
@@ -47,6 +47,7 @@ Detalle en `docs/diccionario_datos.md`.
 ```
 scripts/
 ├── config.py                     rutas, productos, ventanas, hiperparámetros
+├── catalogo.py                   catálogo y validación de 24 departamentos
 ├── modelos.py                    features, modelos y métricas compartidas
 ├── pipeline/
 │   ├── 01_descargar_sisap.py
@@ -67,26 +68,31 @@ scripts/
 │   ├── 05.1_representacion_modelos.py
 │   ├── 05.2_evaluacion_modelos.py
 │   └── 06.1_robustez_visual.py
-└── informe/
-    ├── 07_resultados_informe.py
-    └── 08_generar_informe.py
+├── informe/
+│   ├── 07_resultados_informe.py
+│   └── 08_generar_informe.py     (generador editorial local, ignorado)
+└── validar_fase1.py ... validar_fase8.py
 ```
 
 La capa `pipeline` produce los modelos; `analisis` justifica cada decisión; `informe` numera y
 formatea los artefactos. Las subnumeraciones indican el orden: `03.2` corre después de `03.1` y
 antes de `03.3`.
 
+Cada fase escribe un manifiesto en `outputs/_manifests/` y llama a un validador. El pipeline se
+detiene si la fuente, el panel, la limpieza, el EDA, el ECM, los modelos o los artefactos dejan de
+ser coherentes con la fase anterior. Los gates se ejecutan desde `scripts/ejecutar_todo.sh`.
+
 ---
 
 ## 4. Correcciones metodológicas aplicadas (Opción A)
 
 1. **Estacionariedad:** ADF con constante (principal), ADF con constante y tendencia (robustez)
-   y KPSS por producto y región. Se reporta el
+   y KPSS por producto y departamento. Se reporta el
    orden de integración y se evita afirmar cointegración universal.
 2. **Rezagos:** q = 0…4 por producto; se elige por BIC. Resultado: q = 0 en los seis productos.
 3. **ECM en niveles:** errores HAC (Newey–West), vida media con IC bootstrap (500 réplicas).
 4. **Cointegración:** Engle–Granger como evidencia complementaria.
-5. **Panel regional:** mismo q por producto, 24 departamentos, resumen y mapa de vida media.
+5. **Panel departamental:** mismo q por producto, 24 departamentos, resumen y mapa de vida media.
 6. **Torneo:** nowcast sobre cambios (estacionarios) y pronóstico sobre niveles con caminata
    aleatoria.
 7. **Representación de modelos:** coeficientes, camino de Ridge, árbol de RF, árbol sustituto de
@@ -168,8 +174,9 @@ antes de `03.3`.
 ## 9. Entregables
 
 - Dataset final y auditoría.
-- Pipeline reproducible (19 scripts).
+- Pipeline reproducible y validado (30 scripts versionados, incluidos 8 validadores de fase).
 - 25 figuras de artefactos (24 numeradas) y 26 tablas de artefactos (22 numeradas; incluye matriz de diseño, predicciones y matrices de confusión).
+- Manifiestos de integridad por fase en `outputs/_manifests/`.
 - Dos cuadernos: resultados ejecutivos y guía detallada.
 - `docs/metodologia.md`, `docs/referencias.md`, `docs/diccionario_datos.md`.
 - README con ejecución de inicio a fin.

@@ -12,20 +12,20 @@
   "archivos_validados": 16,
   "hashes": {
     "outputs/analisis/06_modelos/coeficientes.csv": "75af3ab9ec29401233c83cc84c545bf8ca453efc414c6f1b2d1ea36ca459139e",
-    "outputs/analisis/06_modelos/curvas_aprendizaje.csv": "4de646bdab2d242636f0e13f5f28fcb929b26c588b8eaa8931b322c8d5cf65f0",
+    "outputs/analisis/06_modelos/curvas_aprendizaje.csv": "4f84449fe1757b66cbf64c313cd4e2f20d9febfbeb24b85a10104c6345a065f4",
     "outputs/analisis/06_modelos/hiperparametros.csv": "b8bab6a8ccb8f4240064923047e3b968c4e19ba741e177b54894784e861b8bbf",
     "outputs/analisis/06_modelos/matriz_confusion_modelos.csv": "8a54b23e715aa6c527107121d63b7c6ac7b3693970a12416706a15f73160db16",
     "outputs/analisis/06_modelos/matriz_confusion_producto.csv": "f3c0bac10858983fc2698a14ef4a496396576a5f96f3849eb21f63f91c92cff0",
     "outputs/analisis/06_modelos/matriz_diseno.csv": "1d91f81a8070dc1b8a640a881c793c30867fd46d0851b5a7f56e74d95aaa34c8",
     "outputs/analisis/06_modelos/matriz_diseno_muestra.csv": "4f71cef818a27ffe2fdbbe67ea1be016a50c3dc1b54538c0088f1df9bf6cf360",
     "outputs/analisis/06_modelos/model_cards.csv": "30530125a335baeda72b01426b4a1ac07cf95f97a906945e3cd21bd47aa42bf7",
-    "outputs/analisis/06_modelos/predicciones_holdout.csv": "8ab61175fa8042d069f73596eaa87af829b2232b941f22d1322b2b4ce5b4ad3e",
-    "outputs/analisis/06_modelos/torneo_complemento.csv": "9bf61c90d7da26b44b1bb3de8de4e5f62733b0a13077b339ce6cb2bcce280514",
-    "outputs/analisis/06_modelos/torneo_forecast_metricas.csv": "39a4d662c91464b1d89d290f5c0e2d53d17f7320c7809bdde3bf921a01a1b7ab",
-    "outputs/analisis/06_modelos/torneo_forecast_ranking.csv": "feb0e81064ddf10192e74dfac783a3fb33847508b76beb18e483edfa8af6143c",
-    "outputs/analisis/06_modelos/torneo_nowcast_dm.csv": "424c507d88cabcbd3506ff2f48646831ed779952fb29fa4fb79733d0f00e9102",
-    "outputs/analisis/06_modelos/torneo_nowcast_metricas.csv": "2635bb7a07cb882ec22167d0e990c4e9259593b81df0785cd43a0d4e9122511c",
-    "outputs/analisis/06_modelos/torneo_nowcast_ranking.csv": "5d67fab5798d4f1ed51f6da0cbd8dee9fe1611c08e2cef54e128559f2ebd9ac3",
+    "outputs/analisis/06_modelos/predicciones_holdout.csv": "3294f1b18a55d8e5c443d8813869f00bbbcce4310e3eff5c1b8a1581e3de5046",
+    "outputs/analisis/06_modelos/torneo_complemento.csv": "2f59a5784f9bdc9a78246748691cddc3fdcea91c47590fa6140e17f61bd299eb",
+    "outputs/analisis/06_modelos/torneo_forecast_metricas.csv": "a03d415d25e73941adf0383f7364315e59a4a0029af4295e57bde726660ae612",
+    "outputs/analisis/06_modelos/torneo_forecast_ranking.csv": "cabd466544b71daeaec915289fa4055d3416d05b06dee1e5292b80d25e86c057",
+    "outputs/analisis/06_modelos/torneo_nowcast_dm.csv": "82146ff5f74e66365c9a3f97cb99af6b8f098be73d42b6f09768e6f1550eb92b",
+    "outputs/analisis/06_modelos/torneo_nowcast_metricas.csv": "e6bda3387497d556a8d4aba7f08f686a7ecb09c8ad0bb41b8bf3a070624f738e",
+    "outputs/analisis/06_modelos/torneo_nowcast_ranking.csv": "c3a3bc3489ac1e2ddd10d983138c0bd6a69d47bb8fcc67e2b4c342e47a0889af",
     "outputs/analisis/06_modelos/torneo_ganador.md": "2c9d843e83c1ffb7ec65bf9b7d09825084cb556eedd79cffa191f721189ae37f"
   }
 }

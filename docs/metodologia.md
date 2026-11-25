@@ -84,7 +84,7 @@ se habla de **modelo de corrección de error en niveles**, no de cointegración 
 
 ## 4. Modelo de corrección de error
 
-Para cada producto y región:
+Para cada producto y departamento:
 
 ```
 Δp(t) = α + Σ(k=0..q) βk Δp_Lima(t−k) + γ [p(t−1) − p_Lima(t−1)] + ε(t)
@@ -153,7 +153,7 @@ como ganador entre cuatro productos elegibles, no como una comparación equilibr
 
 ### 5.5 Matriz de diseño
 
-Para cada producto y región, el nowcast se construye así:
+Para cada producto y departamento, el nowcast se construye así:
 
 1. Se hace una tabla pivote de `precio_kg` con fechas en filas y departamentos en columnas.
 2. Se repone el calendario mensual completo para no convertir un hueco en un mes consecutivo.
@@ -219,7 +219,7 @@ registros de noviembre quedan en el panel y no se califican como erróneos o inc
 
 - Semillas fijas (`random_state=0`).
 - Versiones en `tabla_17_software.csv`.
-- Pipeline de 19 scripts con orden explícito.
+- Pipeline de 30 scripts versionados con orden explícito, incluidos 8 validadores de fase.
 - Datos crudos en caché; datos procesados versionados.
 
 ## Anexo. Formulación matemática

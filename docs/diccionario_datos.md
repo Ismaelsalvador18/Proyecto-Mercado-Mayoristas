@@ -59,7 +59,7 @@ análisis. Se excluyen los mercados provinciales Andahuaylas, Chota y Jaén, y C
 | `cambio_log` | `Δ log_precio` | ECM y modelos |
 | `rezago_k` | `log_precio` desplazado k meses | predictores |
 | `mediana_otras` | mediana de otros departamentos en el mismo mes | señal de red |
-| `distancia_lima_km` | distancia haversine capital regional–Lima | heterogeneidad |
+| `distancia_lima_km` | distancia haversine capital departamental–Lima | heterogeneidad |
 | `zona` | costa / sierra / selva | heterogeneidad |
 
 ## Normalización de unidades
