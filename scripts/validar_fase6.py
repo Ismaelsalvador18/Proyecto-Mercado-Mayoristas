@@ -221,8 +221,8 @@ def main() -> None:
 
     print("Fase 6 valida.")
     print(f"  Panel: 24 departamentos | 216 series")
-    print(f"  Holdout: 6 productos x 4 modelos = {len(pred):,} predicciones")
-    print(f"  Ganador nowcast: {validacion['ganador_nowcast']}")
+    print(f"  Prueba final: 6 productos x 4 modelos = {len(pred):,} predicciones")
+    print(f"  Ganador estimación contemporánea: {validacion['ganador_nowcast']}")
     print(f"  Ganador pronostico: {validacion['ganador_pronostico']}")
     print(f"  Archivos validados: {len(archivos)}")
     print(f"  Manifiesto: {MANIFIESTO_VALIDACION.relative_to(RAIZ)}")

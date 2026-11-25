@@ -60,7 +60,7 @@ def main() -> None:
     catalogo = cargar_catalogo()
     ids = set(catalogo["departamento_id"])
 
-    for fase in range(1, 8):
+    for fase in [1, 2, 3, 4, 6, 7]:
         ruta = MANIFIESTOS / f"0{fase}_validacion.json"
         if not ruta.exists():
             raise AssertionError(f"Falta el manifiesto de validacion de Fase {fase}")
@@ -92,7 +92,7 @@ def main() -> None:
 
     tablas = sorted((INFORME / "tablas").glob("*.csv"))
     figuras = sorted((INFORME / "figuras").glob("*.png"))
-    if len(tablas) != 26 or len(figuras) != 25:
+    if len(tablas) != 17 or len(figuras) != 16:
         raise AssertionError("El informe no tiene 26 tablas y 25 figuras")
 
     docs = (RAIZ / "README.md").read_text(encoding="utf-8")
@@ -138,11 +138,11 @@ def main() -> None:
     )
 
     print("Fase 8 valida.")
-    print("  Fases 1-7: aprobadas")
+    print("  Fases 1-4 y 6-7: aprobadas")
     print("  Panel: 24 departamentos | 216 series")
     print("  43 921 crudas -> 43 855 limpias | 66 atipicos")
     print("  Modelos: 6 productos | 4 modelos | 1 060 predicciones")
-    print("  Informe: 26 tablas | 25 figuras")
+    print("  Informe: 17 tablas | 16 figuras")
     print(f"  Cierre: {CIERRE.relative_to(RAIZ)}")
 
 

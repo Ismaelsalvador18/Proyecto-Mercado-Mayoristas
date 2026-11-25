@@ -5,7 +5,7 @@ Corre despues de 03.1 y antes de 03.3.
 Genera en outputs/analisis/03_calidad:
   tabla_variables.csv, tabla_dataset_filas.csv, descriptivos_producto.csv,
   normalidad.csv, transformacion_log.csv,
-  campanas_precio.png, campanas_log.png, qq_log.png, boxplots.png
+  campanas_precio.png, campanas_log.png, boxplots.png
 """
 
 from __future__ import annotations
@@ -88,18 +88,6 @@ def campanas(panel: pd.DataFrame, log: bool, nombre: str) -> None:
     guardar(fig, nombre, "calidad")
 
 
-def qq(panel: pd.DataFrame) -> None:
-    fig, axes = plt.subplots(3, 3, figsize=(12, 9))
-    for ax, cat in zip(axes.ravel(), PRODUCTOS):
-        d = panel.loc[panel.categoria == cat, "precio_kg"].dropna()
-        serie = np.log(d[d > 0])
-        stats.probplot(serie, dist="norm", plot=ax)
-        ax.set_title(cat)
-    fig.suptitle("QQ normal del log-precio", y=1.01)
-    plt.tight_layout()
-    guardar(fig, "qq_log.png", "calidad")
-
-
 def boxplots(panel: pd.DataFrame) -> None:
     fig, ax = plt.subplots(figsize=(11, 4.6))
     sns.boxplot(data=panel, x="categoria", y="precio_kg", ax=ax,
@@ -134,7 +122,6 @@ def main() -> None:
 
     campanas(panel, log=False, nombre="campanas_precio.png")
     campanas(panel, log=True, nombre="campanas_log.png")
-    qq(panel)
     boxplots(panel)
 
     print("Descriptivos por producto:")

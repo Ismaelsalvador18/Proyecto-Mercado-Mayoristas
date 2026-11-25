@@ -60,7 +60,7 @@ def main() -> None:
     plt.tight_layout()
     guardar(fig, "curvas_aprendizaje.png", "modelos")
 
-    # 2. Metricas del holdout por producto
+    # 2. Métricas de la prueba final por producto
     met = pd.read_csv(DIRECTORIOS["modelos"] / "torneo_nowcast_metricas.csv")
     hold = met[(met.periodo == "holdout") & (met.conjunto == "principal")]
     piv_r2 = hold.pivot(index="producto", columns="modelo", values="r2").loc[NUCLEO]
@@ -69,12 +69,12 @@ def main() -> None:
     fig, axes = plt.subplots(2, 1, figsize=(11, 7), sharex=True)
     piv_r2.plot(kind="bar", ax=axes[0], width=0.75)
     axes[0].axhline(0, color="black", linewidth=0.8)
-    axes[0].set_title("R2 en holdout por producto")
+    axes[0].set_title("R² en la prueba final por producto")
     axes[0].set_ylabel("R2")
     axes[0].legend(fontsize=7, ncol=4)
     piv_dir.plot(kind="bar", ax=axes[1], width=0.75)
     axes[1].axhline(50, color="#6b7280", linestyle="--", linewidth=0.9)
-    axes[1].set_title("Acierto direccional en holdout por producto")
+    axes[1].set_title("Acierto direccional en la prueba final por producto")
     axes[1].set_ylabel("%")
     axes[1].set_xlabel("")
     axes[1].legend(fontsize=7, ncol=4)

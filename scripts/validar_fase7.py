@@ -27,22 +27,13 @@ TABLAS_ESPERADAS = {
     "tabla_01b_ejemplo.csv": 8,
     "tabla_02_auditoria.csv": 11,
     "tabla_03_descriptivos.csv": 9,
-    "tabla_04_estacionariedad.csv": 12,
-    "tabla_05_rezagos.csv": 6,
-    "tabla_06_ecm_puno.csv": 6,
-    "tabla_07_ecm_producto.csv": 6,
     "tabla_08_torneo.csv": 4,
     "tabla_09_ganador.csv": 50,
-    "tabla_10_robustez.csv": 37,
-    "tabla_11_asimetria.csv": 6,
     "tabla_12_correlacion_lima.csv": 155,
     "tabla_13_geografia.csv": 23,
-    "tabla_14_ecm_region.csv": 130,
     "tabla_15_complemento.csv": 50,
     "tabla_16_protocolo.csv": 11,
     "tabla_17_software.csv": 12,
-    "tabla_18_diagnostico.csv": 6,
-    "tabla_19_estacionariedad_resumen.csv": 6,
     "tabla_20_transformacion_log.csv": 9,
     "tabla_21_normalidad.csv": 9,
     "tabla_22_verificacion_limpieza.csv": 10,
@@ -125,8 +116,8 @@ def main() -> None:
         revisar_excluidos(datos, nombre)
 
     figuras = sorted(p.name for p in FIGURAS.glob("*.png"))
-    if len(figuras) != 25:
-        raise AssertionError(f"Se esperaban 25 figuras; hay {len(figuras)}")
+    if len(figuras) != 16:
+        raise AssertionError(f"Se esperaban 16 figuras; hay {len(figuras)}")
     if "24_matriz_confusion.png" not in figuras or "01_flujo_kdd.png" not in figuras:
         raise AssertionError("Faltan figuras clave del informe")
 
@@ -162,16 +153,6 @@ def main() -> None:
     geo = pd.read_csv(TABLAS / "tabla_13_geografia.csv")
     if len(geo) != 23 or set(geo["region"]) != sin_lima:
         raise AssertionError("La geografia no cubre los 23 departamentos sin Lima")
-
-    ecm_reg = pd.read_csv(TABLAS / "tabla_14_ecm_region.csv")
-    if not set(ecm_reg["region"]) <= sin_lima:
-        raise AssertionError("El ECM regional contiene regiones no oficiales")
-    if ecm_reg.groupby("producto")["region"].nunique().max() > 23:
-        raise AssertionError("El ECM regional supera 23 departamentos")
-
-    resumen_est = pd.read_csv(TABLAS / "tabla_19_estacionariedad_resumen.csv")
-    if "departamentos" not in resumen_est.columns:
-        raise AssertionError("El resumen de estacionariedad no usa departamentos")
 
     # Documentación y cuadernos.
     docs = (RAIZ / "README.md").read_text(encoding="utf-8")

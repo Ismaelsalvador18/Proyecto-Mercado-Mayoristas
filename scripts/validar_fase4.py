@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Valida la Fase 4: EDA, estructura y estacionariedad con 24 departamentos."""
+"""Valida la Fase 4: EDA y estructura con 24 departamentos."""
 
 from __future__ import annotations
 
@@ -80,37 +80,6 @@ def main() -> None:
         if len(datos) != 9:
             raise AssertionError(f"{nombre} no tiene 9 filas")
 
-    est_prod = leer("estacionariedad_producto.csv")
-    if len(est_prod) != 12:
-        raise AssertionError("Estacionariedad producto no tiene 12 filas")
-    if set(est_prod["producto"]) != set(NUCLEO) or set(est_prod["serie"]) != {"Puno", "Lima"}:
-        raise AssertionError("Estacionariedad producto no cubre Puno y Lima por producto")
-
-    est_reg = leer("estacionariedad_region.csv")
-    if not set(est_reg["region"]) <= sin_lima:
-        raise AssertionError("Estacionariedad regional contiene Lima o una region no oficial")
-    if est_reg.duplicated(["producto", "region"]).any():
-        raise AssertionError("Estacionariedad regional tiene duplicados")
-    if est_reg.groupby("producto")["region"].nunique().max() > 23:
-        raise AssertionError("Estacionariedad regional supera los 23 departamentos sin Lima")
-    if set(est_reg["producto"]) != set(NUCLEO):
-        raise AssertionError("Estacionariedad regional no cubre los seis productos nucleo")
-
-    est_res = leer("estacionariedad_resumen.csv")
-    if set(est_res["producto"]) != set(NUCLEO):
-        raise AssertionError("El resumen de estacionariedad no cubre los seis productos")
-    if (est_res["departamentos"] > 23).any():
-        raise AssertionError("El resumen de estacionariedad supera 23 departamentos")
-    if ((est_res["i0"] + est_res["i1"] + est_res["mixto"]) != est_res["departamentos"]).any():
-        raise AssertionError("El resumen de estacionariedad no suma sus categorias")
-
-    seleccion = leer("seleccion_rezagos.csv")
-    if set(seleccion["producto"]) != set(NUCLEO):
-        raise AssertionError("La seleccion de rezagos no cubre los seis productos")
-    for columna in ["q_aic", "q_bic", "q_elegido"]:
-        if not seleccion[columna].between(0, 4).all():
-            raise AssertionError(f"{columna} fuera del rango 0-4")
-
     corr_lima = leer_estructura("correlacion_lima.csv")
     if not set(corr_lima["region"]) <= sin_lima:
         raise AssertionError("Correlacion con Lima contiene Lima o una region no oficial")
@@ -169,7 +138,6 @@ def main() -> None:
         "departamentos": int(len(ids)),
         "departamentos_con_geografia": int(len(geo)),
         "productos": int(len(PRODUCTOS)),
-        "estacionariedad_filas": int(len(est_reg)),
         "correlacion_lima_filas": int(len(corr_lima)),
         "archivos": hashes,
     }
@@ -185,7 +153,6 @@ def main() -> None:
         "departamentos": 24,
         "departamentos_sin_lima": 23,
         "productos": 9,
-        "estacionariedad_filas": int(len(est_reg)),
         "correlacion_lima_filas": int(len(corr_lima)),
         "archivos_validados": len(archivos),
         "hashes": hashes,
@@ -197,7 +164,6 @@ def main() -> None:
 
     print("Fase 4 valida.")
     print(f"  Panel: 24 departamentos | 216 series")
-    print(f"  Estacionariedad: {len(est_reg)} filas regionales")
     print(f"  Correlacion con Lima: {len(corr_lima)} pares")
     print(f"  Geografia: {len(geo)} departamentos sin Lima")
     print(f"  Archivos CSV validados: {len(archivos)}")

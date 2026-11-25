@@ -1,17 +1,37 @@
-# Integración espacial de mercados mayoristas de alimentos en el Perú
+# Análisis exploratorio y modelos predictivos de precios mayoristas en el Perú
 
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![pandas](https://img.shields.io/badge/pandas-3.1-150458?logo=pandas&logoColor=white)](https://pandas.pydata.org/)
 [![statsmodels](https://img.shields.io/badge/statsmodels-0.15-4C72B0)](https://www.statsmodels.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.9-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
 
-Proyecto de **ciencia de datos y EDA** aplicado a la transmisión de precios mayoristas desde Lima
-hacia los departamentos del Perú. Combina un modelo de corrección de error (ECM), pruebas de
-estacionariedad, análisis geográfico, ingeniería de variables y un torneo de modelos de nowcast y
-pronóstico.
+Proyecto de **EDA y aprendizaje supervisado** sobre precios mayoristas: construcción del dataset,
+limpieza, análisis exploratorio, ingeniería de variables y comparación de modelos para estimar el
+cambio del mes corriente y el precio del mes siguiente.
 
-**Pregunta:** ¿cuánto y con qué rezago responde el precio mayorista departamental al de Lima, y qué valor
-predictivo tiene esa relación?
+**Preguntas:**
+
+1. ¿Cómo se distribuyen, se cubren y se relacionan los precios mayoristas de Lima y los departamentos?
+2. ¿Qué modelo estima mejor el cambio del mes corriente y cuál generaliza mejor al pronosticar un mes?
+
+**Hipótesis:**
+
+- **H1:** el cambio de precio de Lima del mismo mes contiene información útil para estimar el cambio
+  de precio en los departamentos.
+- **H2:** el desempeño predictivo es heterogéneo por producto y por horizonte; un modelo bueno para
+  el mes corriente no necesariamente sirve para pronosticar el mes siguiente.
+
+### Glosario
+
+| Término en el texto | Nombre interno | Significado |
+|---|---|---|
+| Estimación del mes corriente | `nowcast` | Estimar el cambio del mes actual con información del mismo mes |
+| Validación | `development` | Período 2018–2020 para elegir el modelo |
+| Prueba final | `holdout` | Período 2021–octubre 2026, usado una sola vez |
+| Pronóstico a un mes | `forecast` | Estimar el precio del mes siguiente |
+| Referencia | `baseline` | Predicción simple contra la que se compara el modelo |
+
+Los nombres internos se conservan en archivos y columnas para no romper el código.
 
 ---
 
@@ -19,17 +39,14 @@ predictivo tiene esa relación?
 
 | Hallazgo | Evidencia |
 |---|---|
-| El traspaso es incompleto y heterogéneo | Cebolla: 0,51 inmediato y 2,1 meses de vida media; papa: 0,31 y 1,9; zanahoria: 0,18 y 2,8; aceite: 0,24 y 6,6 |
-| La integración cae con la distancia | Papa: Ica 0,85 y Huánuco 0,77; Tumbes −0,03 y Loreto −0,01. Promedio entre seis categorías: 0,71 (Ica) a 0,12 (Loreto); distancia p = 0,022 |
-| La zona natural no basta | Kruskal–Wallis p = 0,196; distancia y zona explican 54 % de la variación |
+| El dataset es heterogéneo y no balanceado | 24 departamentos, 216 series y 43 855 observaciones limpias; cobertura 85,7 % en 2012–2023 |
+| La relación con Lima varía por producto y departamento | Papa: Ica 0,85 y Huánuco 0,77; Tumbes −0,03 y Loreto −0,01; promedio de 0,71 (Ica) a 0,12 (Loreto) |
+| La distancia aporta, pero no explica todo | Distancia p = 0,022; zona natural p = 0,196; juntas explican 54 % de la variación |
 | Hay valor predictivo contemporáneo | Random Forest: R² = 0,270 en papa, 0,218 en cebolla y 0,080 en zanahoria; acierto 69,5 / 64,4 / 52,9 % |
 | El pronóstico a un mes es específico | Ridge y OLS mejoran el MAE en papa, cebolla y arroz; ambos empeoran en zanahoria, aceite y huevos |
-| El orden de integración es mixto | Cebolla I(0); arroz y huevos I(1); aceite mixto en Puno e I(1) en Lima; papa y zanahoria mixtos |
-| El BIC selecciona q = 0 | En las seis categorías del núcleo |
 
-**Conclusión:** la referencia de Lima tiene valor contemporáneo y específico por producto. El
-pronóstico a un mes mejora en algunos mercados, pero no existe un modelo único para las seis
-categorías.
+**Conclusión:** la referencia de Lima aporta información predictiva contemporánea, pero el
+desempeño depende del producto y del horizonte. No hay un modelo único para las seis categorías.
 
 ---
 
@@ -67,38 +84,76 @@ Más detalle en [`docs/diccionario_datos.md`](docs/diccionario_datos.md).
 
 ---
 
+## Ventanas temporales y tamaño de muestra
+
+No hay tres estudios distintos: hay una sola fuente y tres cortes temporales.
+
+| Ventana | Uso |
+|---|---|
+| 1997–2026 | Fuente completa disponible |
+| 2012–2023 | Ventana densa para EDA y estimaciones |
+| 2012–2017 | Entrenamiento de los modelos |
+| 2018–2020 | Validación para elegir el modelo |
+| 2021–octubre 2026 | Prueba final, una sola vez |
+| Noviembre 2026 | Fuera de la prueba por corte prudencial |
+
+Una **observación mensual** es un mes con datos completos para ese producto después de construir
+log-precio, cambios y rezagos. Por eso el `N` no es el número de meses calendario: los faltantes y
+los rezagos eliminan filas.
+
+| Producto | Tarea | Entrenamiento 2012–2017 | Validación 2018–2020 | Prueba final 2021–2026 |
+|---|---|---:|---:|---:|
+| Papa | cambio del mes corriente | 67 | 28 | 60 |
+| Papa | pronóstico a un mes | 69 | 29 | 62 |
+| Cebolla | cambio del mes corriente | 67 | 17 | 60 |
+| Cebolla | pronóstico a un mes | 69 | 19 | 62 |
+| Zanahoria | cambio del mes corriente | 52 | 17 | 52 |
+| Zanahoria | pronóstico a un mes | 57 | 19 | 53 |
+| Arroz | cambio del mes corriente | 68 | 27 | 31 |
+| Arroz | pronóstico a un mes | 71 | 26 | 36 |
+| Aceite | cambio del mes corriente | 68 | 32 | 24 |
+| Aceite | pronóstico a un mes | 71 | 33 | 24 |
+| Huevos | cambio del mes corriente | 67 | 32 | 38 |
+| Huevos | pronóstico a un mes | 69 | 33 | 38 |
+
+La tabla completa se genera en `outputs/analisis/06_modelos/n_etapas.csv`.
+El `N` cambia por los meses faltantes, las series truncadas, los productos sin dato en algún mes y
+los rezagos que consumen las primeras observaciones. No es un error de conteo.
+
+---
+
 ## Metodología
 
 1. **Selección y auditoría:** descarga SISAP, revisión de nulos, duplicados, unidades y atípicos.
 2. **Transformación:** normalización a S/ kg, log-precio, cambios mensuales y rezagos.
-3. **Estacionariedad:** ADF con constante y con tendencia, KPSS y ADF sobre la primera diferencia.
-4. **ECM:** traspaso contemporáneo, velocidad de ajuste, vida media, errores HAC y bootstrap.
-5. **Torneo:** OLS, Ridge, Random Forest y LightGBM; desarrollo 2018–2020 y holdout enero
+3. **EDA:** cobertura, distribuciones, correlaciones y geografía básica.
+4. **Variables:** construcción de la matriz X/y con diferencias, rezagos y estacionalidad.
+5. **Modelos:** OLS, Ridge, Random Forest y LightGBM; validación 2018–2020 y prueba final enero
    2021–octubre 2026.
-6. **Geografía:** correlación con Lima, distancia y zona natural.
+6. **Evaluación:** R², MAE, mejora frente a la referencia, acierto direccional y matriz de confusión.
 
-El protocolo de evaluación distingue **nowcast** (cambio del mes corriente) de **pronóstico**
-(precio del mes siguiente). La selección del modelo se hace por rango promedio de R² en desarrollo,
-no por el mejor resultado de un solo producto.
+El protocolo distingue la **estimación del mes corriente** (cambio del mismo mes) del
+**pronóstico a un mes** (precio del mes siguiente). El modelo se selecciona por rango promedio de R²
+en **validación**, no por el mejor resultado de un solo producto.
 
 ## Enfoque computacional
 
-El proyecto está pensado también como un ejercicio de **análisis exploratorio y estructura de
-datos**, no solo como una estimación econométrica:
+El proyecto está pensado como un ejercicio de **análisis exploratorio, estructuras de datos y
+modelos**:
 
 - el panel se mantiene en formato tidy: una fila por departamento-categoría-mes;
 - cada producto se transforma con una tabla pivote (`departamento × fecha`);
 - el calendario mensual se repone antes de calcular diferencias y rezagos;
 - la matriz de diseño se construye con `diff` y `shift`, sin mezclar meses faltantes;
-- la validación es temporal: entrenamiento, desarrollo y holdout;
+- la validación es temporal: entrenamiento, validación y prueba final;
 - se comparan cuatro familias de modelos y se evalúan con R², MAE y una lectura direccional.
 
-La matriz de diseño, las predicciones del holdout y las matrices de confusión se guardan como
+La matriz de diseño, las predicciones de la prueba final y las matrices de confusión se guardan como
 artefactos reproducibles en `outputs/analisis/06_modelos/`.
 
 ### Del panel a la matriz de diseño
 
-Para el nowcast de cada producto, la variable objetivo es el cambio logarítmico del precio de Puno
+Para la estimación del mes corriente de cada producto, la variable objetivo es el cambio logarítmico del precio de Puno
 en el mes `t`. Los predictores son:
 
 | Predictor | Construcción |
@@ -108,8 +163,8 @@ en el mes `t`. Los predictores son:
 | `dp1`, `dp2` | cambios propios de Puno en `t−1`, `t−2` |
 | `sin1`, `cos1` | armónicos anuales para estacionalidad |
 
-El modelo se entrena con observaciones anteriores a 2018, se evalúa en desarrollo 2018–2020 y se
-prueba una sola vez en el holdout 2021–octubre de 2026. La muestra de la matriz está en
+El modelo se entrena con observaciones de 2012–2017, se evalúa en validación 2018–2020 y se
+prueba una sola vez en la prueba final 2021–octubre de 2026. La muestra de la matriz está en
 `outputs/analisis/06_modelos/matriz_diseno.csv` y las predicciones completas en
 `outputs/analisis/06_modelos/predicciones_holdout.csv`.
 
@@ -117,8 +172,8 @@ prueba una sola vez en el holdout 2021–octubre de 2026. La muestra de la matri
 
 Además de R² y MAE, se convierte el signo del cambio en una clasificación binaria para evaluar
 aciertos, falsos positivos y falsos negativos. Los meses con cambio exactamente cero se excluyen de
-esa lectura porque no tienen dirección. LightGBM acierta más el signo en el holdout (62,2 % frente a
-58,0 %), pero eso no cambia al ganador: la selección usa R² en desarrollo y el acierto ignora la
+esa lectura porque no tienen dirección. LightGBM acierta más el signo en la prueba final (62,2 % frente a
+58,0 %), pero eso no cambia al ganador: la selección usa R² en validación y el acierto ignora la
 magnitud del error. Las matrices agregadas están en
 `outputs/analisis/06_modelos/matriz_confusion_modelos.csv` y por producto en
 `matriz_confusion_producto.csv`.
@@ -129,6 +184,7 @@ magnitud del error. Las matrices agregadas están en
 
 ```text
 proyecto-mercados-mayoristas/
+├── assets/                          figura KDD de referencia
 ├── data/
 │   ├── raw/                         respuestas HTML de la fuente (no versionadas)
 │   ├── reference/                   catálogo de los 24 departamentos
@@ -146,11 +202,11 @@ proyecto-mercados-mayoristas/
 │   ├── config.py                    rutas, ventanas y parámetros
 │   ├── catalogo.py                  validación de los 24 departamentos
 │   ├── modelos.py                   variables y métricas compartidas
-│   ├── ecm.py                       construcción y estimación del ECM
 │   ├── pipeline/                    datos y modelos
-│   ├── analisis/                    auditorías y diagnóstico
-│   ├── validar_fase1.py ... 8.py    gates de integridad por fase
+│   ├── analisis/                    EDA, estructura y evaluación
+│   ├── validar_fase*.py             validadores de fase
 │   └── ...                          artefactos de resultados
+├── extras/econometria/              material técnico opcional, fuera del pipeline
 ├── requirements.txt
 └── README.md
 ```
@@ -197,28 +253,20 @@ genera los resultados en `outputs/`.
 .venv/bin/python scripts/pipeline/02_construir_panel.py
 .venv/bin/python scripts/analisis/02.1_auditoria_panel.py
 
-# Limpieza y descripción
+# Limpieza, EDA y estructura
 .venv/bin/python scripts/pipeline/03_limpiar_panel.py
 .venv/bin/python scripts/analisis/03.1_verificacion_limpieza.py
 .venv/bin/python scripts/analisis/03.2_descripcion_datos.py
-.venv/bin/python scripts/analisis/03.3_estacionariedad.py
-.venv/bin/python scripts/analisis/03.4_seleccion_rezagos.py
 .venv/bin/python scripts/analisis/03.5_estructura_mercados.py
 
-# ECM y diagnóstico
-.venv/bin/python scripts/pipeline/04_ecm.py
-.venv/bin/python scripts/analisis/04.1_diagnostico_ecm.py
-
-# Torneo de modelos
+# Torneo de modelos y tamaño de muestra
 .venv/bin/python scripts/pipeline/05_torneo_modelos.py
 .venv/bin/python scripts/analisis/05.1_representacion_modelos.py
 .venv/bin/python scripts/analisis/05.2_evaluacion_modelos.py
+.venv/bin/python scripts/analisis/05.3_n_etapas.py
 
-# Robustez
-.venv/bin/python scripts/pipeline/06_robustez.py
-.venv/bin/python scripts/analisis/06.1_robustez_visual.py
-
-# Los artefactos de resultados se generan con el pipeline completo.
+# Artefactos de resultados
+.venv/bin/python scripts/informe/07_resultados_informe.py
 ```
 
 ### Cuaderno ejecutivo
@@ -243,7 +291,7 @@ Si `jupyter` no está en el `PATH`, usa el binario de tu instalación. Por ejemp
 - `data/processed/`: panel limpio y auditorías.
 - `outputs/analisis/`: resultados intermedios por fase.
 - `outputs/`: tablas y figuras listas para consulta.
-- `outputs/analisis/06_modelos/`: matriz de diseño, predicciones del holdout y matrices de confusión.
+- `outputs/analisis/06_modelos/`: matriz de diseño, predicciones de la prueba final y matrices de confusión.
 - `outputs/_manifests/`: manifiestos y hashes de cada fase.
 - `notebooks/01_resultados.ipynb`: recorrido ejecutivo con tablas y figuras.
 - `notebooks/02_guia_detallada.ipynb`: guía paso a paso, también versionada.
@@ -258,7 +306,7 @@ El índice de tablas y figuras se genera dentro de `outputs/`.
 - Versiones de software registradas en los artefactos de `outputs/`.
 - Descarga con caché: si `data/raw/*.html` existe, no se consulta el portal.
 - Pipeline completo: aproximadamente 10–15 minutos, dependiendo de la descarga y del torneo.
-- `scripts/ejecutar_todo.sh` ejecuta los gates 1–8; si una fase no cuadra con la anterior, se detiene.
+- `scripts/ejecutar_todo.sh` ejecuta los validadores de fase; si una etapa no cuadra con la anterior, se detiene.
 
 La fuente se consulta con `scripts/pipeline/01_descargar_sisap.py`. Los HTML crudos no se versionan.
 
@@ -270,8 +318,7 @@ La fuente se consulta con `scripts/pipeline/01_descargar_sisap.py`. Los HTML cru
 - Los cambios de presentación y unidad introducen ruido de medición; se normalizan a kilogramos.
 - Algunas series regionales terminan antes de 2026.
 - No hay marca de fecha de publicación: se habla de valor predictivo contemporáneo, no de un
-  nowcast operativo.
-- El shock de 2021–2023 afecta la robustez de algunos productos, especialmente el arroz.
+  estimación operativa del mes corriente.
 - Los precios son mayoristas, no minoristas.
 - El tamaño de muestra es limitado para modelos no lineales; los resultados se interpretan por
   producto.
@@ -280,7 +327,7 @@ La fuente se consulta con `scripts/pipeline/01_descargar_sisap.py`. Los HTML cru
 
 ## Referencias y documentación
 
-- [`docs/metodologia.md`](docs/metodologia.md): ecuaciones, protocolo y supuestos.
+- [`docs/metodologia.md`](docs/metodologia.md): método, ventanas y evaluación.
 - [`docs/diccionario_datos.md`](docs/diccionario_datos.md): variables, cobertura y tratamiento de datos.
 - [`docs/plan_desarrollo.md`](docs/plan_desarrollo.md): decisiones y fases.
 - [`docs/referencias.md`](docs/referencias.md): bibliografía.

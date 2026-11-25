@@ -16,22 +16,14 @@ $PY scripts/pipeline/03_limpiar_panel.py
 $PY scripts/validar_fase3.py
 $PY scripts/analisis/03.1_verificacion_limpieza.py
 $PY scripts/analisis/03.2_descripcion_datos.py
-$PY scripts/analisis/03.3_estacionariedad.py
-$PY scripts/analisis/03.4_seleccion_rezagos.py
 $PY scripts/analisis/03.5_estructura_mercados.py
 $PY scripts/validar_fase4.py
-
-$PY scripts/pipeline/04_ecm.py
-$PY scripts/analisis/04.1_diagnostico_ecm.py
 
 $PY scripts/pipeline/05_torneo_modelos.py
 $PY scripts/analisis/05.1_representacion_modelos.py
 $PY scripts/analisis/05.2_evaluacion_modelos.py
+$PY scripts/analisis/05.3_n_etapas.py
 $PY scripts/validar_fase6.py
-
-$PY scripts/pipeline/06_robustez.py
-$PY scripts/analisis/06.1_robustez_visual.py
-$PY scripts/validar_fase5.py
 
 $PY scripts/informe/07_resultados_informe.py
 $PY scripts/validar_fase7.py

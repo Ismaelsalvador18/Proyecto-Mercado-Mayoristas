@@ -1,10 +1,10 @@
-# Resultado del ranking de nowcast
+# Resultado del ranking de estimación contemporánea
 
 **Objetivo principal:** anticipacion contemporanea del cambio mensual.
 
 - **Modelo adoptado:** Random Forest
-- Rango promedio por R2 en desarrollo: 1.50
-- R2 mediano en desarrollo: -0.097
+- Rango promedio por R² en validación: 1.50
+- R² mediano en validación: -0.097
 - Ranking calculado sobre 4 productos con muestras suficientes: Papa, Arroz, Aceite, Huevos
 - Excluidos del ranking por no alcanzar los mínimos muestrales: Cebolla, Zanahoria
 - Mínimos por producto para rankear: 60 observaciones de entrenamiento y 20 de evaluación
@@ -24,11 +24,11 @@
 
 ## Justificacion
 
-La ventana de desarrollo es 2018-2020 (36 meses calendario) y se usa para evaluar/rankear; cada modelo se entrena con las observaciones disponibles antes de 2018. Solo se rankean productos con al menos 60 observaciones de entrenamiento y 20 de evaluación. El R2 es la metrica principal del nowcast porque el MAE sobre cambios favorece predecir cero. El holdout 2021-01 a 2026-10 se uso una sola vez; noviembre queda fuera porque no se verifico su fecha de cierre/publicacion.
+La ventana de validación es 2018-2020 (36 meses calendario) y se usa para evaluar/rankear; cada modelo se entrena con las observaciones disponibles de 2012 a 2017. Solo se rankean productos con al menos 60 observaciones de entrenamiento y 20 de evaluación. El R² es la métrica principal de la estimación contemporánea porque el MAE sobre cambios favorece predecir cero. La prueba final 2021-01 a 2026-10 se usó una sola vez; noviembre queda fuera porque no se verificó su fecha de cierre/publicacion.
 
-Por que no gana LightGBM si tiene mayor acierto en el holdout? LightGBM acierta el signo en 62.2 % de los meses, frente a 58.0 % de Random Forest, pero el acierto es una lectura binaria: trata igual un error de 0,1 % que uno de 5 %. El ganador se eligio en desarrollo con R2, donde Random Forest tiene rango promedio 1.50 y acierto medio 46.9 %, contra 4.00 y 42.8 % de LightGBM. En el holdout Random Forest tiene menor MAE que LightGBM en 5 de 6 productos y R2 positivo en papa, cebolla y zanahoria; LightGBM tiene R2 muy negativo en arroz y zanahoria. Cambiar el ganador segun el holdout seria seleccionar sobre el conjunto de prueba. La matriz de confusion se reporta como diagnostico complementario, no como criterio de seleccion.
+¿Por qué no gana LightGBM si tiene mayor acierto en la prueba final? LightGBM acierta el signo en 62.2 % de los meses, frente a 58.0 % de Random Forest, pero el acierto es una lectura binaria: trata igual un error de 0,1 % que uno de 5 %. El ganador se eligió en validación con R², donde Random Forest tiene rango promedio 1.50 y acierto medio 46.9 %, contra 4.00 y 42.8 % de LightGBM. En la prueba final Random Forest tiene menor MAE que LightGBM en 5 de 6 productos y R² positivo en papa, cebolla y zanahoria; LightGBM tiene R² muy negativo en arroz y zanahoria. Cambiar el ganador según la prueba final sería seleccionar sobre el conjunto de prueba. La matriz de confusión se reporta como diagnóstico complementario, no como criterio de selección.
 
-## Pronostico a un mes: holdout
+## Pronóstico a un mes: prueba final
 
 Cambio porcentual del MAE frente a la caminata aleatoria: positivo = mejora; negativo = empeora.
 
@@ -41,4 +41,4 @@ Cambio porcentual del MAE frente a la caminata aleatoria: positivo = mejora; neg
 | Aceite | 24 | -37.8 % | -36.6 % | -303.1 % | -306.8 % |
 | Huevos | 38 | -3.6 % | -3.3 % | -146.4 % | -142.3 % |
 
-Ridge y OLS mejoran en Papa, Cebolla, Arroz; ambos empeoran en Zanahoria, Aceite, Huevos. Random Forest y LightGBM empeoran frente al baseline en los seis productos. La referencia de Lima aporta valor contemporaneo, pero no ofrece un pronostico general a un mes.
+Ridge y OLS mejoran en Papa, Cebolla, Arroz; ambos empeoran en Zanahoria, Aceite, Huevos. Random Forest y LightGBM empeoran frente al baseline en los seis productos. La referencia de Lima aporta valor contemporáneo, pero no ofrece un pronóstico general a un mes.

@@ -56,7 +56,7 @@ análisis. Se excluyen los mercados provinciales Andahuaylas, Chota y Jaén, y C
 | Variable | Cálculo | Uso |
 |---|---|---|
 | `log_precio` | `ln(precio_kg)` | transformar escala y analizar cambios relativos; reduce la asimetría observada |
-| `cambio_log` | `Δ log_precio` | ECM y modelos |
+| `cambio_log` | `Δ log_precio` | modelos |
 | `rezago_k` | `log_precio` desplazado k meses | predictores |
 | `mediana_otras` | mediana de otros departamentos en el mismo mes | señal de red |
 | `distancia_lima_km` | distancia haversine capital departamental–Lima | heterogeneidad |
@@ -91,7 +91,7 @@ Se marcan como faltantes; no se imputan. Total: 66 casos (0,15 %). El detalle es
 | 2024–noviembre 2026 | 24 | 7–9 | 66,5 % |
 
 La densidad se calcula respecto del panel completo posible de 24 departamentos × 9 categorías × meses
-del periodo. La cobertura observada llega a noviembre de 2026; el holdout predictivo termina en
+del periodo. La cobertura observada llega a noviembre de 2026; la prueba final predictiva termina en
 octubre de 2026, según el corte configurado en `scripts/config.py`. Como no se verificó la fecha de
 cierre/publicación de noviembre, se usa octubre por prudencia; noviembre permanece en el panel y
 no se declara erróneo ni incompleto.
@@ -111,12 +111,12 @@ no se declara erróneo ni incompleto.
 | Azúcar | Azúcar rubia nacional | 213 | 2008-10 |
 
 **Papa amarilla** no es una décima categoría del panel principal. Se usa solo como variedad
-alternativa en robustez: tiene 6 meses de cruce con Lima y no permite estimar el ECM.
+alternativa: tiene 6 meses de cruce con Lima y no entra al panel principal.
 
 ## Limitaciones
 
 1. El módulo de ciudades no publica volúmenes de abastecimiento.
 2. Cambios de unidad y de nombre de variedad a lo largo del tiempo.
 3. Series truncadas: tomate en Lima termina en 2014; varias series de Puno en 2023–2024.
-4. No hay marca de fecha de publicación: no se puede afirmar un nowcast operativo.
+4. No hay marca de fecha de publicación: no se puede afirmar una estimación operativa del mes corriente.
 5. Precios mayoristas, no minoristas.

@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
-"""Torneo de modelos: nowcast contemporaneo y pronostico a un mes.
+"""Torneo de modelos: estimacion contemporanea y pronostico a un mes.
 
 Cuarteto principal: OLS, Ridge, Random Forest, LightGBM.
-Baselines: cambio cero (nowcast) y caminata aleatoria (pronostico).
+Referencias: cambio cero (estimacion contemporanea) y caminata aleatoria (pronostico).
 
-Seleccion: rango promedio de R2 en la ventana de evaluación de desarrollo (2018-2020).
+Seleccion: rango promedio de R² en la ventana de validación (2018-2020).
 Entrenamiento para esa evaluación: observaciones anteriores a 2018.
 Elegibilidad del ranking: al menos 60 observaciones de entrenamiento y 20 de evaluación.
-Confirmacion: holdout 2021-01 a 2026-10, una sola vez.
+Confirmacion: prueba final 2021-01 a 2026-10, una sola vez.
 Compuerta: R2 > 0 en >= 2 productos y acierto > 55 % en >= 2 productos.
 
 Genera en outputs/analisis/06_modelos:
@@ -140,7 +140,7 @@ def graficar_confusion(confusion: pd.DataFrame) -> None:
                 ax.text(j, i, f"{matriz[i, j]:,}".replace(",", " "),
                         ha="center", va="center",
                         color="white" if matriz[i, j] > matriz.max() * 0.75 else "black")
-    fig.suptitle("Matriz de confusión direccional en holdout (seis productos)", y=1.02)
+    fig.suptitle("Matriz de confusión direccional en la prueba final (seis productos)", y=1.02)
     plt.tight_layout()
     guardar(fig, "matriz_confusion.png", "modelos")
 
@@ -166,7 +166,7 @@ def graficar_predicciones(predicciones: pd.DataFrame) -> None:
         ax.tick_params(axis="x", labelsize=7)
     handles, labels = axes.ravel()[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", ncol=5, fontsize=8, frameon=False)
-    fig.suptitle("Nowcast en holdout: observado y cuatro modelos por producto", y=1.01)
+    fig.suptitle("Estimación del mes corriente en la prueba final: observado y cuatro modelos por producto", y=1.01)
     plt.tight_layout(rect=[0, 0.04, 1, 0.98])
     guardar(fig, "ganador_vs_observado.png", "modelos")
 
@@ -259,11 +259,11 @@ def main() -> None:
     tabla(hiper, "hiperparametros.csv", "modelos")
 
     with (DIRECTORIOS["modelos"] / "torneo_ganador.md").open("w", encoding="utf-8") as fh:
-        fh.write("# Resultado del ranking de nowcast\n\n")
+        fh.write("# Resultado del ranking de estimación contemporánea\n\n")
         fh.write("**Objetivo principal:** anticipacion contemporanea del cambio mensual.\n\n")
         fh.write(f"- **Modelo adoptado:** {ganador}\n")
-        fh.write(f"- Rango promedio por R2 en desarrollo: {ranking.loc[ganador, 'rank_promedio']:.2f}\n")
-        fh.write(f"- R2 mediano en desarrollo: {ranking.loc[ganador, 'r2_mediano']:.3f}\n")
+        fh.write(f"- Rango promedio por R² en validación: {ranking.loc[ganador, 'rank_promedio']:.2f}\n")
+        fh.write(f"- R² mediano en validación: {ranking.loc[ganador, 'r2_mediano']:.3f}\n")
         fh.write(f"- Ranking calculado sobre {len(productos_ranking)} productos con muestras suficientes: "
                  f"{', '.join(productos_ranking)}\n")
         if productos_fuera_ranking:
@@ -278,27 +278,27 @@ def main() -> None:
         for producto, fila in hold.iterrows():
             fh.write(f"| {producto} | {fila.r2:.3f} | {fila.acierto:.1f} % | {int(fila.n)} |\n")
         fh.write("\n## Justificacion\n\n")
-        fh.write("La ventana de desarrollo es 2018-2020 (36 meses calendario) y se usa para "
-                 "evaluar/rankear; cada modelo se entrena con las observaciones disponibles antes "
-                 "de 2018. Solo se rankean productos con al menos 60 observaciones de entrenamiento "
-                 "y 20 de evaluación. El R2 es la metrica principal del nowcast porque el MAE sobre cambios "
-                 "favorece predecir cero. El holdout 2021-01 a 2026-10 se uso una sola vez; noviembre "
-                 "queda fuera porque no se verifico su fecha de cierre/publicacion.\n\n")
+        fh.write("La ventana de validación es 2018-2020 (36 meses calendario) y se usa para "
+                 "evaluar/rankear; cada modelo se entrena con las observaciones disponibles de "
+                 "2012 a 2017. Solo se rankean productos con al menos 60 observaciones de entrenamiento "
+                 "y 20 de evaluación. El R² es la métrica principal de la estimación contemporánea porque el MAE sobre cambios "
+                 "favorece predecir cero. La prueba final 2021-01 a 2026-10 se usó una sola vez; noviembre "
+                 "queda fuera porque no se verificó su fecha de cierre/publicacion.\n\n")
         fh.write(
-            f"Por que no gana LightGBM si tiene mayor acierto en el holdout? LightGBM acierta el signo "
+            f"¿Por qué no gana LightGBM si tiene mayor acierto en la prueba final? LightGBM acierta el signo "
             f"en {confusion_idx['LightGBM']:.1f} % de los meses, frente a "
             f"{confusion_idx['Random Forest']:.1f} % de Random Forest, pero el acierto es una lectura "
-            f"binaria: trata igual un error de 0,1 % que uno de 5 %. El ganador se eligio en "
-            f"desarrollo con R2, donde Random Forest tiene rango promedio "
+            f"binaria: trata igual un error de 0,1 % que uno de 5 %. El ganador se eligió en "
+            f"validación con R², donde Random Forest tiene rango promedio "
             f"{ranking.loc['Random Forest', 'rank_promedio']:.2f} y acierto medio "
             f"{ranking.loc['Random Forest', 'acierto_medio']:.1f} %, contra "
             f"{ranking.loc['LightGBM', 'rank_promedio']:.2f} y "
-            f"{ranking.loc['LightGBM', 'acierto_medio']:.1f} % de LightGBM. En el holdout Random Forest "
-            f"tiene menor MAE que LightGBM en {rf_mejora} de 6 productos y R2 positivo en papa, cebolla "
-            f"y zanahoria; LightGBM tiene R2 muy negativo en arroz y zanahoria. Cambiar el ganador "
-            f"segun el holdout seria seleccionar sobre el conjunto de prueba. La matriz de confusion "
-            f"se reporta como diagnostico complementario, no como criterio de seleccion.\n\n")
-        fh.write("## Pronostico a un mes: holdout\n\n")
+            f"{ranking.loc['LightGBM', 'acierto_medio']:.1f} % de LightGBM. En la prueba final Random Forest "
+            f"tiene menor MAE que LightGBM en {rf_mejora} de 6 productos y R² positivo en papa, cebolla "
+            f"y zanahoria; LightGBM tiene R² muy negativo en arroz y zanahoria. Cambiar el ganador "
+            f"según la prueba final sería seleccionar sobre el conjunto de prueba. La matriz de confusión "
+            f"se reporta como diagnóstico complementario, no como criterio de selección.\n\n")
+        fh.write("## Pronóstico a un mes: prueba final\n\n")
         fh.write("Cambio porcentual del MAE frente a la caminata aleatoria: positivo = mejora; "
                  "negativo = empeora.\n\n")
         forecast_hold = forecast[(forecast.periodo == "holdout") &
@@ -317,14 +317,14 @@ def main() -> None:
                     if wide.loc[producto, "OLS"] < 0 and wide.loc[producto, "Ridge"] < 0]
         fh.write(f"\nRidge y OLS mejoran en {', '.join(mejoran)}; ambos empeoran en "
                  f"{', '.join(empeoran)}. Random Forest y LightGBM empeoran frente al baseline "
-                 f"en los seis productos. La referencia de Lima aporta valor contemporaneo, "
-                 f"pero no ofrece un pronostico general a un mes.\n")
+                 f"en los seis productos. La referencia de Lima aporta valor contemporáneo, "
+                 f"pero no ofrece un pronóstico general a un mes.\n")
 
     fig, ax = plt.subplots(figsize=(8.2, 4.0))
     ax.barh(ranking.index, ranking.rank_promedio, color="#0e7490")
     ax.invert_yaxis()
-    ax.set_xlabel("rango promedio por R2 en desarrollo (1 = mejor)")
-    ax.set_title("Torneo de nowcast: cuarteto principal (4 productos elegibles)")
+    ax.set_xlabel("rango promedio por R² en validación (1 = mejor)")
+    ax.set_title("Torneo de estimación contemporánea: cuarteto principal (4 productos elegibles)")
     guardar(fig, "ranking_torneo.png", "modelos")
 
     tabla(predicciones, "predicciones_holdout.csv", "modelos")
@@ -335,9 +335,9 @@ def main() -> None:
     graficar_confusion(confusion)
     guardar_matriz_diseno(panel)
 
-    print("Ranking nowcast (desarrollo):")
+    print("Ranking de estimación contemporánea (validación):")
     print(ranking.round(3).to_string())
-    print("\nRanking pronostico (desarrollo):")
+    print("\nRanking de pronóstico (validación):")
     print(frank.round(3).to_string())
     print(f"\nGanador: {ganador} | compuerta: {'superada' if gate else 'no superada'}")
     print("\nHoldout del ganador:")

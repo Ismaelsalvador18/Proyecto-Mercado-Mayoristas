@@ -2,7 +2,7 @@
 """Representacion de los modelos: coeficientes, arboles, importancia y dependencia.
 
 Corre despues de 05. Usa Cebolla, el producto con mayor senal, y entrena con
-datos hasta 2020 para no tocar el holdout.
+datos hasta 2020 para no tocar la prueba final.
 Genera en outputs/analisis/06_modelos:
   coeficientes.csv, model_cards.csv, ridge_path.png, arbol_rf.png,
   arbol_lgbm_sustituto.png, importancia_rf.png, importancia_lgbm.png,
