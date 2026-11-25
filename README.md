@@ -139,7 +139,8 @@ proyecto-mercados-mayoristas/
 │   ├── diccionario_datos.md         variables, cobertura y linaje
 │   └── referencias.md               bibliografía
 ├── notebooks/
-│   └── 01_resultados.ipynb          recorrido ejecutivo de resultados
+│   ├── 01_resultados.ipynb          recorrido ejecutivo de resultados
+│   └── 02_guia_detallada.ipynb      guía paso a paso
 ├── outputs/                         resultados intermedios, tablas y figuras
 ├── scripts/
 │   ├── config.py                    rutas, ventanas y parámetros
@@ -245,7 +246,7 @@ Si `jupyter` no está en el `PATH`, usa el binario de tu instalación. Por ejemp
 - `outputs/analisis/06_modelos/`: matriz de diseño, predicciones del holdout y matrices de confusión.
 - `outputs/_manifests/`: manifiestos y hashes de cada fase.
 - `notebooks/01_resultados.ipynb`: recorrido ejecutivo con tablas y figuras.
-- `notebooks/02_guia_detallada.ipynb`: guía local no versionada, útil para lectura paso a paso.
+- `notebooks/02_guia_detallada.ipynb`: guía paso a paso, también versionada.
 
 El índice de tablas y figuras se genera dentro de `outputs/`.
 

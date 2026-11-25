@@ -19,8 +19,5 @@ informe.pdf
 *.docx
 *.pdf
 
-# Cuaderno auxiliar no versionado
-notebooks/02_guia_detallada.ipynb
-
 # Generador editorial local (no forma parte del repositorio de investigación)
 scripts/informe/08_generar_informe.py
