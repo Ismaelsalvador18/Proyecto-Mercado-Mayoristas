@@ -1,0 +1,15 @@
+{
+  "fase": "03_validacion",
+  "ok": true,
+  "filas_crudo": 43921,
+  "filas_limpias": 43855,
+  "atipicos": 66,
+  "atipicos_pct": 0.15026980260012296,
+  "departamentos": 24,
+  "series_observadas": 216,
+  "departamentos_limpios": 24,
+  "hashes": {
+    "panel_precios_limpio.csv": "91f3f3983aae2594c93338f19d5677b0a59859bef6a83cc6e75daa5c0d0e9eac",
+    "atipicos_panel.csv": "61a247fd7deef4e1c368dd65037f3d50240068f61defdcf4642d31b94ce29aab"
+  }
+}

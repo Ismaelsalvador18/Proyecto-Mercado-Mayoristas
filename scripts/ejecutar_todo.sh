@@ -13,6 +13,7 @@ $PY scripts/validar_fase2.py
 $PY scripts/analisis/02.1_auditoria_panel.py
 
 $PY scripts/pipeline/03_limpiar_panel.py
+$PY scripts/validar_fase3.py
 $PY scripts/analisis/03.1_verificacion_limpieza.py
 $PY scripts/analisis/03.2_descripcion_datos.py
 $PY scripts/analisis/03.3_estacionariedad.py
