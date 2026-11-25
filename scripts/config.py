@@ -46,6 +46,25 @@ ATIPICOS = PROCESADOS / "atipicos_panel.csv"
 UNIDADES = PROCESADOS / "unidades_panel.csv"
 
 # --------------------------------------------------------------------------
+# Unidad transversal
+# --------------------------------------------------------------------------
+# 24 departamentos. Se excluyen Callao (provincia constitucional) y los
+# mercados provinciales Andahuaylas, Chota y Jaen, que SISAP reporta aparte
+# pero pertenecen a Apurimac y Cajamarca. Incluirlos como "departamentos"
+# duplicaria la unidad de analisis y romperia la comparacion Lima-Puno.
+DEPARTAMENTOS = [
+    "Amazonas", "Ancash", "Apurimac", "Arequipa", "Ayacucho", "Cajamarca",
+    "Cusco", "Huancavelica", "Huanuco", "Ica", "Junin", "La Libertad",
+    "Lambayeque", "Lima", "Loreto", "Madre de Dios", "Moquegua", "Pasco",
+    "Piura", "Puno", "San Martin", "Tacna", "Tumbes", "Ucayali",
+]
+SUBDEPARTAMENTOS = {
+    "Andahuaylas": "Apurimac",
+    "Chota": "Cajamarca",
+    "Jaen": "Cajamarca",
+}
+
+# --------------------------------------------------------------------------
 # Productos
 # --------------------------------------------------------------------------
 PRODUCTOS = ["Papa", "Cebolla", "Zanahoria", "Azucar", "Arroz", "Limon",
@@ -92,8 +111,6 @@ COORDENADAS = {
     "Moquegua": (-17.19, -70.94), "Pasco": (-10.68, -76.26),
     "Huancavelica": (-12.79, -74.97), "Apurimac": (-13.63, -72.88),
     "Tacna": (-18.01, -70.25), "Lambayeque": (-6.77, -79.84),
-    "Chota": (-6.56, -78.65), "Jaen": (-5.71, -78.81),
-    "Andahuaylas": (-13.66, -73.39),
 }
 
 ZONAS = {
@@ -102,9 +119,9 @@ ZONAS = {
     "Tacna": "Costa", "Ancash": "Sierra", "Cajamarca": "Sierra",
     "Huancavelica": "Sierra", "Huanuco": "Sierra", "Junin": "Sierra",
     "Pasco": "Sierra", "Ayacucho": "Sierra", "Apurimac": "Sierra", "Cusco": "Sierra",
-    "Puno": "Sierra", "Andahuaylas": "Sierra", "Chota": "Sierra", "Amazonas": "Sierra",
+    "Puno": "Sierra", "Amazonas": "Sierra",
     "Loreto": "Selva", "San Martin": "Selva", "Ucayali": "Selva",
-    "Madre de Dios": "Selva", "Jaen": "Selva",
+    "Madre de Dios": "Selva",
 }
 
 # --------------------------------------------------------------------------

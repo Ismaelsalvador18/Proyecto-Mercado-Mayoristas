@@ -57,7 +57,7 @@ def main() -> None:
     fig, ax = plt.subplots(figsize=(8.2, 6.6))
     sns.heatmap(c_papa, cmap="RdBu_r", vmin=-1, vmax=1, annot=True, fmt=".2f",
                 annot_kws={"size": 7}, linewidths=0.5, linecolor="white", ax=ax)
-    ax.set_title("Papa: correlacion de cambios mensuales entre regiones (2012-2023)")
+    ax.set_title("Papa: correlacion de cambios mensuales entre departamentos (2012-2023)")
     guardar(fig, "correlacion_papa.png", "estructura")
 
     # 2. Correlacion con Lima por producto y region
@@ -80,7 +80,7 @@ def main() -> None:
     fig, ax = plt.subplots(figsize=(14, 4.2))
     sns.heatmap(piv, cmap="RdBu_r", vmin=-0.2, vmax=0.9, linewidths=0.4,
                 linecolor="white", cbar_kws={"label": "correlacion con Lima"}, ax=ax)
-    ax.set_title("Correlacion de cambios mensuales con Lima, por producto y region")
+    ax.set_title("Correlacion de cambios mensuales con Lima, por producto y departamento")
     ax.set_xlabel("")
     ax.set_ylabel("")
     plt.xticks(rotation=45, ha="right", fontsize=7)
@@ -146,7 +146,7 @@ def main() -> None:
                         textcoords="offset points", xytext=(6, 4), fontsize=8)
     ax.set_xlabel("distancia a Lima (km)")
     ax.set_ylabel("correlacion promedio con Lima")
-    ax.set_title("Integracion con Lima y distancia, por region (2012-2023)")
+    ax.set_title("Integracion con Lima y distancia, por departamento (2012-2023)")
     ax.legend(title="zona", fontsize=8)
     guardar(fig, "integracion_distancia.png", "estructura")
 

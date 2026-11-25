@@ -30,7 +30,7 @@ def variables() -> pd.DataFrame:
         ("fecha", "fecha", "mes", "índice temporal", "SISAP"),
         ("anio", "entero", "año", "derivada", "fecha"),
         ("mes", "entero", "1-12", "derivada", "fecha"),
-        ("region", "texto", "27 regiones", "unidad transversal", "SISAP"),
+        ("region", "texto", "24 departamentos", "unidad transversal", "SISAP"),
         ("categoria", "texto", "9 categorías", "unidad de producto armonizado", "SISAP"),
         ("precio_kg", "decimal", "S/ por kg", "variable de análisis", "SISAP normalizado"),
         ("n_registros", "entero", "conteo", "control de agregación", "derivada"),

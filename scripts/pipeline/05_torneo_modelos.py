@@ -311,11 +311,14 @@ def main() -> None:
             valores = [f"{wide.loc[producto, modelo]:+.1f} %" for modelo in
                        ["OLS", "Ridge", "Random Forest", "LightGBM"]]
             fh.write(f"| {producto} | {int(n_hold.loc[producto])} | " + " | ".join(valores) + " |\n")
-        fh.write("\nRidge y OLS mejoran en papa, arroz, cebolla y huevos; OLS mejora marginalmente en "
-                 "zanahoria (+0,7 %), mientras Ridge empeora (−1,9 %); ambos empeoran en aceite. "
-                 "Random Forest y LightGBM empeoran frente al baseline en los seis productos. "
-                 "La referencia de Lima aporta valor contemporaneo, pero no ofrece un pronostico "
-                 "general a un mes.\n")
+        mejoran = [producto for producto in NUCLEO
+                   if wide.loc[producto, "OLS"] > 0 and wide.loc[producto, "Ridge"] > 0]
+        empeoran = [producto for producto in NUCLEO
+                    if wide.loc[producto, "OLS"] < 0 and wide.loc[producto, "Ridge"] < 0]
+        fh.write(f"\nRidge y OLS mejoran en {', '.join(mejoran)}; ambos empeoran en "
+                 f"{', '.join(empeoran)}. Random Forest y LightGBM empeoran frente al baseline "
+                 f"en los seis productos. La referencia de Lima aporta valor contemporaneo, "
+                 f"pero no ofrece un pronostico general a un mes.\n")
 
     fig, ax = plt.subplots(figsize=(8.2, 4.0))
     ax.barh(ranking.index, ranking.rank_promedio, color="#0e7490")

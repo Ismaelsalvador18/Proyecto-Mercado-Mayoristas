@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Descarga los precios mayoristas mensuales por region desde SISAP.
+"""Descarga los precios mayoristas mensuales por departamento desde SISAP.
 
 Fuente: SISAP - MIDAGRI, modulo "Precios de ciudades".
   http://sistemas.midagri.gob.pe/sisap/portal2/ciudades
 
-El portal no ofrece una descarga unica: hay que consultar region por region.
+El portal no ofrece una descarga unica: hay que consultar departamento por departamento.
 Este script reproduce la consulta que hace el formulario web (GET a
 /resumenes/filtrar con ajax=true) y guarda:
 
@@ -37,17 +37,16 @@ VARIABLE = "may_precio_prom"
 ANIOS = [str(a) for a in range(1997, 2027)]
 MESES = [f"{m:02d}" for m in range(1, 13)]
 
+# 24 departamentos. No se consultan Callao (provincia constitucional) ni
+# los mercados provinciales 030201 (Andahuaylas), 060401 (Chota) y
+# 060801 (Jaen): pertenecen a Apurimac y Cajamarca y no son departamentos.
 REGIONES = {
     "010000": "Amazonas",
     "020000": "Ancash",
     "030000": "Apurimac",
-    "030201": "Andahuaylas",
     "040000": "Arequipa",
     "050000": "Ayacucho",
     "060000": "Cajamarca",
-    "060401": "Chota",
-    "060801": "Jaen",
-    "070000": "Callao",
     "080000": "Cusco",
     "090000": "Huancavelica",
     "100000": "Huanuco",
@@ -249,8 +248,8 @@ def main() -> None:
     categorias_datos = len({str(fila["codigo_producto"]).zfill(6)[:4] for fila in todos})
     variedades_datos = len({fila["producto"] for fila in todos})
     print(f"\nTotal: {len(todos):,} filas -> {salida.relative_to(RAIZ)}")
-    print(f"Consultas: {len(REGIONES)} regiones, {len(PRODUCTOS)} categorías solicitadas")
-    print(f"Con datos: {regiones_datos} regiones | {categorias_datos} categorías | "
+    print(f"Consultas: {len(REGIONES)} departamentos, {len(PRODUCTOS)} categorías solicitadas")
+    print(f"Con datos: {regiones_datos} departamentos | {categorias_datos} categorías | "
           f"{variedades_datos} variedades")
 
 

@@ -131,7 +131,7 @@ def main() -> None:
                     boxprops={"facecolor": "#bae6fd", "edgecolor": "#0e7490"},
                     medianprops={"color": "#b45309"})
     axes[1].set_xlabel("meses")
-    axes[1].set_title("Vida media entre regiones, por producto")
+    axes[1].set_title("Vida media entre departamentos, por producto")
     axes[0].set_xlim(0, 12)
     axes[1].set_xlim(0, 12)
     tope = puno.loc[puno.producto == "Arroz", "vida_ic_sup"]
@@ -146,7 +146,7 @@ def main() -> None:
     im = ax.imshow(piv.values, aspect="auto", cmap="YlOrRd", vmin=0, vmax=12)
     ax.set_xticks(range(piv.shape[1]), piv.columns, rotation=45, ha="right", fontsize=7)
     ax.set_yticks(range(piv.shape[0]), piv.index, fontsize=8)
-    ax.set_title("Vida media por producto y region (meses, recortada en 12)")
+    ax.set_title("Vida media por producto y departamento (meses, recortada en 12)")
     fig.colorbar(im, ax=ax, label="meses")
     plt.tight_layout()
     guardar(fig, "vida_media_mapa.png", "ecm")

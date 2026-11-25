@@ -31,7 +31,7 @@ FIG = INFORME / "figuras"
 def flujo_kdd() -> None:
     aplicar_estilo()
     fases = ["Selección", "Preprocesamiento", "Transformación", "Minería", "Evaluación"]
-    detalles = ["SISAP:\n27 regiones\n9 productos", "Auditoría:\nnulos, unidades,\natípicos",
+    detalles = ["SISAP:\n24 departamentos\n9 productos", "Auditoría:\nnulos, unidades,\natípicos",
                 "Log-precio,\nrezagos,\nventanas", "ECM + torneo\nde 4 modelos",
                 "HAC, bootstrap,\nR2, MAE, DM"]
     fig, ax = plt.subplots(figsize=(12, 2.8))

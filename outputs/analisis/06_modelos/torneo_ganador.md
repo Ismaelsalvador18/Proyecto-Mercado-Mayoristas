@@ -34,11 +34,11 @@ Cambio porcentual del MAE frente a la caminata aleatoria: positivo = mejora; neg
 
 | Producto | N | OLS | Ridge | Random Forest | LightGBM |
 |---|---:|---:|---:|---:|---:|
-| Papa | 62 | +14.0 % | +12.2 % | -65.7 % | -58.8 % |
-| Cebolla | 62 | +8.2 % | +9.7 % | -8.4 % | -14.1 % |
-| Zanahoria | 53 | +0.7 % | -1.9 % | -65.0 % | -73.0 % |
-| Arroz | 36 | +6.3 % | +9.9 % | -282.8 % | -351.0 % |
-| Aceite | 24 | -33.9 % | -33.1 % | -303.3 % | -307.6 % |
-| Huevos | 38 | +6.7 % | +6.2 % | -148.0 % | -142.4 % |
+| Papa | 62 | +14.5 % | +12.7 % | -74.2 % | -85.6 % |
+| Cebolla | 62 | +8.3 % | +9.9 % | -2.8 % | -12.5 % |
+| Zanahoria | 53 | -4.7 % | -7.7 % | -62.0 % | -59.8 % |
+| Arroz | 36 | +3.9 % | +7.7 % | -282.0 % | -353.2 % |
+| Aceite | 24 | -37.8 % | -36.6 % | -303.1 % | -306.8 % |
+| Huevos | 38 | -3.6 % | -3.3 % | -146.4 % | -142.3 % |
 
-Ridge y OLS mejoran en papa, arroz, cebolla y huevos; OLS mejora marginalmente en zanahoria (+0,7 %), mientras Ridge empeora (−1,9 %); ambos empeoran en aceite. Random Forest y LightGBM empeoran frente al baseline en los seis productos. La referencia de Lima aporta valor contemporaneo, pero no ofrece un pronostico general a un mes.
+Ridge y OLS mejoran en Papa, Cebolla, Arroz; ambos empeoran en Zanahoria, Aceite, Huevos. Random Forest y LightGBM empeoran frente al baseline en los seis productos. La referencia de Lima aporta valor contemporaneo, pero no ofrece un pronostico general a un mes.

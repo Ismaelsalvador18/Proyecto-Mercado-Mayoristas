@@ -31,11 +31,11 @@ valor predictivo tiene esa relación?
 | Elemento | Valor |
 |---|---|
 | Fuente | SISAP–MIDAGRI, módulo Precios de ciudades |
-| Extracción | 28 consultas, 27 regiones con datos |
-| Crudo | 115 294 filas, 9 categorías armonizadas, 1997–2026 |
-| Panel | 49 113 filas región-producto-mes |
-| Limpio | 49 041 filas (72 atípicos, 0,15 %) |
-| Ventana densa | 2012–2023 (85,5 % de las celdas) |
+| Extracción | 24 consultas, 24 departamentos con datos |
+| Crudo | 102 808 filas, 9 categorías armonizadas, 1997–2026 |
+| Panel | 43 921 filas departamento-producto-mes |
+| Limpio | 43 855 filas (66 atípicos, 0,15 %) |
+| Ventana densa | 2012–2023 (85,7 % de las celdas) |
 | Núcleo | papa, cebolla, zanahoria, arroz, aceite, huevos |
 
 Detalle en `docs/diccionario_datos.md`.
@@ -86,7 +86,7 @@ antes de `03.3`.
 2. **Rezagos:** q = 0…4 por producto; se elige por BIC. Resultado: q = 0 en los seis productos.
 3. **ECM en niveles:** errores HAC (Newey–West), vida media con IC bootstrap (500 réplicas).
 4. **Cointegración:** Engle–Granger como evidencia complementaria.
-5. **Panel regional:** mismo q por producto, 27 regiones, resumen y mapa de vida media.
+5. **Panel regional:** mismo q por producto, 24 departamentos, resumen y mapa de vida media.
 6. **Torneo:** nowcast sobre cambios (estacionarios) y pronóstico sobre niveles con caminata
    aleatoria.
 7. **Representación de modelos:** coeficientes, camino de Ridge, árbol de RF, árbol sustituto de
@@ -146,9 +146,9 @@ antes de `03.3`.
 |---|---|---|
 | ECM | γ significativo en ≥ 5 de 6 productos | 6 de 6 en Puno |
 | Heterogeneidad | rango de vida media ≥ 3× | ~3,5× (1,9 a 6,6 meses) |
-| Geografía | distancia significativa; zona evaluada | distancia p = 0,017; zona p = 0,247 |
+| Geografía | distancia significativa; zona evaluada | distancia p = 0,022; zona p = 0,196 |
 | Torneo | ranking en productos con ≥ 60 entrenamientos y ≥ 20 evaluaciones; ganador con R² > 0 y acierto > 55 % en ≥ 2 productos | Desarrollo rankea 4 productos elegibles; Random Forest: 3 de 6 con R² > 0 y 3 con acierto > 55 % en holdout |
-| Pronóstico | mejora estable en ≥ 2 productos | Ridge y OLS mejoran en papa, arroz, cebolla y huevos; OLS mejora marginalmente en zanahoria (+0,7 %), Ridge pierde; ambos pierden en aceite |
+| Pronóstico | mejora estable en ≥ 2 productos | Ridge y OLS mejoran en papa, cebolla y arroz; ambos pierden en zanahoria, aceite y huevos |
 
 ---
 
@@ -160,7 +160,7 @@ antes de `03.3`.
 | q = 0 por BIC | Reportar q1/q2 como sensibilidad |
 | HAC y bootstrap amplían intervalos | Se reportan; arroz pierde significancia sin el shock y el aceite duplica su vida media |
 | Sin volúmenes | Variable omitida declarada |
-| Cambios de unidad | Normalización y auditoría (352 de 599 series fuente región-variedad) |
+| Cambios de unidad | Normalización y auditoría (313 de 532 series fuente departamento-variedad) |
 | n pequeño en modelos | Curvas de aprendizaje; Random Forest queda primero en el ranking de nowcast de cuatro productos elegibles y Ridge/OLS mejoran varios pronósticos |
 
 ---

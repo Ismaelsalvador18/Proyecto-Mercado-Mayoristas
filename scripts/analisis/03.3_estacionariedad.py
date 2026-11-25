@@ -84,7 +84,7 @@ def main() -> None:
     im = ax.imshow(piv.values, aspect="auto", cmap="RdYlGn_r", vmin=0, vmax=0.2)
     ax.set_xticks(range(piv.shape[1]), piv.columns, rotation=45, ha="right", fontsize=7)
     ax.set_yticks(range(piv.shape[0]), piv.index, fontsize=8)
-    ax.set_title("ADF sobre log-precio por producto y region (p-valor)")
+    ax.set_title("ADF sobre log-precio por producto y departamento (p-valor)")
     fig.colorbar(im, ax=ax, label="p-valor ADF")
     plt.tight_layout()
     guardar(fig, "adf_region.png", "calidad")
@@ -94,7 +94,7 @@ def main() -> None:
     ax.bar(resumen.producto, resumen.i1, bottom=resumen.i0, color="#b45309", label="I(1)")
     ax.bar(resumen.producto, resumen.mixto, bottom=resumen.i0 + resumen.i1,
            color="#9ca3af", label="Mixto")
-    ax.set_ylabel("regiones")
+    ax.set_ylabel("departamentos")
     ax.set_title("Orden de integración por producto")
     ax.legend(fontsize=8)
     plt.xticks(rotation=20, ha="right")

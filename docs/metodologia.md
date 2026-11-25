@@ -5,7 +5,7 @@
 El estudio sigue las cinco fases del proceso de descubrimiento de conocimiento en bases de datos
 (Fayyad et al., 1996):
 
-1. **Selección:** SISAP–MIDAGRI, precios mayoristas de 27 regiones y 9 categorías armonizadas.
+1. **Selección:** SISAP–MIDAGRI, precios mayoristas de 24 departamentos y 9 categorías armonizadas.
 2. **Preprocesamiento:** auditoría de nulos, duplicados, unidades y atípicos.
 3. **Transformación:** normalización a S/ kg, log-precio, cambios, rezagos y estacionalidad.
 4. **Minería:** modelo de corrección de error y torneo de modelos.
@@ -17,19 +17,24 @@ El estudio sigue las cinco fases del proceso de descubrimiento de conocimiento e
 | Elemento | Valor |
 |---|---|
 | Fuente | SISAP, módulo Precios de ciudades |
-| Unidad | región × producto × mes |
-| Crudo | 115 294 filas |
-| Panel | 49 113 filas |
-| Limpio | 49 041 filas |
+| Unidad | departamento × producto × mes |
+| Crudo | 102 808 filas |
+| Panel | 43 921 filas |
+| Limpio | 43 855 filas |
 | Ventana nominal | 1997–2026 |
 | Ventana densa | 2012–2023 |
 
-La cobertura no es un panel balanceado: 91 de 243 series terminan antes de noviembre de 2026 y
-21 empiezan después de 2012. Se declara la muestra efectiva por producto.
+La cobertura no es un panel balanceado: 81 de 216 series terminan antes de noviembre de 2026 y
+17 empiezan después de 2012. Se declara la muestra efectiva por producto.
 
-La unidad de análisis es una **serie región-categoría por mes** (27 regiones × 9 categorías =
-243 series potenciales). En el origen hay 599 series región-variedad; la construcción del panel
-selecciona una variedad y unidad dominante para cada combinación región-categoría. “Variedad” se
+La unidad transversal es el **departamento**. SISAP reporta por separado Andahuaylas, Chota y Jaén;
+las dos últimas son provincias de Cajamarca y la primera de Apurímac. Se excluyen para no tratar una
+provincia como si fuera un departamento. Callao tampoco entra: es provincia constitucional y no
+devuelve registros. El resultado son 24 departamentos comparables.
+
+La unidad de análisis es una **serie departamento-categoría por mes** (24 departamentos × 9 categorías =
+216 series potenciales). En el origen hay 532 series departamento-variedad; la construcción del panel
+selecciona una variedad y unidad dominante para cada combinación departamento-categoría. “Variedad” se
 reserva para las presentaciones comerciales de la fuente; “categoría” es el producto armonizado
 que se analiza.
 
@@ -38,7 +43,7 @@ que se analiza.
 | Variable | Tipo | Unidad | Rol |
 |---|---|---|---|
 | `fecha` | fecha | mes | índice |
-| `region` | categórica | 27 regiones | unidad transversal |
+| `region` | categórica | 24 departamentos | unidad transversal |
 | `categoria` | categórica | 9 categorías | unidad de producto armonizado |
 | `precio_kg` | continua | S/ kg | variable de análisis |
 | `log_precio` | continua | log S/ kg | estacionariedad |
@@ -47,11 +52,11 @@ que se analiza.
 ### 2.2 Normalización y atípicos
 
 El SISAP publica en kilogramos, arrobas, sacos, cajas y otras presentaciones. Para cada celda
-región-producto se elige la unidad dominante y se divide por su equivalencia en kg. El 58,8 % de
-las series región-variedad (352 de 599) cambia de unidad al menos una vez; por eso la normalización es obligatoria.
+departamento-producto se elige la unidad dominante y se divide por su equivalencia en kg. El 58,8 % de
+las series departamento-variedad (313 de 532) cambia de unidad al menos una vez; por eso la normalización es obligatoria.
 
 Se descartan valores con cociente > 4 frente a la mediana móvil de ±3 meses, o > 5 frente a la
-mediana nacional del mismo producto y mes. Total: 72 casos (0,15 %). No se imputa: se marca como
+mediana nacional del mismo producto y mes. Total: 66 casos (0,15 %). No se imputa: se marca como
 faltante.
 
 ### 2.3 Transformación logarítmica
@@ -198,7 +203,7 @@ usa como diagnóstico complementario, no como criterio de selección.
    No se generaliza un ganador a todos los objetivos.
 2. **Sin volúmenes:** el módulo de ciudades no publica abastecimiento; hay variable omitida.
 3. **Cambios de unidad:** normalizados, pero queda ruido de medición.
-4. **Serie truncada:** 91 de 243 series terminan antes de noviembre de 2026.
+4. **Serie truncada:** 81 de 216 series terminan antes de noviembre de 2026.
 5. **Quiebre 2021–2023:** se reporta robustez sin ese periodo; el arroz pierde significancia y la vida media del aceite sube de 6,6 a 10,1 meses.
 6. **Rezago de publicación:** no verificable; se habla de valor predictivo contemporáneo, no de
    nowcast operativo.

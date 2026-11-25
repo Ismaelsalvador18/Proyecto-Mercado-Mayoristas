@@ -6,7 +6,7 @@
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.9-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
 
 Proyecto de **ciencia de datos y EDA** aplicado a la transmisión de precios mayoristas desde Lima
-hacia las regiones del Perú. Combina un modelo de corrección de error (ECM), pruebas de
+hacia los departamentos del Perú. Combina un modelo de corrección de error (ECM), pruebas de
 estacionariedad, análisis geográfico, ingeniería de variables y un torneo de modelos de nowcast y
 pronóstico.
 
@@ -20,10 +20,10 @@ predictivo tiene esa relación?
 | Hallazgo | Evidencia |
 |---|---|
 | El traspaso es incompleto y heterogéneo | Cebolla: 0,51 inmediato y 2,1 meses de vida media; papa: 0,31 y 1,9; zanahoria: 0,18 y 2,8; aceite: 0,24 y 6,6 |
-| La integración cae con la distancia | Papa: Ica 0,85 y Huánuco 0,77; Tumbes −0,03 y Loreto −0,01. Promedio entre seis categorías: 0,71 (Ica) a 0,12 (Loreto); distancia p = 0,017 |
-| La zona natural no basta | Kruskal–Wallis p = 0,247; distancia y zona explican 53 % de la variación |
+| La integración cae con la distancia | Papa: Ica 0,85 y Huánuco 0,77; Tumbes −0,03 y Loreto −0,01. Promedio entre seis categorías: 0,71 (Ica) a 0,12 (Loreto); distancia p = 0,022 |
+| La zona natural no basta | Kruskal–Wallis p = 0,196; distancia y zona explican 54 % de la variación |
 | Hay valor predictivo contemporáneo | Random Forest: R² = 0,270 en papa, 0,218 en cebolla y 0,080 en zanahoria; acierto 69,5 / 64,4 / 52,9 % |
-| El pronóstico a un mes es específico | Ridge y OLS mejoran el MAE en papa, arroz, cebolla y huevos; en zanahoria OLS mejora apenas 0,7 % y Ridge empeora; ambos empeoran en aceite |
+| El pronóstico a un mes es específico | Ridge y OLS mejoran el MAE en papa, cebolla y arroz; ambos empeoran en zanahoria, aceite y huevos |
 | El orden de integración es mixto | Cebolla I(0); arroz y huevos I(1); aceite mixto en Puno e I(1) en Lima; papa y zanahoria mixtos |
 | El BIC selecciona q = 0 | En las seis categorías del núcleo |
 
@@ -41,18 +41,23 @@ categorías.
 | URL | `sistemas.midagri.gob.pe/sisap/portal2/ciudades` |
 | Cobertura nominal | 1997–2026 |
 | Cobertura efectiva | 2002–noviembre de 2026; ventana densa 2012–2023 |
-| Unidad analítica | serie región-categoría por mes |
-| Regiones | 27 con datos (Callao no devuelve registros) |
+| Unidad analítica | serie departamento-categoría por mes |
+| Departamentos | 24 (unidad de análisis) |
 | Categorías | 9 productos armonizados |
-| Datos crudos | 115 294 filas |
-| Panel construido | 49 113 filas |
-| Panel limpio | 49 041 filas; 72 atípicos descartados (0,15 %) |
-| Cobertura 2012–2023 | 85,5 % de las celdas región-categoría |
-| Cobertura 2024–noviembre de 2026 | 65,8 % |
+| Datos crudos | 102 808 filas |
+| Panel construido | 43 921 filas |
+| Panel limpio | 43 855 filas; 66 atípicos descartados (0,15 %) |
+| Cobertura 2012–2023 | 85,7 % de las celdas departamento-categoría |
+| Cobertura 2024–noviembre de 2026 | 66,5 % |
 
 La fuente contiene **variedades comerciales**. Para el análisis se selecciona una variedad y una
-unidad dominante por celda, y se armonizan en **9 categorías**. Las 599 series fuente
-región-variedad se convierten en 243 series analíticas región-categoría.
+unidad dominante por celda, y se armonizan en **9 categorías**. Las 532 series fuente
+departamento-variedad se convierten en 216 series analíticas departamento-categoría.
+
+Se trabaja con **24 departamentos**. SISAP reporta por separado los mercados provinciales de
+Andahuaylas, Chota y Jaén, que pertenecen a Apurímac y Cajamarca; se excluyen para no duplicar la
+unidad departamental. Callao tampoco se cuenta porque es provincia constitucional y no devuelve
+registros.
 
 **Categorías del núcleo:** papa, cebolla, zanahoria, arroz, aceite y huevos. Tomate, limón y azúcar
 se usan en el análisis descriptivo.
@@ -80,8 +85,8 @@ no por el mejor resultado de un solo producto.
 El proyecto está pensado también como un ejercicio de **análisis exploratorio y estructura de
 datos**, no solo como una estimación econométrica:
 
-- el panel se mantiene en formato tidy: una fila por región-categoría-mes;
-- cada producto se transforma con una tabla pivote (`región × fecha`);
+- el panel se mantiene en formato tidy: una fila por departamento-categoría-mes;
+- cada producto se transforma con una tabla pivote (`departamento × fecha`);
 - el calendario mensual se repone antes de calcular diferencias y rezagos;
 - la matriz de diseño se construye con `diff` y `shift`, sin mezclar meses faltantes;
 - la validación es temporal: entrenamiento, desarrollo y holdout;

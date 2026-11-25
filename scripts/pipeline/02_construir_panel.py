@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Construye el panel mensual de precios mayoristas por region y producto.
+"""Construye el panel mensual de precios mayoristas por departamento y producto.
 
 Entrada : data/processed/precios_ciudades_largo.csv
 Salidas : data/processed/panel_precios.csv       (formato largo tidy)
@@ -17,10 +17,14 @@ Reglas:
 
 from __future__ import annotations
 
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from config import DEPARTAMENTOS
 
 RAIZ = Path(__file__).resolve().parent.parent.parent
 ENTRADA = RAIZ / "data" / "processed" / "precios_ciudades_largo.csv"
@@ -58,6 +62,7 @@ def unidad_dominante(datos: pd.DataFrame) -> pd.DataFrame:
 def main() -> None:
     crudo = pd.read_csv(ENTRADA)
     datos = crudo[crudo["producto"].isin(VARIEDADES)].copy()
+    datos = datos[datos["region"].isin(DEPARTAMENTOS)].copy()
     datos["categoria"] = datos["producto"].map(VARIEDADES)
 
     elegidas = unidad_dominante(datos)
@@ -95,7 +100,7 @@ def main() -> None:
     cobertura["anios_cubiertos"] = cobertura["meses"] / 12
     cobertura.to_csv(SALIDAS / "cobertura_panel.csv", index=False, encoding="utf-8")
 
-    print(f"Panel: {panel.shape[0]:,} filas | {panel.region.nunique()} regiones "
+    print(f"Panel: {panel.shape[0]:,} filas | {panel.region.nunique()} departamentos "
           f"| {panel.categoria.nunique()} productos")
     print(f"Ventana: {panel.fecha.min():%Y-%m} a {panel.fecha.max():%Y-%m}")
     print("\nMeses por producto (resumen entre regiones):")

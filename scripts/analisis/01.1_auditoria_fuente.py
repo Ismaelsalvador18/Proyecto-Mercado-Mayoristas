@@ -31,7 +31,7 @@ def main() -> None:
 
     filas = []
     filas.append(("filas", len(crudo)))
-    filas.append(("regiones con datos", crudo.region.nunique()))
+    filas.append(("departamentos con datos", crudo.region.nunique()))
     filas.append(("categorias con datos", crudo.categoria_codigo.nunique()))
     filas.append(("variedades", crudo.producto.nunique()))
     filas.append(("anio minimo", int(crudo.anio.min())))
@@ -54,13 +54,13 @@ def main() -> None:
 
     print("Auditoria de fuente:")
     print(auditoria.to_string(index=False))
-    print("\nRegiones con datos:", crudo.region.nunique())
+    print("\nDepartamentos con datos:", crudo.region.nunique())
     print("Categorias con datos:", crudo.categoria_codigo.nunique(),
           "| variedades:", crudo.producto.nunique())
     print("Rango:", crudo.anio.min(), "-", crudo.anio.max())
 
     fig, ax = plt.subplots(figsize=(11, 4))
-    ax.plot(anio.anio, anio.regiones, marker="o", label="regiones")
+    ax.plot(anio.anio, anio.regiones, marker="o", label="departamentos")
     ax.plot(anio.anio, anio.categorias, marker="s", label="categorias")
     ax.set_title("Cobertura anual de la fuente")
     ax.set_xlabel("año")
@@ -71,7 +71,7 @@ def main() -> None:
     fig, ax = plt.subplots(figsize=(10, 5))
     orden = por_region.sort_values("filas", ascending=False)
     sns.barplot(data=orden, y="region", x="filas", color="#0e7490", ax=ax)
-    ax.set_title("Filas descargadas por region")
+    ax.set_title("Filas descargadas por departamento")
     ax.set_xlabel("filas")
     ax.set_ylabel("")
     guardar(fig, "filas_por_region.png", "fuente")

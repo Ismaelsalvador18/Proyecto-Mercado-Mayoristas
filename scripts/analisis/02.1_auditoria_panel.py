@@ -20,8 +20,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from config import (DIRECTORIOS, LARGO, PANEL_CRUDO, aplicar_estilo, guardar,
-                    preparar_directorios, tabla)
+from config import (DEPARTAMENTOS, DIRECTORIOS, LARGO, PANEL_CRUDO,
+                    aplicar_estilo, guardar, preparar_directorios, tabla)
 
 
 def detectar_atipicos(panel: pd.DataFrame) -> pd.Series:
@@ -45,10 +45,10 @@ def main() -> None:
 
     filas = [
         ("filas", len(panel)),
-        ("regiones", panel.region.nunique()),
+        ("departamentos", panel.region.nunique()),
         ("productos", panel.categoria.nunique()),
         ("nulos", int(panel.isna().sum().sum())),
-        ("duplicados fecha-region-producto", int(panel.duplicated(["fecha", "region", "categoria"]).sum())),
+        ("duplicados fecha-departamento-producto", int(panel.duplicated(["fecha", "region", "categoria"]).sum())),
         ("atipicos detectados", int(atipico.sum())),
         ("atipicos (%)", round(100 * atipico.mean(), 3)),
         ("primer mes", panel.fecha.min().strftime("%Y-%m")),
@@ -57,7 +57,7 @@ def main() -> None:
     for ini, fin, etiqueta in [("2012-01-01", "2023-12-01", "2012-2023"),
                                ("2002-01-01", "2026-11-01", "2002-2026")]:
         sub = panel[(panel.fecha >= ini) & (panel.fecha <= fin)]
-        esperado = 27 * 9 * sub.fecha.nunique()
+        esperado = len(DEPARTAMENTOS) * 9 * sub.fecha.nunique()
         filas.append((f"cobertura {etiqueta} (%)", round(100 * len(sub) / esperado, 1)))
     tabla(pd.DataFrame(filas, columns=["metrica", "valor"]), "auditoria_panel.csv", "panel")
 
@@ -76,7 +76,7 @@ def main() -> None:
                                      productos=("categoria", "nunique"),
                                      filas=("precio_kg", "size")).reset_index()
     fig, ax = plt.subplots(figsize=(11, 4))
-    ax.plot(anio.anio, anio.regiones, marker="o", label="regiones")
+    ax.plot(anio.anio, anio.regiones, marker="o", label="departamentos")
     ax.plot(anio.anio, anio.productos, marker="s", label="productos")
     ax.set_title("Cobertura anual del panel")
     ax.set_xlabel("año")

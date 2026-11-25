@@ -16,13 +16,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from config import (ATIPICOS, DIRECTORIOS, PANEL_CRUDO, PANEL_LIMPIO,
-                    aplicar_estilo, guardar, preparar_directorios, tabla)
+from config import (ATIPICOS, DEPARTAMENTOS, DIRECTORIOS, PANEL_CRUDO,
+                    PANEL_LIMPIO, aplicar_estilo, guardar, preparar_directorios, tabla)
 
 
 def cobertura(panel: pd.DataFrame, ini: str, fin: str) -> float:
     sub = panel[(panel.fecha >= ini) & (panel.fecha <= fin)]
-    esperado = 27 * 9 * sub.fecha.nunique()
+    esperado = len(DEPARTAMENTOS) * 9 * sub.fecha.nunique()
     return 100 * len(sub) / esperado if esperado else np.nan
 
 
