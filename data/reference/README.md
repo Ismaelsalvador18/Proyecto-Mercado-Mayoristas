@@ -16,4 +16,4 @@ No forman parte del catálogo:
 - `060801` Jaén, provincia de Cajamarca;
 - `070000` Callao, provincia constitucional.
 
-Los HTML de esos códigos se conservan en `data/raw/_excluidos/` y no se leen en el pipeline.
+Esos códigos no se descargan, no se leen y no forman parte del dataset actual.
