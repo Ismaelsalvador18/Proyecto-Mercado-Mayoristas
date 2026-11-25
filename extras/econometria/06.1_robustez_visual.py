@@ -22,7 +22,7 @@ import seaborn as sns
 def main() -> None:
     preparar_directorios()
     aplicar_estilo()
-    tabla = pd.read_csv(DIRECTORIOS["robustez"] / "ecm_robustez.csv")
+    tabla = pd.read_csv(DIRECTORIOS["econometria"] / "ecm_robustez.csv")
     piv = tabla.pivot(index="producto", columns="escenario", values="vida_media")
     orden = [c for c in ["base", "q0", "q1", "q2", "sin_shock", "ventana_2008",
                          "papa_amarilla"] if c in piv.columns]
@@ -36,7 +36,7 @@ def main() -> None:
     ax.set_ylabel("")
     plt.xticks(rotation=30, ha="right")
     guardar(fig, "robustez_vida_media.png", "robustez")
-    print("Figura de robustez generada en", DIRECTORIOS["robustez"])
+    print("Figura de robustez generada en", DIRECTORIOS["econometria"])
 
 
 if __name__ == "__main__":

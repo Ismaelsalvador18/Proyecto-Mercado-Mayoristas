@@ -21,10 +21,12 @@ def contar(X: pd.DataFrame) -> dict:
     train = X.index < pd.Timestamp(DEV_INICIO)
     val = (X.index >= pd.Timestamp(DEV_INICIO)) & (X.index <= pd.Timestamp(DEV_FIN))
     test = (X.index >= pd.Timestamp(HOLDOUT_INICIO)) & (X.index <= pd.Timestamp(HOLDOUT_FIN))
+    fuera = int(len(X) - train.sum() - val.sum() - test.sum())
     return {
         "entrenamiento_2012_2017": int(train.sum()),
         "validacion_2018_2020": int(val.sum()),
         "prueba_2021_2026": int(test.sum()),
+        "fuera_de_ventana": fuera,
         "total": int(len(X)),
     }
 

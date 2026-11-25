@@ -21,6 +21,7 @@ import numpy as np
 import pandas as pd
 
 from config import (DEPARTAMENTOS, DIRECTORIOS, LARGO, PANEL_CRUDO,
+                    VENTANA_DENSA_FIN, VENTANA_DENSA_INICIO,
                     aplicar_estilo, guardar, preparar_directorios, tabla)
 
 
@@ -54,8 +55,8 @@ def main() -> None:
         ("primer mes", panel.fecha.min().strftime("%Y-%m")),
         ("ultimo mes", panel.fecha.max().strftime("%Y-%m")),
     ]
-    for ini, fin, etiqueta in [("2012-01-01", "2023-12-01", "2012-2023"),
-                               ("2002-01-01", "2026-11-01", "2002-2026")]:
+    for ini, fin, etiqueta in [(VENTANA_DENSA_INICIO, VENTANA_DENSA_FIN, "2012-2023 bruta"),
+                               ("2002-01-01", "2026-11-01", "2002-2026 bruta")]:
         sub = panel[(panel.fecha >= ini) & (panel.fecha <= fin)]
         esperado = len(DEPARTAMENTOS) * 9 * sub.fecha.nunique()
         filas.append((f"cobertura {etiqueta} (%)", round(100 * len(sub) / esperado, 1)))

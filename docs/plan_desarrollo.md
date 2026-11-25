@@ -75,7 +75,8 @@ scripts/
 │   ├── 05.2_evaluacion_modelos.py
 │   └── 05.3_n_etapas.py
 ├── informe/
-│   └── 07_resultados_informe.py
+│   ├── 07_resultados_informe.py
+│   └── 08_generar_informe.py
 └── validar_fase1.py ... validar_fase8.py
 ```
 
@@ -94,7 +95,7 @@ fase anterior.
 2. **Limpieza:** unidades normalizadas a S/ kg; atípicos marcados y excluidos, no imputados.
 3. **Transformación:** log-precio, cambios, rezagos y armónicos anuales.
 4. **Variables:** Lima contemporánea y rezagada, cambios propios rezagados y estacionalidad.
-5. **Modelos:** OLS, Ridge, Random Forest y LightGBM.
+5. **Modelos:** OLS, Ridge y cuatro familias de árboles (Árbol de Decisión, Random Forest, XGBoost y LightGBM).
 6. **Selección:** rango promedio de R² en validación, no en la prueba final.
 7. **Evaluación:** R², MAE, mejora frente a la referencia, acierto direccional y matriz de confusión.
 8. **Integridad:** gates por fase y manifiestos con hashes.
@@ -154,4 +155,4 @@ fase anterior.
 - 16 figuras y 17 tablas de resultados.
 - Dos cuadernos: resultados ejecutivos y guía.
 - README, metodología, diccionario y este plan.
-- Informe final generado al cierre.
+- Informe final de 12 tablas, 10 figuras, 12 ecuaciones, referencias y un anexo con la matriz completa.

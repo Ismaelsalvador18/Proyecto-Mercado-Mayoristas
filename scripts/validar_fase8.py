@@ -93,7 +93,7 @@ def main() -> None:
     tablas = sorted((INFORME / "tablas").glob("*.csv"))
     figuras = sorted((INFORME / "figuras").glob("*.png"))
     if len(tablas) != 17 or len(figuras) != 16:
-        raise AssertionError("El informe no tiene 26 tablas y 25 figuras")
+        raise AssertionError("El informe no tiene 17 tablas y 16 figuras")
 
     docs = (RAIZ / "README.md").read_text(encoding="utf-8")
     for ruta in sorted((RAIZ / "docs").glob("*.md")):

@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 from statsmodels.tsa.stattools import adfuller, kpss
 
-from config import (DIRECTORIOS, ECM_FIN, ECM_INICIO, NUCLEO, PANEL_LIMPIO,
+from config import (DIRECTORIOS, VENTANA_DENSA_FIN, VENTANA_DENSA_INICIO, NUCLEO, PANEL_LIMPIO,
                     aplicar_estilo, guardar, preparar_directorios, tabla)
 
 warnings.filterwarnings("ignore")
@@ -50,7 +50,7 @@ def main() -> None:
     for cat in NUCLEO:
         d = panel[panel.categoria == cat].pivot_table(
             index="fecha", columns="region", values="precio_kg")[["Puno", "Lima"]]
-        d = d.loc[ECM_INICIO:ECM_FIN].dropna()
+        d = d.loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN].dropna()
         for col in ["Puno", "Lima"]:
             r = pruebas(np.log(d[col]))
             filas.append({"producto": cat, "serie": col, **r})
@@ -60,7 +60,7 @@ def main() -> None:
     filas = []
     for cat in NUCLEO:
         d = panel[panel.categoria == cat].pivot_table(
-            index="fecha", columns="region", values="precio_kg").loc[ECM_INICIO:ECM_FIN]
+            index="fecha", columns="region", values="precio_kg").loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN]
         for region in [c for c in d.columns if c != "Lima"]:
             serie = d[region].dropna()
             if len(serie) < 60:

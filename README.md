@@ -44,6 +44,7 @@ Los nombres internos se conservan en archivos y columnas para no romper el códi
 | La distancia aporta, pero no explica todo | Distancia p = 0,022; zona natural p = 0,196; juntas explican 54 % de la variación |
 | Hay valor predictivo contemporáneo | Random Forest: R² = 0,270 en papa, 0,218 en cebolla y 0,080 en zanahoria; acierto 69,5 / 64,4 / 52,9 % |
 | El pronóstico a un mes es específico | Ridge y OLS mejoran el MAE en papa, cebolla y arroz; ambos empeoran en zanahoria, aceite y huevos |
+| Lectura direccional | LightGBM: F1 = 0,662 y exactitud = 0,622; OLS y Ridge: recall = 0,660; ROC-AUC cercano a 0,63 |
 
 **Conclusión:** la referencia de Lima aporta información predictiva contemporánea, pero el
 desempeño depende del producto y del horizonte. No hay un modelo único para las seis categorías.
@@ -128,8 +129,8 @@ los rezagos que consumen las primeras observaciones. No es un error de conteo.
 2. **Transformación:** normalización a S/ kg, log-precio, cambios mensuales y rezagos.
 3. **EDA:** cobertura, distribuciones, correlaciones y geografía básica.
 4. **Variables:** construcción de la matriz X/y con diferencias, rezagos y estacionalidad.
-5. **Modelos:** OLS, Ridge, Random Forest y LightGBM; validación 2018–2020 y prueba final enero
-   2021–octubre 2026.
+5. **Modelos:** OLS, Ridge y cuatro familias de árboles (Árbol de Decisión, Random Forest, XGBoost
+   y LightGBM); validación 2018–2020 y prueba final enero 2021–octubre 2026.
 6. **Evaluación:** R², MAE, mejora frente a la referencia, acierto direccional y matriz de confusión.
 
 El protocolo distingue la **estimación del mes corriente** (cambio del mismo mes) del
@@ -204,8 +205,9 @@ proyecto-mercados-mayoristas/
 │   ├── modelos.py                   variables y métricas compartidas
 │   ├── pipeline/                    datos y modelos
 │   ├── analisis/                    EDA, estructura y evaluación
+│   ├── informe/                     tablas, figuras y generación del informe
 │   ├── validar_fase*.py             validadores de fase
-│   └── ...                          artefactos de resultados
+│   └── ...
 ├── extras/econometria/              material técnico opcional, fuera del pipeline
 ├── requirements.txt
 └── README.md
@@ -295,8 +297,18 @@ Si `jupyter` no está en el `PATH`, usa el binario de tu instalación. Por ejemp
 - `outputs/_manifests/`: manifiestos y hashes de cada fase.
 - `notebooks/01_resultados.ipynb`: recorrido ejecutivo con tablas y figuras.
 - `notebooks/02_guia_detallada.ipynb`: guía paso a paso, también versionada.
+- `informe.pdf`: informe final con 12 tablas, 10 figuras, 12 ecuaciones y un anexo con la matriz completa.
+- `informe.docx`: fuente editable del informe.
 
-El índice de tablas y figuras se genera dentro de `outputs/`.
+El índice de tablas y figuras se genera dentro de `outputs/`. El informe se regenera al final del
+pipeline y también puede generarse por separado:
+
+```bash
+.venv/bin/python scripts/informe/08_generar_informe.py
+soffice --headless --convert-to pdf --outdir . informe.docx
+```
+
+El generador produce el `.docx`; la conversión a PDF requiere LibreOffice.
 
 ---
 

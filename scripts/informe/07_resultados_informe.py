@@ -84,9 +84,9 @@ def copiar_tablas() -> None:
 
 def protocolo() -> None:
     filas = [
-        ("Desarrollo (evaluación)", "2018-01–2020-12 (36 meses)",
+        ("Validación", "2018-01–2020-12 (36 meses)",
          "entrenamiento con datos previos a 2018; ranking con mínimos muestrales"),
-        ("Holdout", "2021-01–2026-10", "evaluación final; modelos entrenados hasta 2020"),
+        ("Prueba final", "2021-01–2026-10", "evaluación final; modelos entrenados hasta 2020"),
         ("Elegibilidad del ranking de estimación contemporánea",
          f"≥ {MIN_NOWCAST_TRAIN} entrenamiento; ≥ {MIN_NOWCAST_TEST} evaluación",
          "si no alcanza, se excluye de la Tabla 15"),
@@ -94,7 +94,7 @@ def protocolo() -> None:
         ("Baseline pronóstico", "caminata aleatoria", "umbral de pronóstico"),
         ("Métrica principal de estimación contemporánea", "R²", "captura de señal, no shrinkage"),
         ("Métrica principal pronóstico", "MAE", "error en S/ kg"),
-        ("Métricas secundarias", "MAE, mejora relativa, acierto direccional", "robustez"),
+        ("Métricas secundarias", "MAE, mejora relativa, acierto direccional", "diagnóstico complementario"),
         ("Selección", "rango promedio de R2", "no un solo producto"),
         ("Contraste", "Diebold-Mariano (HLN)", "diferencia de precisión"),
         ("Compuerta", "R2 > 0 y acierto > 55 % en >= 2 productos", "utilidad mínima"),

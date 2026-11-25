@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Constructores de variables y modelos compartidos.
 
-Evita que el torneo, la representacion de modelos y la robustez definan
+Evita que el torneo, la representación de modelos y la evaluación definan
 versiones distintas de las mismas variables.
 """
 
@@ -16,7 +16,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeRegressor
 
-from config import LGBM, RF, RIDGE_ALPHA, XGB
+from config import LGBM, RF, RIDGE_ALPHA, VENTANA_DENSA_INICIO, XGB
 
 try:
     import lightgbm as lgb
@@ -36,7 +36,7 @@ def _mensual(d: pd.DataFrame) -> pd.DataFrame:
 def construir_nowcast(panel: pd.DataFrame, cat: str) -> tuple[pd.DataFrame, pd.Series]:
     """Cambio mensual contemporaneo: dl0 de Lima explica dp de Puno."""
     d = panel[panel.categoria == cat].pivot_table(
-        index="fecha", columns="region", values="precio_kg").loc["2012-01-01":, ["Puno", "Lima"]]
+        index="fecha", columns="region", values="precio_kg").loc[VENTANA_DENSA_INICIO:, ["Puno", "Lima"]]
     d = _mensual(d)
     lp, ll = np.log(d["Puno"]), np.log(d["Lima"])
     dp, dl = lp.diff(), ll.diff()
@@ -54,7 +54,7 @@ def construir_nowcast(panel: pd.DataFrame, cat: str) -> tuple[pd.DataFrame, pd.S
 def construir_forecast(panel: pd.DataFrame, cat: str) -> tuple[pd.DataFrame, pd.Series, pd.Series]:
     """Nivel del mes siguiente, con mediana de otras regiones y estacionalidad."""
     d = panel[panel.categoria == cat].pivot_table(
-        index="fecha", columns="region", values="precio_kg").loc["2012-01-01":]
+        index="fecha", columns="region", values="precio_kg").loc[VENTANA_DENSA_INICIO:]
     otras = d.drop(columns=[c for c in ["Puno", "Lima"] if c in d.columns])
     d["otras"] = otras.median(axis=1)
     d = _mensual(d[["Puno", "Lima", "otras"]])

@@ -1,6 +1,6 @@
 {
   "fase": "02_panel",
-  "generado_en": "2026-11-25T17:38:16.792452+00:00",
+  "generado_en": "2026-11-25T18:08:44.171631+00:00",
   "entrada": "data/processed/precios_ciudades_largo.csv",
   "entrada_sha256": "8364254ebfe19abb0e9c3db19ae2d066a4a3ac22b102c5812c451bcd673b78e2",
   "catalogo_sha256": "42dfa4c6af6422092085fb3e1c0129fe16e607dcc134fc53b7e47ea0384cab15",

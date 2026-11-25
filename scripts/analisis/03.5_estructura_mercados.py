@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Estructura de mercados: correlaciones y geografia de la integracion.
 
-Corre despues de 03.4 y antes de 04.
+Corre después de la limpieza y antes de los modelos.
 Genera en outputs/analisis/04_estructura:
   correlacion_papa.csv, correlacion_lima.csv, correlacion_puno.csv,
   geografia_integracion.csv, geografia_modelos.csv,
@@ -23,7 +23,8 @@ import statsmodels.api as sm
 from scipy.stats import kruskal
 
 from config import (COORDENADAS, DIRECTORIOS, NUCLEO, PANEL_LIMPIO, PRODUCTOS,
-                    ZONAS, aplicar_estilo, guardar, preparar_directorios, tabla)
+                    VENTANA_DENSA_FIN, VENTANA_DENSA_INICIO, ZONAS,
+                    aplicar_estilo, guardar, preparar_directorios, tabla)
 
 import seaborn as sns
 
@@ -52,7 +53,7 @@ def main() -> None:
     panel = pd.read_csv(PANEL_LIMPIO, parse_dates=["fecha"])
 
     # 1. Papa entre regiones
-    c_papa = retornos(panel, "Papa", REGIONES_PAPA).loc["2012":"2023"].corr()
+    c_papa = retornos(panel, "Papa", REGIONES_PAPA).loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN].corr()
     tabla(c_papa.reset_index(), "correlacion_papa.csv", "estructura")
     fig, ax = plt.subplots(figsize=(8.2, 6.6))
     sns.heatmap(c_papa, cmap="RdBu_r", vmin=-1, vmax=1, annot=True, fmt=".2f",
@@ -63,7 +64,7 @@ def main() -> None:
     # 2. Correlacion con Lima por producto y region
     filas = []
     for cat in PRODUCTOS:
-        r = retornos(panel, cat).loc["2012":"2023"]
+        r = retornos(panel, cat).loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN]
         if "Lima" not in r.columns:
             continue
         for region in r.columns:
@@ -89,7 +90,7 @@ def main() -> None:
     # 3. Productos en Puno
     d_puno = panel[panel.region == "Puno"].pivot_table(
         index="fecha", columns="categoria", values="precio_kg")
-    c_puno = np.log(d_puno).diff().loc["2012":"2023"].corr()
+    c_puno = np.log(d_puno).diff().loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN].corr()
     tabla(c_puno.reset_index(), "correlacion_puno.csv", "estructura")
     fig, ax = plt.subplots(figsize=(7.6, 6.2))
     sns.heatmap(c_puno, cmap="RdBu_r", vmin=-1, vmax=1, annot=True, fmt=".2f",
@@ -100,7 +101,7 @@ def main() -> None:
     # 4. Geografia
     zs: dict[str, list[float]] = {}
     for cat in NUCLEO:
-        r = retornos(panel, cat).loc["2012":"2023"]
+        r = retornos(panel, cat).loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN]
         if "Lima" not in r.columns:
             continue
         for region in r.columns:

@@ -20,7 +20,7 @@ import statsmodels.api as sm
 from scipy import stats
 from statsmodels.stats.diagnostic import acorr_ljungbox, het_breuschpagan
 
-from config import (DIRECTORIOS, ECM_FIN, ECM_INICIO, MIN_MESES, NUCLEO,
+from config import (DIRECTORIOS, VENTANA_DENSA_FIN, VENTANA_DENSA_INICIO, MIN_MESES, NUCLEO,
                     PANEL_LIMPIO, aplicar_estilo, guardar, preparar_directorios, tabla)
 from ecm import construir
 
@@ -39,7 +39,7 @@ def main() -> None:
     for cat in NUCLEO:
         d = panel[panel.categoria == cat].pivot_table(
             index="fecha", columns="region", values="precio_kg")
-        datos = construir(np.log(d["Puno"]), np.log(d["Lima"]), int(qs.get(cat, 0))).loc[ECM_INICIO:ECM_FIN]
+        datos = construir(np.log(d["Puno"]), np.log(d["Lima"]), int(qs.get(cat, 0))).loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN]
         if len(datos) < MIN_MESES:
             continue
         ols = sm.OLS(datos["dp"], sm.add_constant(datos.drop(columns="dp"))).fit()
@@ -82,7 +82,7 @@ def main() -> None:
 
     print("Diagnostico del ECM:")
     print(pd.DataFrame(filas).round(3).to_string(index=False))
-    print("\nTablas y figuras de diagnostico generadas en", DIRECTORIOS["ecm"])
+    print("\nTablas y figuras de diagnostico generadas en", DIRECTORIOS["econometria"])
 
 
 if __name__ == "__main__":

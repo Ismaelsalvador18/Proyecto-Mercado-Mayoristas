@@ -20,7 +20,7 @@ import numpy as np
 import pandas as pd
 from statsmodels.stats.diagnostic import acorr_ljungbox
 
-from config import (DIRECTORIOS, ECM_FIN, ECM_INICIO, LAGS_ECM_MAX, NUCLEO,
+from config import (DIRECTORIOS, VENTANA_DENSA_FIN, VENTANA_DENSA_INICIO, LAGS_MAX, NUCLEO,
                     PANEL_LIMPIO, aplicar_estilo, guardar, preparar_directorios, tabla)
 from ecm import construir, estimar
 
@@ -38,8 +38,8 @@ def main() -> None:
             index="fecha", columns="region", values="precio_kg")
         lp, ll = np.log(d["Puno"]), np.log(d["Lima"])
         mejor_aic, mejor_bic = None, None
-        for q in range(LAGS_ECM_MAX + 1):
-            datos = construir(lp, ll, q).loc[ECM_INICIO:ECM_FIN]
+        for q in range(LAGS_MAX + 1):
+            datos = construir(lp, ll, q).loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN]
             m = estimar(datos, hac=False)
             curvas.append({"producto": cat, "q": q, "aic": m.aic, "bic": m.bic})
             if mejor_aic is None or m.aic < mejor_aic[1]:
@@ -47,7 +47,7 @@ def main() -> None:
             if mejor_bic is None or m.bic < mejor_bic[1]:
                 mejor_bic = (q, m.bic)
         elegido = mejor_bic[0]
-        datos = construir(lp, ll, elegido).loc[ECM_INICIO:ECM_FIN]
+        datos = construir(lp, ll, elegido).loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN]
         m = estimar(datos, hac=False)
         lb = acorr_ljungbox(m.resid, lags=[4], return_df=True)
         filas.append({"producto": cat, "q_aic": mejor_aic[0], "q_bic": mejor_bic[0],

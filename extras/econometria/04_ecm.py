@@ -26,7 +26,7 @@ import pandas as pd
 import statsmodels.api as sm
 from statsmodels.tsa.stattools import coint
 
-from config import (DIRECTORIOS, ECM_FIN, ECM_INICIO, MIN_MESES, NUCLEO,
+from config import (DIRECTORIOS, VENTANA_DENSA_FIN, VENTANA_DENSA_INICIO, MIN_MESES, NUCLEO,
                     PANEL_LIMPIO, aplicar_estilo, guardar, preparar_directorios, tabla)
 from ecm import bootstrap_ic, construir, estimar, vida_media
 
@@ -49,7 +49,7 @@ def main() -> None:
             index="fecha", columns="region", values="precio_kg")
         lp, ll = np.log(d["Puno"]), np.log(d["Lima"])
 
-        datos = construir(lp, ll, q).loc[ECM_INICIO:ECM_FIN]
+        datos = construir(lp, ll, q).loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN]
         if len(datos) < MIN_MESES:
             continue
         modelo = estimar(datos)
@@ -70,7 +70,7 @@ def main() -> None:
         })
 
         for region in [c for c in d.columns if c != "Lima"]:
-            datos_r = construir(np.log(d[region]), np.log(d["Lima"]), q).loc[ECM_INICIO:ECM_FIN]
+            datos_r = construir(np.log(d[region]), np.log(d["Lima"]), q).loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN]
             if len(datos_r) < MIN_MESES:
                 continue
             m = estimar(datos_r)
@@ -86,7 +86,7 @@ def main() -> None:
         asim = pd.DataFrame({
             "dp": lp.diff(), "sube": dl.clip(lower=0), "baja": dl.clip(upper=0),
             "ect": lp.shift(1) - ll.shift(1),
-        }).loc[ECM_INICIO:ECM_FIN].dropna()
+        }).loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN].dropna()
         # La asimetria usa una especificacion propia: sube, baja y ect.
         ma = sm.OLS(asim["dp"], sm.add_constant(asim[["sube", "baja", "ect"]])).fit()
         nombres = list(ma.params.index)
@@ -157,7 +157,7 @@ def main() -> None:
     print(producto.round(3).to_string(index=False))
     print("\nAsimetria (Puno):")
     print(asimetrias.round(3).to_string(index=False))
-    print("\nTablas y figuras del ECM generadas en", DIRECTORIOS["ecm"])
+    print("\nTablas y figuras del ECM generadas en", DIRECTORIOS["econometria"])
 
 
 if __name__ == "__main__":

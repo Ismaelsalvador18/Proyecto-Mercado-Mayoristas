@@ -14,10 +14,7 @@ __pycache__/
 data/raw/*.html
 
 # Documentos editoriales generados
-informe.docx
-informe.pdf
 *.docx
 *.pdf
-
-# Generador editorial local (no forma parte del repositorio de investigación)
-scripts/informe/08_generar_informe.py
+!informe.docx
+!informe.pdf

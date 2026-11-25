@@ -17,7 +17,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 import numpy as np
 import pandas as pd
 
-from config import (DIRECTORIOS, ECM_FIN, ECM_INICIO, LARGO, MIN_MESES, NUCLEO,
+from config import (DIRECTORIOS, VENTANA_DENSA_FIN, VENTANA_DENSA_INICIO, LARGO, MIN_MESES, NUCLEO,
                     PANEL_LIMPIO, preparar_directorios, tabla)
 from ecm import construir, estimar, vida_media
 
@@ -64,12 +64,12 @@ def main() -> None:
         d = panel[panel.categoria == cat].pivot_table(
             index="fecha", columns="region", values="precio_kg")
         for escenario, qq, inicio, fin in [
-            ("base", q, ECM_INICIO, ECM_FIN),
-            ("q0", 0, ECM_INICIO, ECM_FIN),
-            ("q1", 1, ECM_INICIO, ECM_FIN),
-            ("q2", 2, ECM_INICIO, ECM_FIN),
-            ("sin_shock", q, ECM_INICIO, "2020-12-01"),
-            ("ventana_2008", q, "2008-01-01", ECM_FIN),
+            ("base", q, VENTANA_DENSA_INICIO, VENTANA_DENSA_FIN),
+            ("q0", 0, VENTANA_DENSA_INICIO, VENTANA_DENSA_FIN),
+            ("q1", 1, VENTANA_DENSA_INICIO, VENTANA_DENSA_FIN),
+            ("q2", 2, VENTANA_DENSA_INICIO, VENTANA_DENSA_FIN),
+            ("sin_shock", q, VENTANA_DENSA_INICIO, "2020-12-01"),
+            ("ventana_2008", q, "2008-01-01", VENTANA_DENSA_FIN),
         ]:
             r = ecm(d["Puno"], d["Lima"], qq, inicio, fin)
             if r:
@@ -78,11 +78,11 @@ def main() -> None:
     try:
         alt = panel_variedad("Papa amarilla")
         if {"Puno", "Lima"}.issubset(alt.columns):
-            r = ecm(alt["Puno"], alt["Lima"], 0, ECM_INICIO, ECM_FIN)
+            r = ecm(alt["Puno"], alt["Lima"], 0, VENTANA_DENSA_INICIO, VENTANA_DENSA_FIN)
             if r:
                 filas.append({"producto": "Papa", "escenario": "papa_amarilla", "q": 0, **r})
             else:
-                solape = alt[["Puno", "Lima"]].dropna().loc[ECM_INICIO:ECM_FIN]
+                solape = alt[["Puno", "Lima"]].dropna().loc[VENTANA_DENSA_INICIO:VENTANA_DENSA_FIN]
                 filas.append({"producto": "Papa", "escenario": "papa_amarilla", "q": 0,
                               "n": len(solape), "beta0": np.nan, "gamma": np.nan,
                               "vida_media": np.nan, "r2": np.nan, "p_gamma": np.nan})
@@ -92,7 +92,7 @@ def main() -> None:
     tabla(pd.DataFrame(filas), "ecm_robustez.csv", "robustez")
     print("Robustez del ECM:")
     print(pd.DataFrame(filas).round(3).to_string(index=False))
-    print("\nTabla de robustez generada en", DIRECTORIOS["robustez"])
+    print("\nTabla de robustez generada en", DIRECTORIOS["econometria"])
 
 
 if __name__ == "__main__":

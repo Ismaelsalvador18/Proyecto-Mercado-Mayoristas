@@ -17,7 +17,8 @@ import numpy as np
 import pandas as pd
 
 from config import (ATIPICOS, DEPARTAMENTOS, DIRECTORIOS, PANEL_CRUDO,
-                    PANEL_LIMPIO, aplicar_estilo, guardar, preparar_directorios, tabla)
+                    PANEL_LIMPIO, VENTANA_DENSA_FIN, VENTANA_DENSA_INICIO,
+                    aplicar_estilo, guardar, preparar_directorios, tabla)
 
 
 def cobertura(panel: pd.DataFrame, ini: str, fin: str) -> float:
@@ -42,8 +43,8 @@ def main() -> None:
         ("nulos despues", int(limpio.isna().sum().sum())),
         ("duplicados antes", int(crudo.duplicated(["fecha", "region", "categoria"]).sum())),
         ("duplicados despues", int(limpio.duplicated(["fecha", "region", "categoria"]).sum())),
-        ("cobertura 2012-2023 antes (%)", round(cobertura(crudo, "2012-01-01", "2023-12-01"), 1)),
-        ("cobertura 2012-2023 despues (%)", round(cobertura(limpio, "2012-01-01", "2023-12-01"), 1)),
+        ("cobertura 2012-2023 antes (%)", round(cobertura(crudo, VENTANA_DENSA_INICIO, VENTANA_DENSA_FIN), 1)),
+        ("cobertura 2012-2023 despues (%)", round(cobertura(limpio, VENTANA_DENSA_INICIO, VENTANA_DENSA_FIN), 1)),
     ]
     tabla(pd.DataFrame(filas, columns=["metrica", "valor"]), "verificacion_limpieza.csv", "calidad")
 

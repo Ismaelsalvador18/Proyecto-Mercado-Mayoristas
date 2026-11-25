@@ -37,9 +37,8 @@ DIRECTORIOS = {
     "panel": ANALISIS / "02_panel",
     "calidad": ANALISIS / "03_calidad",
     "estructura": ANALISIS / "04_estructura",
-    "ecm": ANALISIS / "05_ecm",
     "modelos": ANALISIS / "06_modelos",
-    "robustez": ANALISIS / "07_robustez",
+    "econometria": ANALISIS / "extras_econometria",
     "informe_figuras": INFORME / "figuras",
     "informe_tablas": INFORME / "tablas",
 }
@@ -71,8 +70,8 @@ NUCLEO = ["Papa", "Cebolla", "Zanahoria", "Arroz", "Aceite", "Huevos"]
 # --------------------------------------------------------------------------
 # Ventanas
 # --------------------------------------------------------------------------
-ECM_INICIO = "2012-01-01"
-ECM_FIN = "2023-12-01"
+VENTANA_DENSA_INICIO = "2012-01-01"
+VENTANA_DENSA_FIN = "2023-12-01"
 DEV_INICIO = "2018-01-01"
 DEV_FIN = "2020-12-01"
 HOLDOUT_INICIO = "2021-01-01"
@@ -92,7 +91,7 @@ LGBM = dict(n_estimators=300, learning_rate=0.05, num_leaves=7,
             min_child_samples=10, random_state=0, verbose=-1)
 XGB = dict(n_estimators=300, learning_rate=0.05, max_depth=4,
            subsample=0.8, colsample_bytree=0.8, random_state=0, verbosity=0)
-LAGS_ECM_MAX = 4
+LAGS_MAX = 4
 
 # --------------------------------------------------------------------------
 # Geografia

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Descripcion de los datos: tabla del dataset, estadisticos, campanas y normalidad.
 
-Corre despues de 03.1 y antes de 03.3.
+Corre después de la verificación de limpieza.
 Genera en outputs/analisis/03_calidad:
   tabla_variables.csv, tabla_dataset_filas.csv, descriptivos_producto.csv,
   normalidad.csv, transformacion_log.csv,

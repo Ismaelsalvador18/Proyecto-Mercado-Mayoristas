@@ -1,13 +1,13 @@
-producto,tarea,entrenamiento_2012_2017,validacion_2018_2020,prueba_2021_2026,total
-Papa,estimación del mes corriente,67,28,60,156
-Papa,pronóstico a un mes,69,29,62,160
-Cebolla,estimación del mes corriente,67,17,60,145
-Cebolla,pronóstico a un mes,69,19,62,150
-Zanahoria,estimación del mes corriente,52,17,52,121
-Zanahoria,pronóstico a un mes,57,19,53,129
-Arroz,estimación del mes corriente,68,27,31,127
-Arroz,pronóstico a un mes,71,26,36,133
-Aceite,estimación del mes corriente,68,32,24,124
-Aceite,pronóstico a un mes,71,33,24,128
-Huevos,estimación del mes corriente,67,32,38,137
-Huevos,pronóstico a un mes,69,33,38,140
+producto,tarea,entrenamiento_2012_2017,validacion_2018_2020,prueba_2021_2026,fuera_de_ventana,total
+Papa,estimación del mes corriente,67,28,60,1,156
+Papa,pronóstico a un mes,69,29,62,0,160
+Cebolla,estimación del mes corriente,67,17,60,1,145
+Cebolla,pronóstico a un mes,69,19,62,0,150
+Zanahoria,estimación del mes corriente,52,17,52,0,121
+Zanahoria,pronóstico a un mes,57,19,53,0,129
+Arroz,estimación del mes corriente,68,27,31,1,127
+Arroz,pronóstico a un mes,71,26,36,0,133
+Aceite,estimación del mes corriente,68,32,24,0,124
+Aceite,pronóstico a un mes,71,33,24,0,128
+Huevos,estimación del mes corriente,67,32,38,0,137
+Huevos,pronóstico a un mes,69,33,38,0,140
