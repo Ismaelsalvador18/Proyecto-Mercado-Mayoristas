@@ -26,6 +26,7 @@ análisis. Se excluyen los mercados provinciales Andahuaylas, Chota y Jaén, y C
 
 | Archivo | Filas | Contenido |
 |---|---:|---|
+| `data/reference/departamentos.csv` | 24 | catálogo oficial ISO/SISAP |
 | `data/raw/ciudades_<código>.html` | 24 usados | respuesta cruda por departamento |
 | `data/processed/precios_ciudades_largo.csv` | 102 808 | extracción de 24 departamentos |
 | `data/processed/panel_precios.csv` | 43 921 | panel tidy normalizado |
@@ -43,7 +44,9 @@ análisis. Se excluyen los mercados provinciales Andahuaylas, Chota y Jaén, y C
 | `fecha` | fecha | primer día del mes |
 | `anio` | entero | año |
 | `mes` | entero | mes (1–12) |
-| `region` | texto | departamento |
+| `departamento_id` | texto | código ISO 3166-2:PE |
+| `departamento` | texto | nombre oficial con tildes |
+| `region` | texto | alias ASCII del departamento |
 | `categoria` | texto | producto comercial |
 | `precio_kg` | decimal | precio promedio mayorista en S/ por kg |
 | `n_registros` | entero | registros promediados en la celda |
@@ -55,7 +58,7 @@ análisis. Se excluyen los mercados provinciales Andahuaylas, Chota y Jaén, y C
 | `log_precio` | `ln(precio_kg)` | transformar escala y analizar cambios relativos; reduce la asimetría observada |
 | `cambio_log` | `Δ log_precio` | ECM y modelos |
 | `rezago_k` | `log_precio` desplazado k meses | predictores |
-| `mediana_otras` | mediana de otras regiones en el mismo mes | señal de red |
+| `mediana_otras` | mediana de otros departamentos en el mismo mes | señal de red |
 | `distancia_lima_km` | distancia haversine capital regional–Lima | heterogeneidad |
 | `zona` | costa / sierra / selva | heterogeneidad |
 
@@ -71,14 +74,14 @@ con kilos.
 Se descartan valores incompatibles con el entorno del precio, con dos criterios:
 
 1. **Local:** precio / mediana móvil de ±3 meses > 4 o < 0,25.
-2. **Nacional:** precio / mediana del mismo producto y mes entre regiones > 5 o < 0,2.
+2. **Nacional:** precio / mediana del mismo producto y mes entre departamentos > 5 o < 0,2.
 
 Se marcan como faltantes; no se imputan. Total: 66 casos (0,15 %). El detalle está en
 `data/processed/atipicos_panel.csv`.
 
 ## Cobertura
 
-| Periodo | Regiones | Productos | Densidad de celdas |
+| Periodo | Departamentos | Productos | Densidad de celdas |
 |---|---:|---:|---:|
 | 1997–1999 | 1 (Lima) | 2–3 | 0,8 % |
 | 2000–2001 | 1–22 | 3–7 | 0,9–2,3 % |

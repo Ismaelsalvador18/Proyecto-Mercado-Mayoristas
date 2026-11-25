@@ -125,7 +125,7 @@ El cuarteto del ingeniero (árbol, RF, XGBoost, LightGBM) se reporta en anexo y 
 ### 5.3 Variables
 
 Nowcast: `Δlog Lima` (0–3 rezagos), `Δlog Puno` (1–2 rezagos), armónicos anuales.
-Pronóstico: `log Puno` y `log Lima` (0–1 rezagos), mediana de otras regiones, armónicos.
+Pronóstico: `log Puno` y `log Lima` (0–1 rezagos), mediana de otros departamentos, armónicos.
 
 ### 5.4 Protocolo
 
@@ -155,7 +155,7 @@ como ganador entre cuatro productos elegibles, no como una comparación equilibr
 
 Para cada producto y región, el nowcast se construye así:
 
-1. Se hace una tabla pivote de `precio_kg` con fechas en filas y regiones en columnas.
+1. Se hace una tabla pivote de `precio_kg` con fechas en filas y departamentos en columnas.
 2. Se repone el calendario mensual completo para no convertir un hueco en un mes consecutivo.
 3. Se calcula `y = Δlog(Puno)` y los predictores `dl0–dl3`, `dp1–dp2`, `sin1` y `cos1`.
 4. Se eliminan las filas sin historia suficiente.

@@ -34,5 +34,6 @@ $PY scripts/analisis/06.1_robustez_visual.py
 $PY scripts/validar_fase5.py
 
 $PY scripts/informe/07_resultados_informe.py
+$PY scripts/validar_fase7.py
 
 echo "Pipeline completo. Artefactos en outputs/."

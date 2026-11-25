@@ -38,6 +38,7 @@ categorías.
 | Elemento | Valor |
 |---|---|
 | Fuente | SISAP–MIDAGRI, módulo *Precios de ciudades* |
+| Catálogo | `data/reference/departamentos.csv` (24 departamentos) |
 | URL | `sistemas.midagri.gob.pe/sisap/portal2/ciudades` |
 | Cobertura nominal | 1997–2026 |
 | Cobertura efectiva | 2002–noviembre de 2026; ventana densa 2012–2023 |

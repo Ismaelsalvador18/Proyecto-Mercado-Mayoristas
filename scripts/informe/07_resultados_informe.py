@@ -4,7 +4,7 @@
 Corre despues de 06.1. No recalcula analisis: copia y numera resultados.
 Genera:
   outputs/informe/tablas/tabla_01...tabla_25
-  outputs/informe/figuras/01...24
+  outputs/informe/figuras/01...25
   outputs/informe/INDICE.md
 """
 
