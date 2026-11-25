@@ -19,6 +19,7 @@ $PY scripts/analisis/03.2_descripcion_datos.py
 $PY scripts/analisis/03.3_estacionariedad.py
 $PY scripts/analisis/03.4_seleccion_rezagos.py
 $PY scripts/analisis/03.5_estructura_mercados.py
+$PY scripts/validar_fase4.py
 
 $PY scripts/pipeline/04_ecm.py
 $PY scripts/analisis/04.1_diagnostico_ecm.py

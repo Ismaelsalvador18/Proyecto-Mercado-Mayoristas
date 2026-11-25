@@ -110,12 +110,20 @@ def main() -> None:
             if len(par) >= 60:
                 c = float(np.clip(par["Lima"].corr(par[region]), -0.99, 0.99))
                 zs.setdefault(region, []).append(float(np.arctanh(c)))
+    faltan_geo = sorted(set(zs) - set(COORDENADAS))
+    if faltan_geo:
+        raise ValueError(f"Departamentos sin coordenadas: {faltan_geo}")
+    faltan_zona = sorted(set(zs) - set(ZONAS))
+    if faltan_zona:
+        raise ValueError(f"Departamentos sin zona: {faltan_zona}")
     geo = pd.DataFrame([
         {"region": region, "r_lima": float(np.tanh(np.mean(z))),
          "distancia_km": haversine(COORDENADAS["Lima"], COORDENADAS[region]),
          "zona": ZONAS[region]}
-        for region, z in zs.items() if region in COORDENADAS and region in ZONAS
+        for region, z in zs.items()
     ]).sort_values("r_lima", ascending=False)
+    if set(geo.region) != set(COORDENADAS) - {"Lima"}:
+        raise ValueError("La geografia no cubre exactamente los 23 departamentos sin Lima")
     tabla(geo, "geografia_integracion.csv", "estructura")
 
     k = kruskal(*[g.r_lima.values for _, g in geo.groupby("zona")])

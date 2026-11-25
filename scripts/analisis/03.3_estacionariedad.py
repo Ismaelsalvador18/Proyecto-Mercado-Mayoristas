@@ -71,7 +71,7 @@ def main() -> None:
     tabla(regiones, "estacionariedad_region.csv", "calidad")
 
     resumen = (regiones.groupby("producto")
-               .agg(regiones=("region", "nunique"),
+               .agg(departamentos=("region", "nunique"),
                     i0=("decision", lambda s: int((s == "I(0)").sum())),
                     i1=("decision", lambda s: int((s == "I(1)").sum())),
                     mixto=("decision", lambda s: int((s == "mixto").sum())),

@@ -1,0 +1,27 @@
+{
+  "fase": "04_eda",
+  "catalogo_sha256": "42dfa4c6af6422092085fb3e1c0129fe16e607dcc134fc53b7e47ea0384cab15",
+  "panel_limpio_sha256": "91f3f3983aae2594c93338f19d5677b0a59859bef6a83cc6e75daa5c0d0e9eac",
+  "departamentos": 24,
+  "departamentos_con_geografia": 23,
+  "productos": 9,
+  "estacionariedad_filas": 131,
+  "correlacion_lima_filas": 155,
+  "archivos": {
+    "outputs/analisis/03_calidad/descriptivos_producto.csv": "56eddbc102359c9c300c8e0cb89868969500e41faa938cc444614889813eebba",
+    "outputs/analisis/03_calidad/estacionariedad_producto.csv": "c697a65f5d115e7ca348dbea25a94173bee96bfe51b5ba69453c3168701eba9a",
+    "outputs/analisis/03_calidad/estacionariedad_region.csv": "6bd67d69a20755fe810c14910d64090ceac9a35874916dfe56072c3b79149f6b",
+    "outputs/analisis/03_calidad/estacionariedad_resumen.csv": "a95b93a3bb6397fa8745482925a292c684761dd7cf7b306cab65864e744cb2e9",
+    "outputs/analisis/03_calidad/normalidad.csv": "63bef4ae0e54b044eacac6accc9caf5a06fb06d42726a49ed0032e870f4d7bec",
+    "outputs/analisis/03_calidad/seleccion_rezagos.csv": "e99ce8414d8013b0ee567f8a6912e3e33d88d4176bd2f8e4c0db974fff01b973",
+    "outputs/analisis/03_calidad/tabla_dataset_filas.csv": "f1cee8af889d89a6e53cd130170297540ace994db888d06c7bfd8cfcddeff2ed",
+    "outputs/analisis/03_calidad/tabla_variables.csv": "d7ae113aa584d69ea769db517bea56b449e2978c2638c6712e23ee05e6a0b209",
+    "outputs/analisis/03_calidad/transformacion_log.csv": "0ab260fbfc9d99b7e95fcd2ca482bc893d6a1c074b27dd0a8611a3f920f83ae8",
+    "outputs/analisis/03_calidad/verificacion_limpieza.csv": "771cbfcf9a2cdc5386c2cb6ad44e2d319d971dba6b09b987f01ef432a8b82954",
+    "outputs/analisis/04_estructura/correlacion_lima.csv": "57da08bb90c6d71097ebe160b01cab72b885e5aeeeebd517fa55b349c53732e5",
+    "outputs/analisis/04_estructura/correlacion_papa.csv": "6ad24ac417820c241ab409e3921dea33d28e781c32913ad303545ad6b8c25dce",
+    "outputs/analisis/04_estructura/correlacion_puno.csv": "e05e804e53a14183176b4e1357bb218e8673aee23d49f4fb6cd593fdfc9599dc",
+    "outputs/analisis/04_estructura/geografia_integracion.csv": "72aebca555f64cd91acfba5d8f7b189a4cc0dc2a3bddbe87fa4dc07990eee5f8",
+    "outputs/analisis/04_estructura/geografia_modelos.csv": "a6f3e8d9933a45ed49bfbf7be67975a79d31eeaf6928b202784d94b00c4f19b9"
+  }
+}
