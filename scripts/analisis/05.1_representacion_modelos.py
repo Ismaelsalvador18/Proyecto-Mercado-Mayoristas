@@ -5,8 +5,7 @@ Corre despues de 05. Usa Cebolla, el producto con mayor senal, y entrena con
 datos hasta 2020 para no tocar la prueba final.
 Genera en outputs/analisis/06_modelos:
   coeficientes.csv, model_cards.csv, ridge_path.png, arbol_rf.png,
-  arbol_lgbm_sustituto.png, importancia_rf.png, importancia_lgbm.png,
-  pdp_cebollla.png
+  importancia_rf.png, importancia_lgbm.png, pdp_cebollla.png
 """
 
 from __future__ import annotations
@@ -22,7 +21,7 @@ import statsmodels.api as sm
 from sklearn.inspection import PartialDependenceDisplay
 from sklearn.linear_model import Ridge
 from sklearn.preprocessing import StandardScaler
-from sklearn.tree import DecisionTreeRegressor, plot_tree
+from sklearn.tree import plot_tree
 
 from config import (DIRECTORIOS, HOLDOUT_INICIO, LGBM, PANEL_LIMPIO, RF,
                     RIDGE_ALPHA, aplicar_estilo, guardar, preparar_directorios, tabla)
@@ -80,15 +79,6 @@ def main() -> None:
               filled=True, rounded=True, fontsize=7, impurity=False, proportion=True, ax=ax)
     ax.set_title(f"Random Forest: primer arbol ({PRODUCTO}, profundidad 3)")
     guardar(fig, "arbol_rf.png", "modelos")
-
-    # 4. Arbol sustituto de LightGBM
-    sustituto = DecisionTreeRegressor(max_depth=3, min_samples_leaf=10, random_state=0)
-    sustituto.fit(X_tr, lgbm.predict(X_tr))
-    fig, ax = plt.subplots(figsize=(14, 6))
-    plot_tree(sustituto, max_depth=3, feature_names=list(X.columns),
-              filled=True, rounded=True, fontsize=7, impurity=False, proportion=True, ax=ax)
-    ax.set_title(f"LightGBM: arbol sustituto ({PRODUCTO}, profundidad 3)")
-    guardar(fig, "arbol_lgbm_sustituto.png", "modelos")
 
     # 5. Importancias
     for nombre, modelo, archivo in [("Random Forest", rf, "importancia_rf.png"),

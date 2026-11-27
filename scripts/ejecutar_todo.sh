@@ -23,6 +23,8 @@ $PY scripts/pipeline/05_torneo_modelos.py
 $PY scripts/analisis/05.1_representacion_modelos.py
 $PY scripts/analisis/05.2_evaluacion_modelos.py
 $PY scripts/analisis/05.3_n_etapas.py
+$PY scripts/analisis/05.4_arboles_modelos.py
+$PY scripts/analisis/05.5_predicciones_producto.py
 $PY scripts/validar_fase6.py
 
 $PY scripts/informe/07_resultados_informe.py

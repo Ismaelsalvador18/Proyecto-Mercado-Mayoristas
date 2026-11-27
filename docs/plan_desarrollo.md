@@ -74,8 +74,6 @@ scripts/
 │   ├── 05.1_representacion_modelos.py
 │   ├── 05.2_evaluacion_modelos.py
 │   └── 05.3_n_etapas.py
-├── clasificacion/            exploración posterior, fuera de esta entrega
-│   └── 01_clasificadores_direccion.py
 ├── informe/
 │   ├── 07_resultados_informe.py
 │   └── 08_generar_informe.py
@@ -157,4 +155,4 @@ fase anterior.
 - 16 figuras y 16 tablas de resultados.
 - Dos cuadernos: resultados ejecutivos y guía.
 - README, metodología, diccionario y este plan.
-- Informe final de 11 tablas, 10 figuras, 12 ecuaciones, referencias y un anexo con la matriz completa.
+- Informe final de 11 tablas, 11 figuras, 12 ecuaciones, referencias y un anexo con una muestra de la matriz.

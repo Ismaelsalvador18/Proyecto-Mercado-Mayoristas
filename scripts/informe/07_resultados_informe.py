@@ -47,11 +47,11 @@ def copiar_figuras() -> None:
         "12_ganador_vs_observado.png": ("modelos", "ganador_vs_observado.png"),
         "13_curvas_aprendizaje.png": ("modelos", "curvas_aprendizaje.png"),
         "15_arbol_rf.png": ("modelos", "arbol_rf.png"),
-        "16_arbol_lgbm.png": ("modelos", "arbol_lgbm_sustituto.png"),
         "17_importancia_rf.png": ("modelos", "importancia_rf.png"),
         "18_pdp.png": ("modelos", "pdp_cebolla.png"),
         "23_verificacion_limpieza.png": ("calidad", "efecto_limpieza.png"),
         "24_matriz_confusion.png": ("modelos", "matriz_confusion.png"),
+        "28_arbol_decision.png": ("modelos", "arbol_decision_modelo.png"),
     }
     for destino, (carpeta, origen) in mapa.items():
         ruta = DIRECTORIOS[carpeta] / origen

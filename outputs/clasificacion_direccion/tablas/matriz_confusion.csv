@@ -1,4 +1,0 @@
-modelo,tn,fp,fn,tp
-Árbol de Decisión (gini),46,74,39,113
-Árbol de Decisión (entropía),50,70,42,110
-LightGBM,94,26,106,46

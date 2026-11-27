@@ -117,7 +117,8 @@ def main() -> None:
     figuras = sorted(p.name for p in FIGURAS.glob("*.png"))
     if len(figuras) != 16:
         raise AssertionError(f"Se esperaban 16 figuras; hay {len(figuras)}")
-    if "24_matriz_confusion.png" not in figuras or "01_flujo_kdd.png" not in figuras:
+    if ("24_matriz_confusion.png" not in figuras or "01_flujo_kdd.png" not in figuras
+            or "28_arbol_decision.png" not in figuras):
         raise AssertionError("Faltan figuras clave del informe")
 
     indice = (INFORME / "INDICE.md").read_text(encoding="utf-8")

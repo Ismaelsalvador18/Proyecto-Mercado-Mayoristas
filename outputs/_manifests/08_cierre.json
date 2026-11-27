@@ -37,17 +37,17 @@
     "outputs/informe/figuras/02_cobertura.png": "cbefed9328c758f58342fe1fb174219c20d8f74c5d9f3032507170a423e6ffc9",
     "outputs/informe/figuras/03_campanas_precio.png": "5f68a39fd0be4907eb40298365848acaa3b00992c69e0f408bc0a8d82d430540",
     "outputs/informe/figuras/04_campanas_log.png": "b7ffb3e24aea0d7bb656e37e4a6c707bd54edf2471230800b5035b57c1fac6de",
-    "outputs/informe/figuras/06_correlacion_papa.png": "b9b8db4e48c909885bb51d0f349e6b59fa14446eb59d65340fda08a68229260c",
+    "outputs/informe/figuras/06_correlacion_papa.png": "8242475e94ceb1f76173e29c8ad125a02f374af62ffa50342243a9c5d5008ba5",
     "outputs/informe/figuras/07_correlacion_lima.png": "9e321fdd2c4f49efdd9e19a3c11e0dcf1564e8ab2e29ca5d9fe80ce105166a61",
     "outputs/informe/figuras/08_integracion_distancia.png": "4ba151ad826df15719b888e255fef306687a7a5f615823076899b46cba150012",
     "outputs/informe/figuras/11_ranking_torneo.png": "81c80d5438344c656c2bcd29d04af7a0dc81cc653030aae701bfbbd3458ac04b",
-    "outputs/informe/figuras/12_ganador_vs_observado.png": "7c6ff7292f392fe338c1ac03a56a53b2e5530ceac606ea92e6e6959e133ee137",
+    "outputs/informe/figuras/12_ganador_vs_observado.png": "973d3290deb0f18ede9f5cf402263e3950287bf11ffd3261ce310c7cc46c0d78",
     "outputs/informe/figuras/13_curvas_aprendizaje.png": "5577fd2ec634210c46c1b7c33f84858899d10eda1b26fdd4ed435bd6137cb75e",
     "outputs/informe/figuras/15_arbol_rf.png": "f94129c797f5304d4ad0fb4b1024276c9c905b92a73521670312da31f81e5f44",
-    "outputs/informe/figuras/16_arbol_lgbm.png": "3c5b19cf5a500fca17d01882a8788eaa083bfe4121d996f2286ec0b09ab08c70",
     "outputs/informe/figuras/17_importancia_rf.png": "f7ee2cfa26fca7d4b4ca6165396f9c09784ba30c5933626d3b879c923d34c56e",
     "outputs/informe/figuras/18_pdp.png": "8ae0f1c682d01b1b11a3fc9eeac6643745578ff1ce785df222b1623cfa8074e1",
     "outputs/informe/figuras/23_verificacion_limpieza.png": "136e49b792b81d5e341daea1bfb1cd91c8fed82e75b6126c1103b019243cb1ed",
-    "outputs/informe/figuras/24_matriz_confusion.png": "9105e3afdf6e4cbcc954d559b14c239f2cbc56fb5a142fbf12b7502027dce8b7"
+    "outputs/informe/figuras/24_matriz_confusion.png": "9105e3afdf6e4cbcc954d559b14c239f2cbc56fb5a142fbf12b7502027dce8b7",
+    "outputs/informe/figuras/28_arbol_decision.png": "5df38e3f8cc6ca79fc5920c613e7ebb6f9b363a6f5382726494174ca176cf60a"
   }
 }

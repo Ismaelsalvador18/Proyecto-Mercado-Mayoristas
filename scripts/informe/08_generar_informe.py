@@ -589,9 +589,10 @@ def variables(doc: Document) -> None:
       "error. El modelo se estima por producto; no se apilan los seis productos en una sola "
       "regresión porque los coeficientes pueden cambiar entre ellos.")
     p(doc,
-      "La Tabla 5 resume las variables de las dos matrices de diseño. La matriz completa de papa "
-      "en Puno, con sus 155 filas y sus ocho predictores, se reproduce en el Anexo A. Las matrices "
-      "de los otros productos tienen la misma estructura y su tamaño se informa en la Tabla 6.")
+      "La Tabla 5 resume las variables de las dos matrices de diseño. En el Anexo A se muestran "
+      "las primeras y las últimas filas de la matriz de papa en Puno; no se reproduce completa. "
+      "Las matrices de los otros productos tienen la misma estructura y su tamaño se informa en la "
+      "Tabla 6.")
     matrices = pd.DataFrame([
         ("Mes corriente", "dl0, dl1, dl2, dl3, dp1, dp2, sin1, cos1", "Δp(Puno, t)"),
         ("Pronóstico", "p0, p1, l0, l1, m0, sin1, cos1", "ln P(Puno, t+1)"),
@@ -602,8 +603,8 @@ def variables(doc: Document) -> None:
     p(doc,
       "La matriz se construye antes de recortar la ventana, para que un mes faltante no se trate "
       "como si fuera el mes anterior. La matriz completa de papa en Puno tiene 155 filas: 67 de "
-      "entrenamiento, 28 de validación y 60 de prueba final. Las filas del Anexo A son las que "
-      "alimentan la ecuación 6 y la columna y es el cambio logarítmico de Puno.")
+      "entrenamiento, 28 de validación y 60 de prueba final. La muestra del Anexo A ilustra esas "
+      "filas y la columna y es el cambio logarítmico de Puno.")
 
     doc.add_heading("5.2. Pronóstico a un mes", level=2)
     p(doc,
@@ -901,7 +902,24 @@ def resultados(doc: Document) -> None:
       "error de 0,1 % que uno de 5 % y no mide la calidad de la magnitud. La matriz sirve para "
       "interpretar la utilidad práctica del regresor, no para seleccionarlo.")
 
-    doc.add_heading("7.6. Contraste de hipótesis y síntesis", level=2)
+    doc.add_heading("7.6. Representación de un árbol", level=2)
+    p(doc,
+      "Para mostrar que el modelo de árbol no es una caja negra, la figura 11 reproduce un árbol "
+      "del Árbol de Decisión entrenado para cebolla. Cada nodo interno indica la variable y el "
+      "umbral que divide la muestra; cada hoja indica el cambio logarítmico predicho. La etiqueta "
+      "‘más niveles’ señala que el árbol continúa: se muestran los tres primeros niveles para que "
+      "la lectura sea legible. En Random Forest, XGBoost y LightGBM se mostraría uno de los árboles "
+      "del ensemble, no el modelo completo.")
+    figura(doc, "28_arbol_decision.png", 11,
+           "Un árbol representativo del Árbol de Decisión (cebolla, tres primeros niveles).",
+           ancho=6.0)
+    p(doc,
+      "La lectura es directa: el árbol empieza por el cambio de Lima del mismo mes (dl0) y luego "
+      "combina rezagos de Lima y del propio precio. Esa secuencia es la que el modelo usa para "
+      "partir la muestra; no es una explicación causal, sino la estructura de decisión que mejor "
+      "reduce el error en el entrenamiento.")
+
+    doc.add_heading("7.7. Contraste de hipótesis y síntesis", level=2)
     p(doc,
       "H1 se sostiene parcialmente. Lima contiene información contemporánea sobre los "
       "departamentos, pero la magnitud y la estabilidad cambian por producto: la evidencia es "
@@ -985,27 +1003,27 @@ def referencias(doc: Document) -> None:
 
 def anexo_matriz(doc: Document) -> None:
     salto(doc)
-    doc.add_heading("Anexo A. Matriz de diseño completa: papa en Puno", level=1)
+    doc.add_heading("Anexo A. Muestra de la matriz de diseño: papa en Puno", level=1)
     p(doc,
-      "La tabla siguiente reproduce la matriz completa que se usa para estimar y evaluar el "
-      "modelo de papa en Puno. Las columnas dl son los cambios de Lima, dp los cambios propios, "
-      "sin1 y cos1 los armónicos anuales, y la columna y el cambio logarítmico de Puno. El "
-      "entrenamiento usa las filas marcadas como entrenamiento; la validación y la prueba final "
-      "se separan con las etiquetas correspondientes.")
-    datos = pd.read_csv(AN / "06_modelos" / "matriz_diseno.csv")
+      "La tabla siguiente muestra solo las primeras y las últimas filas de la matriz que se usa "
+      "para estimar y evaluar el modelo de papa en Puno; no es la matriz completa. Las columnas dl "
+      "son los cambios de Lima, dp los cambios propios, sin1 y cos1 los armónicos anuales, y la "
+      "columna y el cambio logarítmico de Puno. El entrenamiento usa las filas marcadas como "
+      "entrenamiento; la validación y la prueba final se separan con las etiquetas correspondientes.")
+    datos = pd.read_csv(AN / "06_modelos" / "matriz_diseno_muestra.csv")
     datos["split"] = datos["split"].replace({
         "entrenamiento": "entren.",
         "desarrollo": "valid.",
         "holdout": "prueba"})
     datos = datos.rename(columns={"split": "etapa", "y_cambio_log": "y"})
-    tabla(doc, datos, "A1", "Matriz de diseño completa de papa en Puno.",
+    tabla(doc, datos, "A1", "Muestra de la matriz de diseño: primeras y últimas filas de papa en Puno.",
           columnas=["fecha", "etapa", "dl0", "dl1", "dl2", "dl3", "dp1", "dp2", "sin1", "cos1", "y"],
           decimales={"dl0": 3, "dl1": 3, "dl2": 3, "dl3": 3, "dp1": 3, "dp2": 3,
                      "sin1": 3, "cos1": 3, "y": 3},
           anchos=[0.72, 0.82, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.52, 0.55],
           font=6,
           mantener_junta=False,
-          nota="La matriz tiene 155 filas. Etapas: entren. = entrenamiento; valid. = validación; prueba = prueba final.")
+          nota="Se muestran las primeras 4 y las últimas 4 filas de las 155. Etapas: entren. = entrenamiento; valid. = validación; prueba = prueba final.")
 
 
 def main() -> None:

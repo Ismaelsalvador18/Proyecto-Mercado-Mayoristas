@@ -19,7 +19,7 @@ Genera en outputs/analisis/06_modelos:
   torneo_ganador.md, hiperparametros.csv,
   predicciones_holdout.csv, matriz_confusion_modelos.csv,
   matriz_confusion_producto.csv, matriz_diseno.csv,
-  ranking_torneo.png, ganador_vs_observado.png, matriz_confusion.png
+  ranking_torneo.png, matriz_confusion.png
 """
 
 from __future__ import annotations
@@ -28,7 +28,6 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -147,34 +146,6 @@ def graficar_confusion(confusion: pd.DataFrame) -> None:
     fig.suptitle("Coincidencia de signo en la prueba final: seis modelos de regresión", y=1.02)
     plt.tight_layout()
     guardar(fig, "matriz_confusion.png", "modelos")
-
-
-def graficar_predicciones(predicciones: pd.DataFrame) -> None:
-    fig, axes = plt.subplots(2, 3, figsize=(13.5, 7.5), sharex=False)
-    colores = {"OLS": "#2563eb", "Ridge": "#7c3aed", "Arbol": "#dc2626",
-               "Random Forest": "#b45309", "XGBoost": "#0891b2",
-               "LightGBM": "#059669"}
-    for ax, cat in zip(axes.ravel(), NUCLEO):
-        bloque = predicciones[predicciones.producto == cat]
-        observado = bloque.groupby("fecha")["observado"].first()
-        ax.plot(observado.index, observado.values * 100, color="#111827",
-                linewidth=1.4, label="Observado")
-        for modelo, grupo in bloque.groupby("modelo"):
-            grupo = grupo.sort_values("fecha")
-            etiqueta = "Árbol de Decisión" if modelo == "Arbol" else modelo
-            ax.plot(grupo.fecha, grupo.prediccion * 100, color=colores.get(modelo),
-                    linewidth=1.0, alpha=0.9, label=etiqueta)
-        ax.axhline(0, color="#9ca3af", linewidth=0.7)
-        ax.set_title(cat)
-        ax.set_ylabel("variación %")
-        ax.xaxis.set_major_locator(mdates.YearLocator())
-        ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
-        ax.tick_params(axis="x", labelsize=7)
-    handles, labels = axes.ravel()[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", ncol=7, fontsize=7, frameon=False)
-    fig.suptitle("Estimación del mes corriente en la prueba final: observado y seis modelos por producto", y=1.01)
-    plt.tight_layout(rect=[0, 0.04, 1, 0.98])
-    guardar(fig, "ganador_vs_observado.png", "modelos")
 
 
 def guardar_matriz_diseno(panel: pd.DataFrame) -> None:
@@ -336,7 +307,6 @@ def main() -> None:
     guardar(fig, "ranking_torneo.png", "modelos")
 
     tabla(predicciones, "predicciones_holdout.csv", "modelos")
-    graficar_predicciones(predicciones)
 
     tabla(confusion, "matriz_confusion_modelos.csv", "modelos")
     tabla(confusion_producto, "matriz_confusion_producto.csv", "modelos")

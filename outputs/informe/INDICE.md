@@ -13,11 +13,11 @@
 | 12_ganador_vs_observado | `12_ganador_vs_observado.png` |
 | 13_curvas_aprendizaje | `13_curvas_aprendizaje.png` |
 | 15_arbol_rf | `15_arbol_rf.png` |
-| 16_arbol_lgbm | `16_arbol_lgbm.png` |
 | 17_importancia_rf | `17_importancia_rf.png` |
 | 18_pdp | `18_pdp.png` |
 | 23_verificacion_limpieza | `23_verificacion_limpieza.png` |
 | 24_matriz_confusion | `24_matriz_confusion.png` |
+| 28_arbol_decision | `28_arbol_decision.png` |
 
 | Tabla | Archivo |
 |---|---|

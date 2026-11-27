@@ -18,3 +18,9 @@ data/raw/*.html
 *.pdf
 !informe.docx
 !informe.pdf
+
+# Presentación revisada (no se versiona)
+Presentacion_precios_mayoristas_revisada.pptx
+
+# Bloqueos temporales de LibreOffice
+.~lock.*#
