@@ -157,4 +157,4 @@ fase anterior.
 - 16 figuras y 17 tablas de resultados.
 - Dos cuadernos: resultados ejecutivos y guía.
 - README, metodología, diccionario y este plan.
-- Informe final de 11 tablas, 10 figuras, 12 ecuaciones, referencias y un anexo con la matriz completa.
+- Informe final de 11 tablas, 11 figuras, 12 ecuaciones, referencias y un anexo con la matriz completa.

@@ -302,7 +302,7 @@ Si `jupyter` no está en el `PATH`, usa el binario de tu instalación. Por ejemp
 - `outputs/_manifests/`: manifiestos y hashes de cada fase.
 - `notebooks/01_resultados.ipynb`: recorrido ejecutivo con tablas y figuras.
 - `notebooks/02_guia_detallada.ipynb`: guía paso a paso, también versionada.
-- `informe.pdf`: informe final con 11 tablas, 10 figuras, 12 ecuaciones y un anexo con la matriz completa.
+- `informe.pdf`: informe final con 11 tablas, 11 figuras, 12 ecuaciones y un anexo con la matriz completa.
 - `informe.docx`: fuente editable del informe.
 
 El índice de tablas y figuras se genera dentro de `outputs/`. El informe se regenera al final del

@@ -27,6 +27,7 @@ RAIZ = Path(__file__).resolve().parent.parent.parent
 INFORME = RAIZ / "outputs" / "informe"
 TAB = INFORME / "tablas"
 FIG = INFORME / "figuras"
+FIG_CLAS = RAIZ / "outputs" / "clasificacion_direccion" / "figuras"
 AN = RAIZ / "outputs" / "analisis"
 FORMULAS = Path(tempfile.mkdtemp(prefix="formulas_informe_"))
 plt.rcParams["mathtext.fontset"] = "stix"
@@ -201,8 +202,9 @@ def tabla(
         doc.add_paragraph()
 
 
-def figura(doc: Document, nombre: str, numero: int, titulo: str, ancho: float = 6.2) -> None:
-    ruta = FIG / nombre
+def figura(doc: Document, nombre: str, numero: int, titulo: str,
+           ancho: float = 6.2, carpeta: Path = FIG) -> None:
+    ruta = carpeta / nombre
     if not ruta.exists():
         raise FileNotFoundError(f"No existe la figura: {ruta}")
     doc.add_picture(str(ruta), width=Inches(ancho))
@@ -269,9 +271,9 @@ def portada(doc: Document) -> None:
 def resumen(doc: Document) -> None:
     doc.add_heading("Resumen", level=1)
     p(doc,
-      "Este trabajo analiza los precios mayoristas de alimentos en el Perú y compara modelos "
-      "lineales con cuatro familias de árboles: Árbol de Decisión, Random Forest, XGBoost y "
-      "LightGBM. A partir del SISAP–MIDAGRI se construyó un panel "
+      "Este trabajo analiza los precios mayoristas de alimentos en el Perú y compara cuatro "
+      "árboles de regresión (Árbol de Decisión, Random Forest, XGBoost y LightGBM) con dos árboles "
+      "de clasificación (Árbol de Decisión y LightGBM). A partir del SISAP–MIDAGRI se construyó un panel "
       "de 24 departamentos y 9 categorías, con 43 855 observaciones limpias; se normalizaron "
       "unidades, se detectaron atípicos y se construyeron cambios logarítmicos, rezagos y armónicos. "
       "La estimación contemporánea y el pronóstico a un mes se evaluaron con entrenamiento "
@@ -289,8 +291,9 @@ def resumen(doc: Document) -> None:
 
     doc.add_heading("Abstract", level=1)
     p(doc,
-      "This paper studies wholesale food prices in Peru and compares linear models with four tree "
-      "families: Decision Tree, Random Forest, XGBoost, and LightGBM. Methodology: using SISAP–MIDAGRI data, we built a panel of 24 "
+      "This paper studies wholesale food prices in Peru and compares four regression trees "
+      "(Decision Tree, Random Forest, XGBoost, and LightGBM) with two classification trees "
+      "(Decision Tree and LightGBM). Methodology: using SISAP–MIDAGRI data, we built a panel of 24 "
       "departments and 9 categories with 43,855 clean observations; units were normalized, outliers "
       "were flagged, and log changes, lags, and annual harmonics were constructed. Contemporary "
       "estimation and one-month forecasting were evaluated with 2012–2017 training, 2018–2020 "
@@ -726,7 +729,20 @@ def modelos(doc: Document) -> None:
       "lectura binaria: no distingue un error de 0,1 % de uno de 5 %, por eso no se usa como "
       "criterio único de selección.")
 
-    doc.add_heading("6.6. Protocolo de selección", level=2)
+    doc.add_heading("6.6. Modelos de clasificación de la dirección", level=2)
+    p(doc,
+      "Además de la regresión, el trabajo incluye una tarea de clasificación binaria: predecir si el "
+      "precio del mes siguiente sube o no sube. El target es 1 cuando el log-precio de t+1 supera al "
+      "de t, y 0 en caso contrario. Se usan los mismos predictores del pronóstico y la misma "
+      "separación temporal, de modo que la comparación sea coherente con la parte de regresión.")
+    p(doc,
+      "Se entrenan dos clasificadores basados en árboles: Árbol de Decisión con criterio gini y "
+      "LightGBM. El Árbol de Decisión aporta interpretabilidad y una frontera de decisión simple "
+      "(Breiman et al., 1984); LightGBM aporta boosting con regularización y crecimiento leaf-wise "
+      "(Ke et al., 2017). La evaluación usa exactitud, precisión, recall, F1, ROC-AUC y matriz de "
+      "confusión (Sokolova y Lapalme, 2009; Fawcett, 2006).")
+
+    doc.add_heading("6.7. Protocolo de selección", level=2)
     p(doc,
       "Cada modelo se entrena con 2012–2017 y se evalúa en 2018–2020. El ganador se elige por el "
       "rango promedio de R² en validación, no por el mejor resultado de un solo producto. La prueba "
@@ -810,25 +826,7 @@ def resultados(doc: Document) -> None:
       "(Meyer y von Cramon-Taubadel, 2004). No hay un modelo único para los seis productos: la "
       "decisión práctica depende de la tarea y del producto.")
 
-    doc.add_heading("7.4. Lectura direccional", level=2)
-    confusion = cargar("tabla_25_confusion_modelos.csv").rename(columns={
-        "modelo": "Modelo", "TP": "TP", "FN": "FN", "FP": "FP", "TN": "TN",
-        "n": "N", "acierto": "Acierto"})
-    tabla(doc, confusion, 10, "Matriz de confusión direccional en la prueba final.",
-          columnas=["Modelo", "TP", "FN", "FP", "TN", "N", "Acierto"],
-          decimales={"TP": 0, "FN": 0, "FP": 0, "TN": 0, "N": 0, "Acierto": 1},
-          anchos=[1.2, 0.45, 0.45, 0.45, 0.45, 0.45, 0.7], font=7.5,
-          nota="TP: real sube y predice sube; FN: real sube y predice baja; FP: real baja y predice sube; TN: real baja y predice baja. Se excluyen cambios observados iguales a cero.")
-    figura(doc, "24_matriz_confusion.png", 10,
-           "Matrices de confusión direccional de los cuatro modelos.", ancho=6.1)
-    p(doc,
-      "LightGBM tiene mayor acierto direccional agregado (62,2 % frente a 58,0 % de Random "
-      "Forest), pero eso no cambia el modelo adoptado: el acierto solo mira el signo y no la "
-      "magnitud del error. Un modelo puede acertar la dirección y equivocarse mucho en la cuantía; "
-      "por eso la selección se hizo con R² en validación. Usar la prueba final para cambiar el "
-      "ganador sería seleccionar sobre el conjunto de prueba.")
-
-    doc.add_heading("7.5. Contraste de hipótesis y síntesis", level=2)
+    doc.add_heading("7.4. Contraste de hipótesis y síntesis", level=2)
     p(doc,
       "H1 se sostiene parcialmente. Lima contiene información contemporánea sobre los "
       "departamentos, pero la magnitud y la estabilidad cambian por producto: la evidencia es "
@@ -844,66 +842,76 @@ def resultados(doc: Document) -> None:
       "los demás. La selección debe hacerse por producto y por tarea.")
 
 
-    doc.add_heading("7.6. Comparación de los seis modelos basados en árboles", level=2)
+    doc.add_heading("7.5. Comparación de los cuatro árboles de regresión", level=2)
     p(doc,
-      "La comparación reúne seis modelos basados en árboles: cuatro regresores y dos clasificadores. "
-      "Los regresores son Árbol de Decisión, Random Forest, XGBoost y LightGBM; los clasificadores "
-      "son Árbol de Decisión con criterio gini y LightGBM. El Árbol de Decisión aporta la referencia "
-      "interpretable de particiones recursivas (Breiman et al., 1984); Random Forest reduce la "
-      "varianza por bagging; XGBoost y LightGBM usan boosting con regularización (Chen y Guestrin, "
-      "2016; Ke et al., 2017).")
+      "Los cuatro regresores basados en árboles se compararon con los mismos predictores y las "
+      "mismas ventanas: Árbol de Decisión, Random Forest, XGBoost y LightGBM. El Árbol de Decisión "
+      "es la referencia interpretable; Random Forest reduce la varianza por bagging; XGBoost y "
+      "LightGBM usan boosting con regularización (Breiman et al., 1984; Chen y Guestrin, 2016; Ke "
+      "et al., 2017).")
     comp = pd.read_csv(AN / "06_modelos" / "torneo_complemento.csv")
     comp = comp[comp.conjunto == "complemento"]
     val = comp[comp.periodo == "desarrollo"].groupby("modelo").agg(
         r2_val=("r2", "mean"), acierto_val=("acierto", "mean"))
     prueba = comp[comp.periodo == "holdout"].groupby("modelo").agg(
         r2_prueba=("r2", "mean"), acierto_prueba=("acierto", "mean"))
-    filas = []
-    for modelo, etiqueta in [
-            ("Arbol", "Árbol de Decisión (regresión)"),
-            ("Random Forest", "Random Forest (regresión)"),
-            ("XGBoost", "XGBoost (regresión)"),
-            ("LightGBM", "LightGBM (regresión)")]:
-        filas.append({
-            "Modelo": etiqueta, "Tarea": "Regresión",
-            "R² validación": val.loc[modelo, "r2_val"],
-            "R² prueba": prueba.loc[modelo, "r2_prueba"],
-            "Acierto/Exactitud prueba (%)": prueba.loc[modelo, "acierto_prueba"],
-            "F1 prueba": None, "ROC-AUC prueba": None,
-        })
+    arboles = val.join(prueba).reindex(["Arbol", "Random Forest", "XGBoost", "LightGBM"])
+    arboles.index = ["Árbol de Decisión", "Random Forest", "XGBoost", "LightGBM"]
+    arboles = arboles.reset_index().rename(columns={
+        "index": "Modelo", "r2_val": "R² validación", "r2_prueba": "R² prueba",
+        "acierto_val": "Acierto validación (%)", "acierto_prueba": "Acierto prueba (%)"})
+    tabla(doc, arboles, 10, "Comparación de los cuatro árboles de regresión.",
+          decimales={"R² validación": 3, "R² prueba": 3,
+                     "Acierto validación (%)": 1, "Acierto prueba (%)": 1},
+          anchos=[1.35, 0.95, 0.95, 1.1, 1.1], font=7.5,
+          nota="Promedios simples sobre los seis productos. Es la comparación de los cuatro regresores.")
+    p(doc,
+      "En validación, Random Forest tiene el mejor R² promedio (-0,687) y XGBoost el mejor acierto "
+      "(55,0 %). En la prueba final, Random Forest conserva el mejor R² (-0,065) y LightGBM el mejor "
+      "acierto (61,7 %). Ninguna familia domina en las dos métricas: el orden depende de si se "
+      "prioriza la magnitud del error o la dirección.")
+
+    doc.add_heading("7.6. Torneo de clasificación de la dirección al mes siguiente", level=2)
+    p(doc,
+      "La clasificación se evalúa por separado para no mezclar métricas de regresión con métricas de "
+      "clasificación. El target es binario: 1 si el precio del mes siguiente sube, 0 si no. Se "
+      "reportan exactitud, precisión, recall, F1 y ROC-AUC en la prueba final, además de la matriz "
+      "de confusión.")
     clas_val = pd.read_csv(RAIZ / "outputs" / "clasificacion_direccion" / "tablas" / "metricas_validacion.csv")
     clas_prueba = pd.read_csv(RAIZ / "outputs" / "clasificacion_direccion" / "tablas" / "metricas_prueba.csv")
-    clas_val = clas_val.set_index("modelo")
-    clas_prueba = clas_prueba.set_index("modelo")
-    for modelo, etiqueta in [
-            ("Árbol de Decisión (gini)", "Árbol de Decisión gini (clasificación)"),
-            ("LightGBM", "LightGBM (clasificación)")]:
+    keep = ["Árbol de Decisión (gini)", "LightGBM"]
+    clas_val = clas_val[clas_val.modelo.isin(keep)].set_index("modelo")
+    clas_prueba = clas_prueba[clas_prueba.modelo.isin(keep)].set_index("modelo")
+    filas = []
+    for modelo, etiqueta in [("Árbol de Decisión (gini)", "Árbol de Decisión (gini)"),
+                             ("LightGBM", "LightGBM")]:
         filas.append({
-            "Modelo": etiqueta, "Tarea": "Clasificación",
-            "R² validación": None, "R² prueba": None,
-            "Acierto/Exactitud prueba (%)": 100 * clas_prueba.loc[modelo, "accuracy"],
+            "Modelo": etiqueta,
+            "F1 validación": clas_val.loc[modelo, "f1"],
+            "Exactitud prueba": 100 * clas_prueba.loc[modelo, "accuracy"],
+            "Precisión prueba": clas_prueba.loc[modelo, "precision"],
+            "Recall prueba": clas_prueba.loc[modelo, "recall"],
             "F1 prueba": clas_prueba.loc[modelo, "f1"],
             "ROC-AUC prueba": clas_prueba.loc[modelo, "roc_auc"],
         })
-    arboles = pd.DataFrame(filas)
-    tabla(doc, arboles, 11, "Comparación de los seis modelos basados en árboles.",
-          columnas=["Modelo", "Tarea", "R² validación", "R² prueba",
-                    "Acierto/Exactitud prueba (%)", "F1 prueba", "ROC-AUC prueba"],
-          decimales={"R² validación": 3, "R² prueba": 3,
-                     "Acierto/Exactitud prueba (%)": 1, "F1 prueba": 3, "ROC-AUC prueba": 3},
-          anchos=[1.55, 0.8, 0.8, 0.7, 1.15, 0.65, 0.8], font=6.9,
-          nota="Los cuatro primeros son regresores y los dos últimos clasificadores. Las métricas no son directamente comparables entre tareas: la tabla reporta la métrica natural de cada una.")
+    clas = pd.DataFrame(filas)
+    tabla(doc, clas, 11, "Torneo de clasificación de la dirección al mes siguiente.",
+          decimales={"F1 validación": 3, "Exactitud prueba": 1, "Precisión prueba": 3,
+                     "Recall prueba": 3, "F1 prueba": 3, "ROC-AUC prueba": 3},
+          anchos=[1.6, 0.85, 0.9, 0.9, 0.8, 0.7, 0.9], font=7.2,
+          nota="Target: 1 si el precio del mes siguiente sube. El criterio de entropía se probó y quedó ligeramente por debajo de gini en F1; por eso no se agrega como una fila extra.")
+    figura(doc, "matrices_confusion_clasificadores.png", 10,
+           "Matrices de confusión de los clasificadores en la prueba final.",
+           ancho=6.1, carpeta=FIG_CLAS)
+    figura(doc, "comparativa_clasificadores.png", 11,
+           "Comparación de métricas de los clasificadores en la prueba final.",
+           ancho=5.8, carpeta=FIG_CLAS)
     p(doc,
-      "En regresión, Random Forest tiene el mejor R² promedio en validación (-0,687) y en prueba "
-      "(-0,065); LightGBM obtiene el mejor acierto direccional en prueba (61,7 %). En clasificación, "
-      "el Árbol de Decisión con gini obtiene exactitud 58,5 % y F1 0,667; LightGBM clasificador "
-      "alcanza un ROC-AUC de 0,621, pero su recall cae a 0,303. Se probó también el criterio de "
-      "entropía: su F1 fue 0,663, ligeramente menor que el de gini, por eso se reporta gini.")
-    p(doc,
-      "La tabla deja una conclusión útil: el mejor modelo depende de la tarea. Para predecir la "
-      "magnitud del cambio, Random Forest es la referencia; para clasificar la dirección, el Árbol "
-      "de Decisión con gini es el más equilibrado en F1. Las métricas de clasificación se reportan "
-      "con exactitud, F1 y ROC-AUC (Sokolova y Lapalme, 2009; Fawcett, 2006).")
+      "El Árbol de Decisión con gini obtiene exactitud 58,5 %, recall 74,3 % y F1 0,667; es el más "
+      "equilibrado para detectar subidas. LightGBM clasificador alcanza el mejor ROC-AUC (0,621), "
+      "pero su recall cae a 30,3 %: con el umbral 0,5 deja pasar muchas subidas. Se probó también "
+      "entropía; su F1 fue 0,663, muy cerca de gini, pero no se añade como modelo extra para "
+      "mantener seis árboles en total: cuatro de regresión y dos de clasificación.")
 
 
 def conclusiones(doc: Document) -> None:

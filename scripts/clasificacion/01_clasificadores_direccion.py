@@ -121,7 +121,8 @@ def main() -> None:
     ], columns=["metrica", "valor"]).to_csv(TABLAS / "resumen.csv", index=False, encoding="utf-8")
 
     fig, ax = plt.subplots(figsize=(8.4, 4.2))
-    base = test_df.set_index("modelo")[["accuracy", "precision", "recall", "f1", "roc_auc"]]
+    base = (test_df[test_df.modelo.isin(["Árbol de Decisión (gini)", "LightGBM"])]
+            .set_index("modelo")[["accuracy", "precision", "recall", "f1", "roc_auc"]])
     base.plot(kind="bar", ax=ax, width=0.8)
     ax.set_ylim(0, 1)
     ax.set_xlabel("")
@@ -132,8 +133,10 @@ def main() -> None:
     fig.savefig(FIGURAS / "comparativa_clasificadores.png", dpi=160, bbox_inches="tight")
     plt.close(fig)
 
-    fig, axes = plt.subplots(1, 3, figsize=(12, 3.8))
-    for ax, (_, fila) in zip(axes.ravel(), pd.DataFrame(filas_conf).iterrows()):
+    conf_df = pd.DataFrame(filas_conf)
+    conf_df = conf_df[conf_df.modelo.isin(["Árbol de Decisión (gini)", "LightGBM"])]
+    fig, axes = plt.subplots(1, 2, figsize=(8.8, 3.8))
+    for ax, (_, fila) in zip(axes.ravel(), conf_df.iterrows()):
         matriz = np.array([[fila.tn, fila.fp], [fila.fn, fila.tp]])
         sns.heatmap(matriz, annot=True, fmt="d", cmap="Blues", cbar=False,
                     xticklabels=["Predice no sube", "Predice sube"],
