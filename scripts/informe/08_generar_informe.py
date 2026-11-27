@@ -29,6 +29,7 @@ RAIZ = Path(__file__).resolve().parent.parent.parent
 INFORME = RAIZ / "outputs" / "informe"
 TAB = INFORME / "tablas"
 FIG = INFORME / "figuras"
+FIG_CLAS = RAIZ / "outputs" / "clasificacion_direccion" / "figuras"
 AN = RAIZ / "outputs" / "analisis"
 FORMULAS = Path(tempfile.mkdtemp(prefix="formulas_informe_"))
 plt.rcParams["mathtext.fontset"] = "stix"
@@ -203,8 +204,9 @@ def tabla(
         doc.add_paragraph()
 
 
-def figura(doc: Document, nombre: str, numero: int, titulo: str, ancho: float = 6.2) -> None:
-    ruta = FIG / nombre
+def figura(doc: Document, nombre: str, numero: int, titulo: str,
+           ancho: float = 6.2, carpeta: Path = FIG) -> None:
+    ruta = carpeta / nombre
     if not ruta.exists():
         raise FileNotFoundError(f"No existe la figura: {ruta}")
     doc.add_picture(str(ruta), width=Inches(ancho))
@@ -281,7 +283,9 @@ def resumen(doc: Document) -> None:
       "heterogénea: la distancia aporta (p = 0,022) y el modelo con distancia y zona explica 54 % de "
       "la variación. Random Forest obtiene el mejor ordenamiento contemporáneo, con R² positivo en "
       "papa, cebolla y zanahoria; Ridge y OLS son mejores para pronosticar un mes en papa, cebolla y "
-      "arroz. La lectura direccional se complementa con exactitud, precisión, recall, F1 y ROC-AUC. "
+      "arroz. La lectura direccional se complementa con exactitud, precisión, recall, F1 y ROC-AUC, "
+      "y se entrena un clasificador de la dirección al mes siguiente con Árbol de Decisión (gini y "
+      "entropía) y LightGBM. "
       "Conclusiones: Lima aporta información predictiva parcial y el desempeño depende del producto "
       "y del horizonte, por lo que no conviene un modelo único.")
     p(doc, "Palabras clave: precios mayoristas, modelos basados en árboles, Random Forest, XGBoost, validación temporal.",
@@ -299,7 +303,9 @@ def resumen(doc: Document) -> None:
       "54% of the variation. "
       "Random Forest ranks first in contemporary estimation, with positive R² in potato, onion, and "
       "carrot; Ridge and OLS perform better for one-month forecasts in potato, onion, and rice. "
-      "The directional reading is complemented with accuracy, precision, recall, F1, and ROC-AUC. "
+      "The directional reading is complemented with accuracy, precision, recall, F1, and ROC-AUC, "
+      "and a next-month direction classifier is trained with Decision Tree (gini and entropy) and "
+      "LightGBM. "
       "Conclusions: Lima provides partial predictive information and performance depends on product "
       "and horizon, so a single model is not appropriate.")
     p(doc, "Keywords: wholesale prices, tree-based models, Random Forest, XGBoost, temporal validation.",
@@ -902,8 +908,44 @@ def resultados(doc: Document) -> None:
       "LightGBM obtiene el mayor F1 (0,662) y la mayor exactitud (0,622); OLS y Ridge alcanzan el "
       "mayor recall (0,660). El ROC-AUC se mantiene alrededor de 0,63 en los cuatro modelos, lo que "
       "indica una capacidad de ordenamiento moderada. Esta lectura es útil para comunicar la "
-      "dirección, pero no sustituye un clasificador entrenado específicamente para ese objetivo: "
-      "los modelos se ajustaron para minimizar error cuadrático, no para maximizar F1 o ROC-AUC.")
+      "dirección de las predicciones de regresión; en la sección 7.8 se entrena un clasificador "
+      "específico para ese objetivo, con su propia función de pérdida y su propia matriz de confusión.")
+
+
+    doc.add_heading("7.8. Clasificación de la dirección al mes siguiente", level=2)
+    p(doc,
+      "Para atender de forma explícita la parte de clasificación, se entrenaron dos familias de "
+      "árboles sobre el mismo universo de Puno y los seis productos. El target es binario: 1 si el "
+      "log-precio del mes siguiente es mayor que el actual, 0 si no. Se usan los predictores del "
+      "pronóstico (nivel propio, nivel de Lima, mediana de otros departamentos y armónicos) y la "
+      "misma separación temporal. Se comparan Árbol de Decisión con criterio gini, Árbol de Decisión "
+      "con entropía y LightGBM clasificador.")
+    val = pd.read_csv(RAIZ / "outputs" / "clasificacion_direccion" / "tablas" / "metricas_validacion.csv")
+    prueba = pd.read_csv(RAIZ / "outputs" / "clasificacion_direccion" / "tablas" / "metricas_prueba.csv")
+    val = val[["modelo", "accuracy", "f1", "roc_auc"]].rename(columns={
+        "modelo": "Modelo", "accuracy": "Exactitud validación",
+        "f1": "F1 validación", "roc_auc": "ROC-AUC validación"})
+    prueba = prueba[["modelo", "accuracy", "f1", "roc_auc"]].rename(columns={
+        "modelo": "Modelo", "accuracy": "Exactitud prueba",
+        "f1": "F1 prueba", "roc_auc": "ROC-AUC prueba"})
+    clas = val.merge(prueba, on="Modelo").sort_values("F1 prueba", ascending=False)
+    tabla(doc, clas, 13, "Clasificación de la dirección al mes siguiente.",
+          decimales={"Exactitud validación": 3, "F1 validación": 3,
+                     "ROC-AUC validación": 3, "Exactitud prueba": 3,
+                     "F1 prueba": 3, "ROC-AUC prueba": 3},
+          anchos=[1.7, 0.8, 0.7, 0.85, 0.8, 0.7, 0.85], font=7.2,
+          nota="Target: 1 si el precio del mes siguiente sube. Prueba final 2021–2026. El clasificador se entrena con los predictores del pronóstico.")
+    figura(doc, "matrices_confusion_clasificadores.png", 11,
+           "Matrices de confusión de los clasificadores en la prueba final.",
+           ancho=6.2, carpeta=FIG_CLAS)
+    p(doc,
+      "El Árbol de Decisión con gini obtiene la mayor exactitud y F1 en la prueba final (0,585 y "
+      "0,667); el árbol con entropía queda muy cerca (0,588 y 0,663). LightGBM tiene el mejor "
+      "ROC-AUC (0,621), pero su recall cae a 0,303: ordena mejor las probabilidades, aunque con el "
+      "umbral 0,5 deja pasar muchos meses de subida. El resultado muestra que la elección depende "
+      "de la métrica: si se prioriza F1, el árbol de decisión es preferable; si se prioriza el "
+      "ordenamiento, LightGBM. Esta sección sí es una clasificación entrenada, no una simple "
+      "lectura del signo de una regresión.")
 
 
 def conclusiones(doc: Document) -> None:

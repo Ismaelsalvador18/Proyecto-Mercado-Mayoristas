@@ -1,0 +1,817 @@
+modelo,fecha,target,probabilidad,prediccion
+Árbol de Decisión (gini),2021-01-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2021-01-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-01-01,1,0.8553152604325311,1
+Árbol de Decisión (gini),2021-01-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-01-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2021-02-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2021-02-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-02-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2021-02-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-02-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2021-03-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-03-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2021-03-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2021-03-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2021-03-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-04-01,0,0.0365111561866126,0
+Árbol de Decisión (gini),2021-04-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-04-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2021-04-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-04-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2021-05-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2021-05-01,0,0.0365111561866126,0
+Árbol de Decisión (gini),2021-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-05-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2021-06-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-06-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-06-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2021-06-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2021-06-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2021-07-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-07-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2021-07-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2021-07-01,1,0.8553152604325311,1
+Árbol de Decisión (gini),2021-07-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-08-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2021-08-01,1,0.0365111561866126,0
+Árbol de Decisión (gini),2021-08-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2021-08-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-08-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-09-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-09-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2021-09-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-09-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2021-09-01,0,0.5964316057774003,1
+Árbol de Decisión (gini),2021-10-01,1,0.5964316057774003,1
+Árbol de Decisión (gini),2021-10-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-10-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-10-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2021-10-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-10-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2021-11-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-11-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2021-11-01,1,0.5964316057774003,1
+Árbol de Decisión (gini),2021-11-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-11-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2021-11-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2021-12-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-12-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2021-12-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-12-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2021-12-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2021-12-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2022-01-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2022-01-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-01-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-01-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-01-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2022-01-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2022-02-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2022-02-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2022-02-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2022-02-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-02-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-02-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-03-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-03-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2022-03-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-03-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2022-03-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2022-03-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-04-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-04-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-04-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2022-04-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2022-04-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-04-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2022-05-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2022-05-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2022-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-06-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-06-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-06-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-06-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2022-06-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-06-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2022-07-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-07-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2022-07-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-07-01,0,0.0365111561866126,0
+Árbol de Decisión (gini),2022-07-01,0,0.0,0
+Árbol de Decisión (gini),2022-07-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-08-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-08-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-08-01,1,0.0,0
+Árbol de Decisión (gini),2022-08-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-08-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2022-08-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2022-09-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2022-09-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-09-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-09-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-09-01,0,0.5964316057774003,1
+Árbol de Decisión (gini),2022-09-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2022-10-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-10-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-10-01,0,0.5964316057774003,1
+Árbol de Decisión (gini),2022-10-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2022-10-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-10-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2022-11-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-11-01,1,0.5964316057774003,1
+Árbol de Decisión (gini),2022-11-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-11-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-11-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-11-01,1,0.0365111561866126,0
+Árbol de Decisión (gini),2022-12-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-12-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2022-12-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2022-12-01,1,0.0365111561866126,0
+Árbol de Decisión (gini),2022-12-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2022-12-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-01-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2023-01-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-01-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-01-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-01-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2023-02-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-02-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-02-01,0,0.0,0
+Árbol de Decisión (gini),2023-02-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-02-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2023-03-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-03-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-03-01,0,0.0,0
+Árbol de Decisión (gini),2023-03-01,0,0.0,0
+Árbol de Decisión (gini),2023-03-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2023-04-01,0,0.0,0
+Árbol de Decisión (gini),2023-04-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-04-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2023-04-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2023-04-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-05-01,1,0.0365111561866126,0
+Árbol de Decisión (gini),2023-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-05-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2023-05-01,0,0.0,0
+Árbol de Decisión (gini),2023-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-06-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2023-06-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-06-01,0,0.0,0
+Árbol de Decisión (gini),2023-06-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-06-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2023-07-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2023-07-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-07-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-07-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-07-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2023-08-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-08-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-08-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2023-08-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2023-08-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-09-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2023-09-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-09-01,0,0.0,0
+Árbol de Decisión (gini),2023-09-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-09-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-10-01,0,0.0,0
+Árbol de Decisión (gini),2023-10-01,0,0.0,0
+Árbol de Decisión (gini),2023-10-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2023-10-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2023-10-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-11-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-11-01,1,0.0,0
+Árbol de Decisión (gini),2023-11-01,0,0.0365111561866126,0
+Árbol de Decisión (gini),2023-11-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2023-11-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2024-03-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2024-03-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2024-03-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2024-03-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2024-03-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2024-04-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2024-04-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2024-04-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2024-04-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2024-04-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2024-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2024-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2024-05-01,0,0.8780487804878048,1
+Árbol de Decisión (gini),2024-05-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2024-05-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2024-11-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2024-11-01,0,0.0,0
+Árbol de Decisión (gini),2024-11-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2024-11-01,0,0.5964316057774003,1
+Árbol de Decisión (gini),2024-12-01,0,0.0,0
+Árbol de Decisión (gini),2024-12-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2024-12-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2024-12-01,0,0.0365111561866126,0
+Árbol de Decisión (gini),2025-01-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2025-01-01,0,0.0,0
+Árbol de Decisión (gini),2025-01-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2025-01-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2025-02-01,0,0.3307810107197552,0
+Árbol de Decisión (gini),2025-02-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2025-02-01,1,0.0,0
+Árbol de Decisión (gini),2025-03-01,1,0.3307810107197552,0
+Árbol de Decisión (gini),2025-03-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2025-03-01,0,0.0,0
+Árbol de Decisión (gini),2025-04-01,0,0.0,0
+Árbol de Decisión (gini),2025-04-01,1,0.0,0
+Árbol de Decisión (gini),2025-04-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2025-05-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2025-05-01,0,0.0,0
+Árbol de Decisión (gini),2025-05-01,1,0.0,0
+Árbol de Decisión (gini),2025-06-01,0,0.0,0
+Árbol de Decisión (gini),2025-06-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2025-06-01,1,0.0,0
+Árbol de Decisión (gini),2025-07-01,1,0.0,0
+Árbol de Decisión (gini),2025-07-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2025-07-01,0,0.0,0
+Árbol de Decisión (gini),2025-08-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2025-08-01,1,0.0,0
+Árbol de Decisión (gini),2025-08-01,1,0.0,0
+Árbol de Decisión (gini),2025-09-01,0,0.5913179507235042,1
+Árbol de Decisión (gini),2025-09-01,1,0.0,0
+Árbol de Decisión (gini),2025-09-01,0,0.0,0
+Árbol de Decisión (gini),2025-10-01,0,0.0,0
+Árbol de Decisión (gini),2025-10-01,0,0.0,0
+Árbol de Decisión (gini),2025-10-01,0,0.0,0
+Árbol de Decisión (gini),2025-11-01,1,0.0,0
+Árbol de Decisión (gini),2025-11-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2025-11-01,1,0.0,0
+Árbol de Decisión (gini),2025-12-01,1,0.8780487804878048,1
+Árbol de Decisión (gini),2025-12-01,1,0.0,0
+Árbol de Decisión (gini),2025-12-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2026-01-01,1,0.0,0
+Árbol de Decisión (gini),2026-01-01,0,0.0,0
+Árbol de Decisión (gini),2026-01-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2026-02-01,1,0.0,0
+Árbol de Decisión (gini),2026-02-01,1,0.0,0
+Árbol de Decisión (gini),2026-03-01,0,0.0,0
+Árbol de Decisión (gini),2026-03-01,1,0.0,0
+Árbol de Decisión (gini),2026-04-01,0,0.0,0
+Árbol de Decisión (gini),2026-04-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2026-05-01,0,0.0,0
+Árbol de Decisión (gini),2026-05-01,0,0.5206343485312677,1
+Árbol de Decisión (gini),2026-06-01,0,0.0,0
+Árbol de Decisión (gini),2026-06-01,0,0.0,0
+Árbol de Decisión (gini),2026-07-01,1,0.0,0
+Árbol de Decisión (gini),2026-07-01,0,0.0,0
+Árbol de Decisión (gini),2026-07-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2026-08-01,1,0.5913179507235042,1
+Árbol de Decisión (gini),2026-08-01,1,0.0,0
+Árbol de Decisión (gini),2026-08-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2026-09-01,1,0.0,0
+Árbol de Decisión (gini),2026-09-01,1,0.5206343485312677,1
+Árbol de Decisión (gini),2026-09-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2021-01-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-01-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-01-01,1,0.8553152604325311,1
+Árbol de Decisión (entropía),2021-01-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-01-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2021-02-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2021-02-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-02-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-02-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-02-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2021-03-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-03-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-03-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2021-03-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2021-03-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-04-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-04-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-04-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2021-04-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-04-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2021-05-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-05-01,0,0.0,0
+Árbol de Decisión (entropía),2021-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-05-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2021-06-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-06-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-06-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2021-06-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-06-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-07-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-07-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-07-01,1,0.4971231300345224,0
+Árbol de Decisión (entropía),2021-07-01,1,0.8553152604325311,1
+Árbol de Decisión (entropía),2021-07-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-08-01,1,0.4971231300345224,0
+Árbol de Decisión (entropía),2021-08-01,1,0.0,0
+Árbol de Decisión (entropía),2021-08-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2021-08-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-08-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-09-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-09-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2021-09-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-09-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2021-09-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-10-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-10-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-10-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-10-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2021-10-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-10-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2021-11-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-11-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2021-11-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2021-11-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-11-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2021-11-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-12-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-12-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2021-12-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-12-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2021-12-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2021-12-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2022-01-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-01-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-01-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-01-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-01-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2022-01-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2022-02-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2022-02-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2022-02-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-02-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-02-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-02-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-03-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-03-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-03-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-03-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-03-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2022-03-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-04-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-04-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-04-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-04-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-04-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-04-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2022-05-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-05-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2022-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-06-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-06-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-06-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-06-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-06-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-06-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2022-07-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-07-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-07-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-07-01,0,0.0,0
+Árbol de Decisión (entropía),2022-07-01,0,0.0,0
+Árbol de Decisión (entropía),2022-07-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-08-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-08-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-08-01,1,0.0,0
+Árbol de Decisión (entropía),2022-08-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-08-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-08-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2022-09-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-09-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-09-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-09-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-09-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2022-09-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2022-10-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-10-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-10-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2022-10-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2022-10-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-10-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2022-11-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-11-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2022-11-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-11-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-11-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-11-01,1,0.0,0
+Árbol de Decisión (entropía),2022-12-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-12-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-12-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2022-12-01,1,0.0,0
+Árbol de Decisión (entropía),2022-12-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2022-12-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-01-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2023-01-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-01-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-01-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-01-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2023-02-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-02-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-02-01,0,0.0,0
+Árbol de Decisión (entropía),2023-02-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-02-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2023-03-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-03-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-03-01,0,0.0,0
+Árbol de Decisión (entropía),2023-03-01,0,0.0,0
+Árbol de Decisión (entropía),2023-03-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2023-04-01,0,0.0,0
+Árbol de Decisión (entropía),2023-04-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-04-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2023-04-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2023-04-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-05-01,1,0.0,0
+Árbol de Decisión (entropía),2023-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-05-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2023-05-01,0,0.0,0
+Árbol de Decisión (entropía),2023-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-06-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2023-06-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-06-01,0,0.0,0
+Árbol de Decisión (entropía),2023-06-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-06-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2023-07-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2023-07-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-07-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-07-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-07-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2023-08-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-08-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-08-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2023-08-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2023-08-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-09-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2023-09-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-09-01,0,0.0,0
+Árbol de Decisión (entropía),2023-09-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-09-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-10-01,0,0.0,0
+Árbol de Decisión (entropía),2023-10-01,0,0.0,0
+Árbol de Decisión (entropía),2023-10-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2023-10-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-10-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-11-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-11-01,1,0.0,0
+Árbol de Decisión (entropía),2023-11-01,0,0.0,0
+Árbol de Decisión (entropía),2023-11-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2023-11-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2024-03-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2024-03-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2024-03-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2024-03-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2024-03-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2024-04-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2024-04-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2024-04-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2024-04-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2024-04-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2024-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2024-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2024-05-01,0,0.8780487804878048,1
+Árbol de Decisión (entropía),2024-05-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2024-05-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2024-11-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2024-11-01,0,0.0,0
+Árbol de Decisión (entropía),2024-11-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2024-11-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2024-12-01,0,0.0,0
+Árbol de Decisión (entropía),2024-12-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2024-12-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2024-12-01,0,0.0,0
+Árbol de Decisión (entropía),2025-01-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2025-01-01,0,0.0,0
+Árbol de Decisión (entropía),2025-01-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2025-01-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2025-02-01,0,0.21104054714215933,0
+Árbol de Decisión (entropía),2025-02-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2025-02-01,1,0.0,0
+Árbol de Decisión (entropía),2025-03-01,1,0.21104054714215933,0
+Árbol de Decisión (entropía),2025-03-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2025-03-01,0,0.0,0
+Árbol de Decisión (entropía),2025-04-01,0,0.0,0
+Árbol de Decisión (entropía),2025-04-01,1,0.0,0
+Árbol de Decisión (entropía),2025-04-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2025-05-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2025-05-01,0,0.0,0
+Árbol de Decisión (entropía),2025-05-01,1,0.0,0
+Árbol de Decisión (entropía),2025-06-01,0,0.0,0
+Árbol de Decisión (entropía),2025-06-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2025-06-01,1,0.0,0
+Árbol de Decisión (entropía),2025-07-01,1,0.0,0
+Árbol de Decisión (entropía),2025-07-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2025-07-01,0,0.0,0
+Árbol de Decisión (entropía),2025-08-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2025-08-01,1,0.0,0
+Árbol de Decisión (entropía),2025-08-01,1,0.0,0
+Árbol de Decisión (entropía),2025-09-01,0,0.5913179507235042,1
+Árbol de Decisión (entropía),2025-09-01,1,0.0,0
+Árbol de Decisión (entropía),2025-09-01,0,0.0,0
+Árbol de Decisión (entropía),2025-10-01,0,0.0,0
+Árbol de Decisión (entropía),2025-10-01,0,0.0,0
+Árbol de Decisión (entropía),2025-10-01,0,0.0,0
+Árbol de Decisión (entropía),2025-11-01,1,0.0,0
+Árbol de Decisión (entropía),2025-11-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2025-11-01,1,0.0,0
+Árbol de Decisión (entropía),2025-12-01,1,0.8780487804878048,1
+Árbol de Decisión (entropía),2025-12-01,1,0.0,0
+Árbol de Decisión (entropía),2025-12-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2026-01-01,1,0.0,0
+Árbol de Decisión (entropía),2026-01-01,0,0.0,0
+Árbol de Decisión (entropía),2026-01-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2026-02-01,1,0.0,0
+Árbol de Decisión (entropía),2026-02-01,1,0.0,0
+Árbol de Decisión (entropía),2026-03-01,0,0.0,0
+Árbol de Decisión (entropía),2026-03-01,1,0.0,0
+Árbol de Decisión (entropía),2026-04-01,0,0.0,0
+Árbol de Decisión (entropía),2026-04-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2026-05-01,0,0.0,0
+Árbol de Decisión (entropía),2026-05-01,0,0.5206343485312677,1
+Árbol de Decisión (entropía),2026-06-01,0,0.0,0
+Árbol de Decisión (entropía),2026-06-01,0,0.0,0
+Árbol de Decisión (entropía),2026-07-01,1,0.0,0
+Árbol de Decisión (entropía),2026-07-01,0,0.0,0
+Árbol de Decisión (entropía),2026-07-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2026-08-01,1,0.5913179507235042,1
+Árbol de Decisión (entropía),2026-08-01,1,0.0,0
+Árbol de Decisión (entropía),2026-08-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2026-09-01,1,0.0,0
+Árbol de Decisión (entropía),2026-09-01,1,0.5206343485312677,1
+Árbol de Decisión (entropía),2026-09-01,1,0.5913179507235042,1
+LightGBM,2021-01-01,1,0.06857650730136915,0
+LightGBM,2021-01-01,1,0.13733023471157196,0
+LightGBM,2021-01-01,1,0.7551855783132662,1
+LightGBM,2021-01-01,0,0.5423732662013692,1
+LightGBM,2021-01-01,0,0.07015922014995872,0
+LightGBM,2021-02-01,1,0.617442467846559,1
+LightGBM,2021-02-01,1,0.49285480503702084,0
+LightGBM,2021-02-01,0,0.033975636456862315,0
+LightGBM,2021-02-01,0,0.34413012115109454,0
+LightGBM,2021-02-01,0,0.027106626724097218,0
+LightGBM,2021-03-01,1,0.3792562233851935,0
+LightGBM,2021-03-01,1,0.07278204910958294,0
+LightGBM,2021-03-01,1,0.614646439273875,1
+LightGBM,2021-03-01,1,0.12304742058313231,0
+LightGBM,2021-03-01,1,0.2759436264781721,0
+LightGBM,2021-04-01,0,0.04613771984366327,0
+LightGBM,2021-04-01,1,0.5269013670564077,1
+LightGBM,2021-04-01,1,0.7313629090683202,1
+LightGBM,2021-04-01,1,0.5658251717209446,1
+LightGBM,2021-04-01,0,0.13154495540730782,0
+LightGBM,2021-05-01,0,0.05190025092976967,0
+LightGBM,2021-05-01,0,0.021556133791260784,0
+LightGBM,2021-05-01,1,0.4905561500629693,0
+LightGBM,2021-05-01,1,0.47795447227107174,0
+LightGBM,2021-05-01,0,0.5874834553850113,1
+LightGBM,2021-06-01,1,0.6721553885986541,1
+LightGBM,2021-06-01,0,0.7423781464453566,1
+LightGBM,2021-06-01,0,0.8864218035922503,1
+LightGBM,2021-06-01,1,0.021869654055912072,0
+LightGBM,2021-06-01,1,0.08547576196078292,0
+LightGBM,2021-07-01,0,0.608458838463172,1
+LightGBM,2021-07-01,1,0.6786118687484437,1
+LightGBM,2021-07-01,1,0.09900188297553086,0
+LightGBM,2021-07-01,1,0.9566202323876862,1
+LightGBM,2021-07-01,1,0.7516165564522714,1
+LightGBM,2021-08-01,1,0.27358086068668896,0
+LightGBM,2021-08-01,1,0.035722576100304736,0
+LightGBM,2021-08-01,1,0.9332177436536482,1
+LightGBM,2021-08-01,0,0.37059588320532694,0
+LightGBM,2021-08-01,0,0.41611586958236946,0
+LightGBM,2021-09-01,0,0.8338320304637257,1
+LightGBM,2021-09-01,0,0.9166963856852566,1
+LightGBM,2021-09-01,1,0.2148872328159442,0
+LightGBM,2021-09-01,0,0.9468309292738928,1
+LightGBM,2021-09-01,0,0.12467912831921438,0
+LightGBM,2021-10-01,1,0.09776899130411584,0
+LightGBM,2021-10-01,1,0.34071589259678475,0
+LightGBM,2021-10-01,0,0.18504969638375593,0
+LightGBM,2021-10-01,1,0.8874558073268487,1
+LightGBM,2021-10-01,1,0.7729534430811029,1
+LightGBM,2021-10-01,1,0.9306259099971914,1
+LightGBM,2021-11-01,0,0.12689821760175435,0
+LightGBM,2021-11-01,1,0.477807777694195,0
+LightGBM,2021-11-01,1,0.11940035515381185,0
+LightGBM,2021-11-01,1,0.24726531997818937,0
+LightGBM,2021-11-01,0,0.9456680204644612,1
+LightGBM,2021-11-01,1,0.6502735315096231,1
+LightGBM,2021-12-01,0,0.5201795406030209,1
+LightGBM,2021-12-01,0,0.757339645394548,1
+LightGBM,2021-12-01,0,0.9219790451543848,1
+LightGBM,2021-12-01,1,0.9309677060124842,1
+LightGBM,2021-12-01,0,0.3552201428583873,0
+LightGBM,2021-12-01,0,0.07501021965903389,0
+LightGBM,2022-01-01,1,0.6125041527763445,1
+LightGBM,2022-01-01,1,0.8927791919893096,1
+LightGBM,2022-01-01,1,0.6739578457786588,1
+LightGBM,2022-01-01,1,0.48949586784714405,0
+LightGBM,2022-01-01,1,0.8406240819666247,1
+LightGBM,2022-01-01,1,0.06920529931834954,0
+LightGBM,2022-02-01,1,0.13018595576185898,0
+LightGBM,2022-02-01,1,0.8793102667486831,1
+LightGBM,2022-02-01,1,0.26919248200316864,0
+LightGBM,2022-02-01,1,0.8287950008081332,1
+LightGBM,2022-02-01,1,0.1386711605214643,0
+LightGBM,2022-02-01,1,0.3014333920601583,0
+LightGBM,2022-03-01,1,0.2084619574098772,0
+LightGBM,2022-03-01,1,0.48926698285602027,0
+LightGBM,2022-03-01,1,0.06980630789434616,0
+LightGBM,2022-03-01,1,0.26720103121281297,0
+LightGBM,2022-03-01,0,0.5012739473424561,1
+LightGBM,2022-03-01,1,0.6286601211219751,1
+LightGBM,2022-04-01,1,0.0505346214270144,0
+LightGBM,2022-04-01,1,0.19516541905040244,0
+LightGBM,2022-04-01,1,0.4063002999799318,0
+LightGBM,2022-04-01,1,0.11935735757552231,0
+LightGBM,2022-04-01,0,0.35122933172963644,0
+LightGBM,2022-04-01,1,0.3662963480169159,0
+LightGBM,2022-05-01,0,0.4485417520735124,0
+LightGBM,2022-05-01,1,0.4201616213854452,0
+LightGBM,2022-05-01,1,0.11733261277838035,0
+LightGBM,2022-05-01,1,0.08010543022351967,0
+LightGBM,2022-05-01,1,0.32384877005000334,0
+LightGBM,2022-05-01,1,0.6741814854538095,1
+LightGBM,2022-06-01,0,0.7194456916679446,1
+LightGBM,2022-06-01,1,0.20831720195206038,0
+LightGBM,2022-06-01,0,0.07780083922769118,0
+LightGBM,2022-06-01,0,0.6350098905646023,1
+LightGBM,2022-06-01,0,0.3147714705000374,0
+LightGBM,2022-06-01,1,0.20363640005074848,0
+LightGBM,2022-07-01,1,0.3935755605031804,0
+LightGBM,2022-07-01,0,0.8347046656520662,1
+LightGBM,2022-07-01,1,0.22882813508469949,0
+LightGBM,2022-07-01,0,0.015879305241016137,0
+LightGBM,2022-07-01,0,0.21263666233866396,0
+LightGBM,2022-07-01,0,0.2492140510052698,0
+LightGBM,2022-08-01,1,0.427032128193617,0
+LightGBM,2022-08-01,0,0.5171262121288449,1
+LightGBM,2022-08-01,1,0.1840372415989792,0
+LightGBM,2022-08-01,1,0.41611586958236946,0
+LightGBM,2022-08-01,1,0.49006256008938764,0
+LightGBM,2022-08-01,0,0.1761867086075659,0
+LightGBM,2022-09-01,1,0.6710340323305821,1
+LightGBM,2022-09-01,0,0.4254064053793907,0
+LightGBM,2022-09-01,1,0.4698011012700538,0
+LightGBM,2022-09-01,1,0.7726229688392706,1
+LightGBM,2022-09-01,0,0.3303794136115867,0
+LightGBM,2022-09-01,1,0.9777245890656111,1
+LightGBM,2022-10-01,1,0.34071589259678475,0
+LightGBM,2022-10-01,0,0.4964306792023783,0
+LightGBM,2022-10-01,0,0.1322005829949072,0
+LightGBM,2022-10-01,0,0.15324941607623094,0
+LightGBM,2022-10-01,0,0.24394799241010728,0
+LightGBM,2022-10-01,0,0.9107209331715442,1
+LightGBM,2022-11-01,1,0.3888962790728134,0
+LightGBM,2022-11-01,1,0.2462001070221644,0
+LightGBM,2022-11-01,1,0.5416868716668402,1
+LightGBM,2022-11-01,1,0.24726531997818937,0
+LightGBM,2022-11-01,0,0.44053231328455844,0
+LightGBM,2022-11-01,1,0.024716378034260304,0
+LightGBM,2022-12-01,1,0.8020503933824814,1
+LightGBM,2022-12-01,0,0.7133067939833047,1
+LightGBM,2022-12-01,1,0.3787777395435656,0
+LightGBM,2022-12-01,1,0.24725191494594687,0
+LightGBM,2022-12-01,1,0.6602640396368448,1
+LightGBM,2022-12-01,1,0.5580259829757848,1
+LightGBM,2023-01-01,0,0.28325507297615277,0
+LightGBM,2023-01-01,1,0.4163258103238227,0
+LightGBM,2023-01-01,0,0.0802502663154037,0
+LightGBM,2023-01-01,1,0.16311765571913647,0
+LightGBM,2023-01-01,0,0.14373735257854908,0
+LightGBM,2023-02-01,0,0.07881671363327795,0
+LightGBM,2023-02-01,0,0.1642643484438256,0
+LightGBM,2023-02-01,0,0.0191902207295529,0
+LightGBM,2023-02-01,1,0.4727171824920761,0
+LightGBM,2023-02-01,0,0.15134082755725342,0
+LightGBM,2023-03-01,0,0.18118899596541332,0
+LightGBM,2023-03-01,1,0.37214482839712754,0
+LightGBM,2023-03-01,0,0.01355602392588531,0
+LightGBM,2023-03-01,0,0.016262975955140296,0
+LightGBM,2023-03-01,0,0.3783134010720799,0
+LightGBM,2023-04-01,0,0.08437420248830675,0
+LightGBM,2023-04-01,1,0.29733569128288795,0
+LightGBM,2023-04-01,1,0.21483736917118756,0
+LightGBM,2023-04-01,1,0.7217981422290429,1
+LightGBM,2023-04-01,0,0.3559361605730653,0
+LightGBM,2023-05-01,1,0.09093583988605584,0
+LightGBM,2023-05-01,1,0.22386758955436897,0
+LightGBM,2023-05-01,1,0.845188597894089,1
+LightGBM,2023-05-01,0,0.15561721861877353,0
+LightGBM,2023-05-01,1,0.4095787849337628,0
+LightGBM,2023-06-01,1,0.8839707304249285,1
+LightGBM,2023-06-01,0,0.2436776712365565,0
+LightGBM,2023-06-01,0,0.1678984003290376,0
+LightGBM,2023-06-01,0,0.17010773361901999,0
+LightGBM,2023-06-01,0,0.3031013759168559,0
+LightGBM,2023-07-01,1,0.7983956614856537,1
+LightGBM,2023-07-01,1,0.2981234053676461,0
+LightGBM,2023-07-01,0,0.3567020540614008,0
+LightGBM,2023-07-01,1,0.6353541594767668,1
+LightGBM,2023-07-01,1,0.3019267773456312,0
+LightGBM,2023-08-01,0,0.3042886989238068,0
+LightGBM,2023-08-01,0,0.13302534105305433,0
+LightGBM,2023-08-01,0,0.738082018723264,1
+LightGBM,2023-08-01,0,0.6070923502775801,1
+LightGBM,2023-08-01,0,0.14538248163229656,0
+LightGBM,2023-09-01,1,0.6379459958432904,1
+LightGBM,2023-09-01,0,0.12517993539212888,0
+LightGBM,2023-09-01,0,0.033629286991665626,0
+LightGBM,2023-09-01,0,0.21164659607342798,0
+LightGBM,2023-09-01,0,0.19131299704049004,0
+LightGBM,2023-10-01,0,0.007577256572407227,0
+LightGBM,2023-10-01,0,0.03474109966871811,0
+LightGBM,2023-10-01,0,0.6071202116058354,1
+LightGBM,2023-10-01,0,0.3363907180880759,0
+LightGBM,2023-10-01,1,0.24394799241010728,0
+LightGBM,2023-11-01,1,0.2558714631090892,0
+LightGBM,2023-11-01,1,0.15463832557288437,0
+LightGBM,2023-11-01,0,0.022263584492224122,0
+LightGBM,2023-11-01,1,0.5385287062609337,1
+LightGBM,2023-11-01,1,0.8443526035996359,1
+LightGBM,2024-03-01,0,0.06980630789434616,0
+LightGBM,2024-03-01,1,0.053455618592136316,0
+LightGBM,2024-03-01,1,0.18118899596541332,0
+LightGBM,2024-03-01,0,0.6989177086433352,1
+LightGBM,2024-03-01,1,0.8114000443115817,1
+LightGBM,2024-04-01,0,0.6509336998356844,1
+LightGBM,2024-04-01,0,0.10716876815998297,0
+LightGBM,2024-04-01,1,0.11733261277838035,0
+LightGBM,2024-04-01,1,0.3485771719664718,0
+LightGBM,2024-04-01,0,0.16567801913795088,0
+LightGBM,2024-05-01,1,0.17350277878302472,0
+LightGBM,2024-05-01,1,0.11733261277838035,0
+LightGBM,2024-05-01,0,0.42601050462958345,0
+LightGBM,2024-05-01,1,0.15663519753900793,0
+LightGBM,2024-05-01,1,0.3485771719664718,0
+LightGBM,2024-11-01,1,0.4644301548429766,0
+LightGBM,2024-11-01,0,0.021168565980557153,0
+LightGBM,2024-11-01,1,0.5473167718904274,1
+LightGBM,2024-11-01,0,0.22535104843424192,0
+LightGBM,2024-12-01,0,0.03546786501238326,0
+LightGBM,2024-12-01,0,0.1793422685309324,0
+LightGBM,2024-12-01,1,0.7831608762880815,1
+LightGBM,2024-12-01,0,0.08944821131906333,0
+LightGBM,2025-01-01,0,0.11293725784974834,0
+LightGBM,2025-01-01,0,0.042391659846150315,0
+LightGBM,2025-01-01,0,0.7502050192041795,1
+LightGBM,2025-01-01,0,0.07844332877699102,0
+LightGBM,2025-02-01,0,0.11095345773894714,0
+LightGBM,2025-02-01,1,0.065356134086326,0
+LightGBM,2025-02-01,1,0.11727743204341827,0
+LightGBM,2025-03-01,1,0.1827373699584958,0
+LightGBM,2025-03-01,0,0.08191640697817408,0
+LightGBM,2025-03-01,0,0.08447585372300107,0
+LightGBM,2025-04-01,0,0.02016847278645024,0
+LightGBM,2025-04-01,1,0.05949258095765278,0
+LightGBM,2025-04-01,1,0.5502650281688248,1
+LightGBM,2025-05-01,0,0.29542090288002953,0
+LightGBM,2025-05-01,0,0.19379144314241076,0
+LightGBM,2025-05-01,1,0.1844281074998222,0
+LightGBM,2025-06-01,0,0.14258994857973084,0
+LightGBM,2025-06-01,0,0.20286650106683848,0
+LightGBM,2025-06-01,1,0.11674661625819845,0
+LightGBM,2025-07-01,1,0.2633360089915916,0
+LightGBM,2025-07-01,1,0.2318994572964571,0
+LightGBM,2025-07-01,0,0.16557677970568774,0
+LightGBM,2025-08-01,1,0.38412780160129795,0
+LightGBM,2025-08-01,1,0.047180857438006304,0
+LightGBM,2025-08-01,1,0.07798113675501898,0
+LightGBM,2025-09-01,0,0.8400470672093234,1
+LightGBM,2025-09-01,1,0.12469479364099717,0
+LightGBM,2025-09-01,0,0.1906048055584168,0
+LightGBM,2025-10-01,0,0.057185101801440714,0
+LightGBM,2025-10-01,0,0.028556398453812727,0
+LightGBM,2025-10-01,0,0.051247468203175425,0
+LightGBM,2025-11-01,1,0.04307975070508001,0
+LightGBM,2025-11-01,1,0.5473856739188161,1
+LightGBM,2025-11-01,1,0.011074441892555478,0
+LightGBM,2025-12-01,1,0.27032440025927507,0
+LightGBM,2025-12-01,1,0.03100972041298096,0
+LightGBM,2025-12-01,1,0.21752233137233568,0
+LightGBM,2026-01-01,1,0.03505984164598212,0
+LightGBM,2026-01-01,0,0.032744776430784474,0
+LightGBM,2026-01-01,1,0.1976418047506935,0
+LightGBM,2026-02-01,1,0.11377852117364844,0
+LightGBM,2026-02-01,1,0.06641836648892929,0
+LightGBM,2026-03-01,0,0.03586014834586545,0
+LightGBM,2026-03-01,1,0.10917334017198267,0
+LightGBM,2026-04-01,0,0.06871028612684736,0
+LightGBM,2026-04-01,0,0.12218765812387881,0
+LightGBM,2026-05-01,0,0.13501688992498612,0
+LightGBM,2026-05-01,0,0.10897790558990594,0
+LightGBM,2026-06-01,0,0.12686773612737953,0
+LightGBM,2026-06-01,0,0.09543514363769579,0
+LightGBM,2026-07-01,1,0.2740496112363954,0
+LightGBM,2026-07-01,0,0.20627307210639623,0
+LightGBM,2026-07-01,1,0.260931949514556,0
+LightGBM,2026-08-01,1,0.6320290044379109,1
+LightGBM,2026-08-01,1,0.21681666845740347,0
+LightGBM,2026-08-01,1,0.1326610824372088,0
+LightGBM,2026-09-01,1,0.786302068766018,1
+LightGBM,2026-09-01,1,0.34951320243021233,0
+LightGBM,2026-09-01,1,0.4065235103060052,0
