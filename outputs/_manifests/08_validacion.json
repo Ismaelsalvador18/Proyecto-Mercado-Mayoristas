@@ -8,8 +8,8 @@
   "atipicos": 66,
   "series": 216,
   "productos_holdout": 6,
-  "modelos": 4,
-  "predicciones_holdout": 1060,
-  "tablas": 17,
+  "modelos": 6,
+  "predicciones_holdout": 1590,
+  "tablas": 16,
   "figuras": 16
 }

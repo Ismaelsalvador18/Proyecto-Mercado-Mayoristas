@@ -29,7 +29,6 @@
 | tabla_09_ganador | `tabla_09_ganador.csv` |
 | tabla_12_correlacion_lima | `tabla_12_correlacion_lima.csv` |
 | tabla_13_geografia | `tabla_13_geografia.csv` |
-| tabla_15_complemento | `tabla_15_complemento.csv` |
 | tabla_16_protocolo | `tabla_16_protocolo.csv` |
 | tabla_17_software | `tabla_17_software.csv` |
 | tabla_20_transformacion_log | `tabla_20_transformacion_log.csv` |

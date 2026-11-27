@@ -74,7 +74,7 @@ scripts/
 │   ├── 05.1_representacion_modelos.py
 │   ├── 05.2_evaluacion_modelos.py
 │   └── 05.3_n_etapas.py
-├── clasificacion/
+├── clasificacion/            exploración posterior, fuera de esta entrega
 │   └── 01_clasificadores_direccion.py
 ├── informe/
 │   ├── 07_resultados_informe.py
@@ -97,9 +97,9 @@ fase anterior.
 2. **Limpieza:** unidades normalizadas a S/ kg; atípicos marcados y excluidos, no imputados.
 3. **Transformación:** log-precio, cambios, rezagos y armónicos anuales.
 4. **Variables:** Lima contemporánea y rezagada, cambios propios rezagados y estacionalidad.
-5. **Modelos:** OLS, Ridge y cuatro familias de árboles (Árbol de Decisión, Random Forest, XGBoost y LightGBM).
+5. **Modelos:** seis modelos de regresión (OLS, Ridge, Árbol de Decisión, Random Forest, XGBoost y LightGBM).
 6. **Selección:** rango promedio de R² en validación, no en la prueba final.
-7. **Evaluación:** R², MAE, mejora frente a la referencia, acierto direccional y matriz de confusión.
+7. **Evaluación:** R², MAE, mejora frente a la referencia, acierto de signo y matriz de confusión direccional.
 8. **Integridad:** gates por fase y manifiestos con hashes.
 
 ---
@@ -130,7 +130,7 @@ fase anterior.
 |---|---|
 | Cobertura | ≥ 80 % en la ventana densa |
 | EDA | tablas y figuras reproducibles |
-| Modelos | cuatro familias comparadas |
+| Modelos | seis modelos de regresión comparados |
 | Selección | ranking en validación, prueba final intacta |
 | Evaluación | R², MAE, acierto y confusión |
 | Integridad | gates 1–4, 6–7 aprobados |
@@ -154,7 +154,7 @@ fase anterior.
 
 - Dataset final y auditoría.
 - Pipeline reproducible con validadores.
-- 16 figuras y 17 tablas de resultados.
+- 16 figuras y 16 tablas de resultados.
 - Dos cuadernos: resultados ejecutivos y guía.
 - README, metodología, diccionario y este plan.
-- Informe final de 11 tablas, 11 figuras, 12 ecuaciones, referencias y un anexo con la matriz completa.
+- Informe final de 11 tablas, 10 figuras, 12 ecuaciones, referencias y un anexo con la matriz completa.

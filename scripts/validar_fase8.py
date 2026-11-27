@@ -87,13 +87,13 @@ def main() -> None:
     if ranking.iloc[0]["modelo"] != "Random Forest":
         raise AssertionError("El ganador de nowcast no es Random Forest")
     predicciones = pd.read_csv(ANALISIS / "06_modelos" / "predicciones_holdout.csv")
-    if len(predicciones) != 1060:
-        raise AssertionError("El holdout final no tiene 1060 predicciones")
+    if len(predicciones) != 1590:
+        raise AssertionError("El holdout final no tiene 1590 predicciones")
 
     tablas = sorted((INFORME / "tablas").glob("*.csv"))
     figuras = sorted((INFORME / "figuras").glob("*.png"))
-    if len(tablas) != 17 or len(figuras) != 16:
-        raise AssertionError("El informe no tiene 17 tablas y 16 figuras")
+    if len(tablas) != 16 or len(figuras) != 16:
+        raise AssertionError("El informe no tiene 16 tablas y 16 figuras")
 
     docs = (RAIZ / "README.md").read_text(encoding="utf-8")
     for ruta in sorted((RAIZ / "docs").glob("*.md")):
@@ -120,7 +120,7 @@ def main() -> None:
         "atipicos": int(len(atipicos)),
         "series": 216,
         "productos_holdout": 6,
-        "modelos": 4,
+        "modelos": 6,
         "predicciones_holdout": int(len(predicciones)),
         "tablas": len(tablas),
         "figuras": len(figuras),
@@ -141,8 +141,8 @@ def main() -> None:
     print("  Fases 1-4 y 6-7: aprobadas")
     print("  Panel: 24 departamentos | 216 series")
     print("  43 921 crudas -> 43 855 limpias | 66 atipicos")
-    print("  Modelos: 6 productos | 4 modelos | 1 060 predicciones")
-    print("  Informe: 17 tablas | 16 figuras")
+    print("  Modelos: 6 productos | 6 modelos | 1 590 predicciones")
+    print("  Informe: 16 tablas | 16 figuras")
     print(f"  Cierre: {CIERRE.relative_to(RAIZ)}")
 
 

@@ -91,13 +91,15 @@ construir cambios y rezagos. La tabla completa está en
 
 ## 6. Modelos
 
-Se comparan cuatro familias:
+Se comparan seis modelos:
 
 | Modelo | Familia | Configuración |
 |---|---|---|
 | OLS | lineal | sin hiperparámetros |
 | Ridge | lineal regularizado | alpha = 1, estandarización |
+| Árbol de Decisión | no lineal, árbol único | profundidad 5, hoja mínima 5 |
 | Random Forest | no lineal, bagging | 300 árboles, hoja mínima 3 |
+| XGBoost | no lineal, boosting | 300 árboles, learning rate 0,05, profundidad 4 |
 | LightGBM | no lineal, boosting | 300 árboles, learning rate 0,05, 7 hojas |
 
 La estimación del mes corriente usa el cambio de Lima del mismo mes, sus rezagos, los rezagos
@@ -113,8 +115,8 @@ No se elige el modelo mirando la prueba final.
 - **MAE:** error absoluto medio.
 - **Mejora del MAE:** `100 × (1 − MAE_modelo / MAE_referencia)`.
 - **Acierto direccional:** porcentaje de signos correctos entre meses con cambio distinto de cero.
-- **Matriz de confusión:** verdaderos positivos, falsos positivos, falsos negativos y verdaderos
-  negativos.
+- **Matriz de confusión direccional:** conteo de aciertos y errores de signo de la predicción de
+  regresión. No es un clasificador entrenado; solo lee el signo de una predicción continua.
 
 La referencia de la estimación contemporánea es predecir cambio cero. La referencia del pronóstico
 es la caminata aleatoria.

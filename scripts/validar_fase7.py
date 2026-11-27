@@ -27,11 +27,10 @@ TABLAS_ESPERADAS = {
     "tabla_01b_ejemplo.csv": 8,
     "tabla_02_auditoria.csv": 11,
     "tabla_03_descriptivos.csv": 9,
-    "tabla_08_torneo.csv": 4,
-    "tabla_09_ganador.csv": 50,
+    "tabla_08_torneo.csv": 6,
+    "tabla_09_ganador.csv": 70,
     "tabla_12_correlacion_lima.csv": 155,
     "tabla_13_geografia.csv": 23,
-    "tabla_15_complemento.csv": 50,
     "tabla_16_protocolo.csv": 11,
     "tabla_17_software.csv": 12,
     "tabla_20_transformacion_log.csv": 9,
@@ -39,7 +38,7 @@ TABLAS_ESPERADAS = {
     "tabla_22_verificacion_limpieza.csv": 10,
     "tabla_23_pronostico_holdout.csv": 6,
     "tabla_24_matriz_diseno.csv": 8,
-    "tabla_25_confusion_modelos.csv": 4,
+    "tabla_25_confusion_modelos.csv": 6,
 }
 
 PATRONES_ANTIGUOS = [

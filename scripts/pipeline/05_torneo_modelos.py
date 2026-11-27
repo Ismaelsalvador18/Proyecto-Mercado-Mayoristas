@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """Torneo de modelos: estimacion contemporanea y pronostico a un mes.
 
-Cuarteto principal: OLS, Ridge, Random Forest, LightGBM.
+Torneo de estimación contemporánea: OLS, Ridge, Árbol de Decisión, Random
+Forest, XGBoost y LightGBM (seis modelos de regresión).
+Pronóstico a un mes: OLS, Ridge, Random Forest y LightGBM.
+
 Referencias: cambio cero (estimacion contemporanea) y caminata aleatoria (pronostico).
 
 Seleccion: rango promedio de R² en la ventana de validación (2018-2020).
@@ -13,7 +16,7 @@ Compuerta: R2 > 0 en >= 2 productos y acierto > 55 % en >= 2 productos.
 Genera en outputs/analisis/06_modelos:
   torneo_nowcast_metricas.csv, torneo_nowcast_ranking.csv, torneo_nowcast_dm.csv,
   torneo_forecast_metricas.csv, torneo_forecast_ranking.csv,
-  torneo_complemento.csv, torneo_ganador.md, hiperparametros.csv,
+  torneo_ganador.md, hiperparametros.csv,
   predicciones_holdout.csv, matriz_confusion_modelos.csv,
   matriz_confusion_producto.csv, matriz_diseno.csv,
   ranking_torneo.png, ganador_vs_observado.png, matriz_confusion.png
@@ -32,13 +35,13 @@ import pandas as pd
 
 from config import (DEV_FIN, DEV_INICIO, DIRECTORIOS, HOLDOUT_FIN, HOLDOUT_INICIO,
                     LGBM, MIN_FORECAST_TEST, MIN_FORECAST_TRAIN, MIN_NOWCAST_TEST,
-                    MIN_NOWCAST_TRAIN, NUCLEO, PANEL_LIMPIO, RF, RIDGE_ALPHA, aplicar_estilo,
+                    MIN_NOWCAST_TRAIN, NUCLEO, PANEL_LIMPIO, RF, RIDGE_ALPHA, XGB, aplicar_estilo,
                     guardar, preparar_directorios, tabla)
 from modelos import (construir_forecast, construir_nowcast, dm_test, metricas,
-                     modelos_complemento, modelos_principales)
+                     modelos_principales, modelos_torneo)
 
 
-def evaluar_nowcast(panel: pd.DataFrame, conjunto: str) -> pd.DataFrame:
+def evaluar_nowcast(panel: pd.DataFrame, conjunto: str = "principal") -> pd.DataFrame:
     filas = []
     for periodo, train_end, ini, fin in [
         ("desarrollo", DEV_INICIO, DEV_INICIO, DEV_FIN),
@@ -53,8 +56,7 @@ def evaluar_nowcast(panel: pd.DataFrame, conjunto: str) -> pd.DataFrame:
             real = y[test].values
             filas.append({"periodo": periodo, "producto": cat, "modelo": "Cambio cero",
                           "conjunto": "baseline", **metricas(real, np.zeros_like(real), np.zeros_like(real))})
-            modelos = modelos_principales() if conjunto == "principal" else modelos_complemento()
-            for nombre, modelo in modelos.items():
+            for nombre, modelo in modelos_torneo().items():
                 modelo.fit(X[train], y[train])
                 pred = modelo.predict(X[test])
                 filas.append({"periodo": periodo, "producto": cat, "modelo": nombre,
@@ -88,7 +90,7 @@ def evaluar_forecast(panel: pd.DataFrame) -> pd.DataFrame:
 
 
 def predecir_holdout(panel: pd.DataFrame) -> pd.DataFrame:
-    """Predicciones de los cuatro modelos para cada producto en el holdout."""
+    """Predicciones de los seis modelos para cada producto en el holdout."""
     filas = []
     for cat in NUCLEO:
         X, y = construir_nowcast(panel, cat)
@@ -96,7 +98,7 @@ def predecir_holdout(panel: pd.DataFrame) -> pd.DataFrame:
         test = (X.index >= pd.Timestamp(HOLDOUT_INICIO)) & (X.index <= pd.Timestamp(HOLDOUT_FIN))
         if train.sum() < MIN_NOWCAST_TRAIN or test.sum() < MIN_NOWCAST_TEST:
             continue
-        for nombre, modelo in modelos_principales().items():
+        for nombre, modelo in modelos_torneo().items():
             modelo.fit(X[train], y[train])
             pred = modelo.predict(X[test])
             for fecha, observado, estimado in zip(y[test].index, y[test].values, pred):
@@ -128,27 +130,30 @@ def matriz_confusion(predicciones: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataF
 
 
 def graficar_confusion(confusion: pd.DataFrame) -> None:
-    fig, axes = plt.subplots(2, 2, figsize=(9.2, 7.2))
+    orden = ["OLS", "Ridge", "Arbol", "Random Forest", "XGBoost", "LightGBM"]
+    confusion = confusion.set_index("modelo").reindex(orden).reset_index()
+    fig, axes = plt.subplots(2, 3, figsize=(12.0, 7.2))
     for ax, (_, fila) in zip(axes.ravel(), confusion.iterrows()):
         matriz = np.array([[fila["TN"], fila["FP"]], [fila["FN"], fila["TP"]]])
         ax.imshow(matriz, cmap="Blues")
-        ax.set_xticks([0, 1], ["Predice baja", "Predice sube"])
-        ax.set_yticks([0, 1], ["Real baja", "Real sube"])
-        ax.set_title(f"{fila['modelo']} (acierto {fila['acierto']:.1f} %)")
+        ax.set_xticks([0, 1], ["Predicción −", "Predicción +"])
+        ax.set_yticks([0, 1], ["Observado −", "Observado +"])
+        ax.set_title(f"{fila['modelo'].replace('Arbol', 'Árbol de Decisión')} (coincidencia {fila['acierto']:.1f} %)", fontsize=8)
         for i in range(2):
             for j in range(2):
                 ax.text(j, i, f"{matriz[i, j]:,}".replace(",", " "),
                         ha="center", va="center",
                         color="white" if matriz[i, j] > matriz.max() * 0.75 else "black")
-    fig.suptitle("Matriz de confusión direccional en la prueba final (seis productos)", y=1.02)
+    fig.suptitle("Coincidencia de signo en la prueba final: seis modelos de regresión", y=1.02)
     plt.tight_layout()
     guardar(fig, "matriz_confusion.png", "modelos")
 
 
 def graficar_predicciones(predicciones: pd.DataFrame) -> None:
     fig, axes = plt.subplots(2, 3, figsize=(13.5, 7.5), sharex=False)
-    colores = {"OLS": "#2563eb", "Ridge": "#7c3aed",
-               "Random Forest": "#b45309", "LightGBM": "#059669"}
+    colores = {"OLS": "#2563eb", "Ridge": "#7c3aed", "Arbol": "#dc2626",
+               "Random Forest": "#b45309", "XGBoost": "#0891b2",
+               "LightGBM": "#059669"}
     for ax, cat in zip(axes.ravel(), NUCLEO):
         bloque = predicciones[predicciones.producto == cat]
         observado = bloque.groupby("fecha")["observado"].first()
@@ -156,8 +161,9 @@ def graficar_predicciones(predicciones: pd.DataFrame) -> None:
                 linewidth=1.4, label="Observado")
         for modelo, grupo in bloque.groupby("modelo"):
             grupo = grupo.sort_values("fecha")
+            etiqueta = "Árbol de Decisión" if modelo == "Arbol" else modelo
             ax.plot(grupo.fecha, grupo.prediccion * 100, color=colores.get(modelo),
-                    linewidth=1.0, alpha=0.9, label=modelo)
+                    linewidth=1.0, alpha=0.9, label=etiqueta)
         ax.axhline(0, color="#9ca3af", linewidth=0.7)
         ax.set_title(cat)
         ax.set_ylabel("variación %")
@@ -165,8 +171,8 @@ def graficar_predicciones(predicciones: pd.DataFrame) -> None:
         ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
         ax.tick_params(axis="x", labelsize=7)
     handles, labels = axes.ravel()[0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", ncol=5, fontsize=8, frameon=False)
-    fig.suptitle("Estimación del mes corriente en la prueba final: observado y cuatro modelos por producto", y=1.01)
+    fig.legend(handles, labels, loc="lower center", ncol=7, fontsize=7, frameon=False)
+    fig.suptitle("Estimación del mes corriente en la prueba final: observado y seis modelos por producto", y=1.01)
     plt.tight_layout(rect=[0, 0.04, 1, 0.98])
     guardar(fig, "ganador_vs_observado.png", "modelos")
 
@@ -195,9 +201,8 @@ def main() -> None:
     aplicar_estilo()
     panel = pd.read_csv(PANEL_LIMPIO, parse_dates=["fecha"])
 
-    nowcast = evaluar_nowcast(panel, "principal")
+    nowcast = evaluar_nowcast(panel)
     tabla(nowcast, "torneo_nowcast_metricas.csv", "modelos")
-    tabla(evaluar_nowcast(panel, "complemento"), "torneo_complemento.csv", "modelos")
 
     dev = nowcast[(nowcast.periodo == "desarrollo") & (nowcast.conjunto == "principal")].copy()
     productos_ranking = [cat for cat in NUCLEO if cat in dev.producto.unique()]
@@ -253,7 +258,9 @@ def main() -> None:
     hiper = pd.DataFrame([
         ("OLS", "sin hiperparámetros", "lineal, interpretable"),
         ("Ridge", f"alpha={RIDGE_ALPHA}, estandarización", "lineal regularizado"),
+        ("Arbol", "depth=5, leaf=5", "no lineal, árbol único"),
         ("Random Forest", f"n={RF['n_estimators']}, leaf={RF['min_samples_leaf']}", "no lineal, bagging"),
+        ("XGBoost", f"n={XGB['n_estimators']}, lr={XGB['learning_rate']}, depth={XGB['max_depth']}", "no lineal, boosting"),
         ("LightGBM", f"n={LGBM['n_estimators']}, lr={LGBM['learning_rate']}, leaves={LGBM['num_leaves']}", "no lineal, boosting"),
     ], columns=["modelo", "hiperparametros", "familia"])
     tabla(hiper, "hiperparametros.csv", "modelos")
@@ -321,10 +328,11 @@ def main() -> None:
                  f"pero no ofrece un pronóstico general a un mes.\n")
 
     fig, ax = plt.subplots(figsize=(8.2, 4.0))
-    ax.barh(ranking.index, ranking.rank_promedio, color="#0e7490")
+    etiquetas = ranking.index.str.replace("Arbol", "Árbol de Decisión", regex=False)
+    ax.barh(etiquetas, ranking.rank_promedio, color="#0e7490")
     ax.invert_yaxis()
     ax.set_xlabel("rango promedio por R² en validación (1 = mejor)")
-    ax.set_title("Torneo de estimación contemporánea: cuarteto principal (4 productos elegibles)")
+    ax.set_title("Torneo de estimación contemporánea: seis modelos (4 productos elegibles)")
     guardar(fig, "ranking_torneo.png", "modelos")
 
     tabla(predicciones, "predicciones_holdout.csv", "modelos")

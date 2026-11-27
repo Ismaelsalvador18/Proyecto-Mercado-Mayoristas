@@ -25,7 +25,6 @@ $PY scripts/analisis/05.2_evaluacion_modelos.py
 $PY scripts/analisis/05.3_n_etapas.py
 $PY scripts/validar_fase6.py
 
-$PY scripts/clasificacion/01_clasificadores_direccion.py
 $PY scripts/informe/07_resultados_informe.py
 $PY scripts/validar_fase7.py
 $PY scripts/informe/08_generar_informe.py

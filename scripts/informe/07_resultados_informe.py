@@ -69,7 +69,6 @@ def copiar_tablas() -> None:
         "tabla_09_ganador.csv": ("modelos", "torneo_nowcast_metricas.csv"),
         "tabla_12_correlacion_lima.csv": ("estructura", "correlacion_lima.csv"),
         "tabla_13_geografia.csv": ("estructura", "geografia_integracion.csv"),
-        "tabla_15_complemento.csv": ("modelos", "torneo_complemento.csv"),
         "tabla_20_transformacion_log.csv": ("calidad", "transformacion_log.csv"),
         "tabla_21_normalidad.csv": ("calidad", "normalidad.csv"),
         "tabla_22_verificacion_limpieza.csv": ("calidad", "verificacion_limpieza.csv"),

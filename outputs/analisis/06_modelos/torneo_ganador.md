@@ -3,7 +3,7 @@
 **Objetivo principal:** anticipacion contemporanea del cambio mensual.
 
 - **Modelo adoptado:** Random Forest
-- Rango promedio por R² en validación: 1.50
+- Rango promedio por R² en validación: 2.00
 - R² mediano en validación: -0.097
 - Ranking calculado sobre 4 productos con muestras suficientes: Papa, Arroz, Aceite, Huevos
 - Excluidos del ranking por no alcanzar los mínimos muestrales: Cebolla, Zanahoria
@@ -26,7 +26,7 @@
 
 La ventana de validación es 2018-2020 (36 meses calendario) y se usa para evaluar/rankear; cada modelo se entrena con las observaciones disponibles de 2012 a 2017. Solo se rankean productos con al menos 60 observaciones de entrenamiento y 20 de evaluación. El R² es la métrica principal de la estimación contemporánea porque el MAE sobre cambios favorece predecir cero. La prueba final 2021-01 a 2026-10 se usó una sola vez; noviembre queda fuera porque no se verificó su fecha de cierre/publicacion.
 
-¿Por qué no gana LightGBM si tiene mayor acierto en la prueba final? LightGBM acierta el signo en 62.2 % de los meses, frente a 58.0 % de Random Forest, pero el acierto es una lectura binaria: trata igual un error de 0,1 % que uno de 5 %. El ganador se eligió en validación con R², donde Random Forest tiene rango promedio 1.50 y acierto medio 46.9 %, contra 4.00 y 42.8 % de LightGBM. En la prueba final Random Forest tiene menor MAE que LightGBM en 5 de 6 productos y R² positivo en papa, cebolla y zanahoria; LightGBM tiene R² muy negativo en arroz y zanahoria. Cambiar el ganador según la prueba final sería seleccionar sobre el conjunto de prueba. La matriz de confusión se reporta como diagnóstico complementario, no como criterio de selección.
+¿Por qué no gana LightGBM si tiene mayor acierto en la prueba final? LightGBM acierta el signo en 62.2 % de los meses, frente a 58.0 % de Random Forest, pero el acierto es una lectura binaria: trata igual un error de 0,1 % que uno de 5 %. El ganador se eligió en validación con R², donde Random Forest tiene rango promedio 2.00 y acierto medio 46.9 %, contra 5.75 y 42.8 % de LightGBM. En la prueba final Random Forest tiene menor MAE que LightGBM en 5 de 6 productos y R² positivo en papa, cebolla y zanahoria; LightGBM tiene R² muy negativo en arroz y zanahoria. Cambiar el ganador según la prueba final sería seleccionar sobre el conjunto de prueba. La matriz de confusión se reporta como diagnóstico complementario, no como criterio de selección.
 
 ## Pronóstico a un mes: prueba final
 

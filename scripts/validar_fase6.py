@@ -101,19 +101,19 @@ def main() -> None:
                        frank["rank_promedio"].values, atol=1e-12):
         raise AssertionError("El ranking de pronostico no coincide con las metricas")
 
-    # Holdout: seis productos y cuatro modelos.
+    # Holdout: seis productos y seis modelos de regresión.
     hold = nowcast[(nowcast["periodo"] == "holdout") &
                    (nowcast["conjunto"] == "principal")]
-    if set(hold["producto"]) != set(NUCLEO) or hold["modelo"].nunique() != 4:
-        raise AssertionError("El holdout de nowcast no cubre seis productos y cuatro modelos")
+    if set(hold["producto"]) != set(NUCLEO) or hold["modelo"].nunique() != 6:
+        raise AssertionError("El holdout de nowcast no cubre seis productos y seis modelos")
     if len(forecast[(forecast["periodo"] == "holdout") &
                     (forecast["conjunto"] == "principal")]) != 24:
         raise AssertionError("El holdout de pronostico no tiene 6 productos x 4 modelos")
 
     pred = pd.read_csv(MODELOS / "predicciones_holdout.csv", parse_dates=["fecha"])
     if set(pred["producto"]) != set(NUCLEO) or set(pred["modelo"]) != {
-            "OLS", "Ridge", "Random Forest", "LightGBM"}:
-        raise AssertionError("Las predicciones del holdout no cubren el cuarteto")
+            "OLS", "Ridge", "Arbol", "Random Forest", "XGBoost", "LightGBM"}:
+        raise AssertionError("Las predicciones del holdout no cubren los seis modelos")
     if pred["fecha"].min() < pd.Timestamp(HOLDOUT_INICIO) or pred["fecha"].max() > pd.Timestamp(HOLDOUT_FIN):
         raise AssertionError("Las predicciones se salen del holdout")
     for (producto, modelo), grupo in pred.groupby(["producto", "modelo"]):
@@ -135,8 +135,8 @@ def main() -> None:
         (producto, modelo): contar_direccion(grupo)
         for (producto, modelo), grupo in pred.groupby(["producto", "modelo"])
     }
-    if len(confusion_prod) != 24:
-        raise AssertionError("La confusion por producto no tiene 24 filas")
+    if len(confusion_prod) != 36:
+        raise AssertionError("La confusion por producto no tiene 36 filas")
     for fila in confusion_prod.itertuples(index=False):
         esperado = calculada_prod[(fila.producto, fila.modelo)]
         for columna in ["TP", "FN", "FP", "TN", "n"]:
@@ -174,8 +174,8 @@ def main() -> None:
         raise AssertionError("Las curvas de aprendizaje no tienen 16 filas")
     if len(pd.read_csv(MODELOS / "coeficientes.csv")) != 9:
         raise AssertionError("Los coeficientes no tienen 9 filas")
-    if len(pd.read_csv(MODELOS / "hiperparametros.csv")) != 4:
-        raise AssertionError("Los hiperparametros no tienen 4 modelos")
+    if len(pd.read_csv(MODELOS / "hiperparametros.csv")) != 6:
+        raise AssertionError("Los hiperparametros no tienen 6 modelos")
     if len(pd.read_csv(MODELOS / "model_cards.csv")) != 4:
         raise AssertionError("Las model cards no tienen 4 modelos")
     if len(pd.read_csv(MODELOS / "torneo_nowcast_dm.csv")) != 24:
@@ -190,7 +190,7 @@ def main() -> None:
         "panel_limpio_sha256": sha256_archivo(PANEL_LIMPIO),
         "departamentos": 24,
         "productos_holdout": 6,
-        "modelos": 4,
+        "modelos": 6,
         "predicciones_holdout": int(len(pred)),
         "archivos": hashes,
     }
@@ -205,7 +205,7 @@ def main() -> None:
         "ok": True,
         "departamentos": 24,
         "productos_holdout": 6,
-        "modelos": 4,
+        "modelos": 6,
         "predicciones_holdout": int(len(pred)),
         "matriz_confusion_filas": int(len(confusion)),
         "matriz_confusion_producto_filas": int(len(confusion_prod)),
@@ -221,7 +221,7 @@ def main() -> None:
 
     print("Fase 6 valida.")
     print(f"  Panel: 24 departamentos | 216 series")
-    print(f"  Prueba final: 6 productos x 4 modelos = {len(pred):,} predicciones")
+    print(f"  Prueba final: 6 productos x 6 modelos = {len(pred):,} predicciones")
     print(f"  Ganador estimación contemporánea: {validacion['ganador_nowcast']}")
     print(f"  Ganador pronostico: {validacion['ganador_pronostico']}")
     print(f"  Archivos validados: {len(archivos)}")

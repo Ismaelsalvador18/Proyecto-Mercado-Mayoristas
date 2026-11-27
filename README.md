@@ -44,8 +44,7 @@ Los nombres internos se conservan en archivos y columnas para no romper el códi
 | La distancia aporta, pero no explica todo | Distancia p = 0,022; zona natural p = 0,196; juntas explican 54 % de la variación |
 | Hay valor predictivo contemporáneo | Random Forest: R² = 0,270 en papa, 0,218 en cebolla y 0,080 en zanahoria; acierto 69,5 / 64,4 / 52,9 % |
 | El pronóstico a un mes es específico | Ridge y OLS mejoran el MAE en papa, cebolla y arroz; ambos empeoran en zanahoria, aceite y huevos |
-| Lectura direccional | LightGBM: F1 = 0,662 y exactitud = 0,622; OLS y Ridge: recall = 0,660; ROC-AUC cercano a 0,63 |
-| Clasificación de la dirección | Árbol de Decisión gini: exactitud = 58,5 % y F1 = 0,667; LightGBM: ROC-AUC = 0,621, pero recall = 0,303 |
+| Lectura direccional | LightGBM acierta 62,2 % de los signos; OLS y Ridge, 59,2 %; Random Forest, 58,0 %. Es una lectura del signo de la regresión, no un clasificador |
 
 **Conclusión:** la referencia de Lima aporta información predictiva contemporánea, pero el
 desempeño depende del producto y del horizonte. No hay un modelo único para las seis categorías.
@@ -130,9 +129,10 @@ los rezagos que consumen las primeras observaciones. No es un error de conteo.
 2. **Transformación:** normalización a S/ kg, log-precio, cambios mensuales y rezagos.
 3. **EDA:** cobertura, distribuciones, correlaciones y geografía básica.
 4. **Variables:** construcción de la matriz X/y con diferencias, rezagos y estacionalidad.
-5. **Modelos:** OLS, Ridge y cuatro familias de árboles (Árbol de Decisión, Random Forest, XGBoost
+5. **Modelos:** seis modelos de regresión (OLS, Ridge, Árbol de Decisión, Random Forest, XGBoost
    y LightGBM); validación 2018–2020 y prueba final enero 2021–octubre 2026.
-6. **Evaluación:** R², MAE, mejora frente a la referencia, acierto direccional y matriz de confusión.
+6. **Evaluación:** R², MAE, mejora frente a la referencia, acierto de signo y matriz de confusión
+   como lectura direccional de la regresión.
 
 El protocolo distingue la **estimación del mes corriente** (cambio del mismo mes) del
 **pronóstico a un mes** (precio del mes siguiente). El modelo se selecciona por rango promedio de R²
@@ -148,7 +148,7 @@ modelos**:
 - el calendario mensual se repone antes de calcular diferencias y rezagos;
 - la matriz de diseño se construye con `diff` y `shift`, sin mezclar meses faltantes;
 - la validación es temporal: entrenamiento, validación y prueba final;
-- se comparan cuatro familias de modelos y se evalúan con R², MAE y una lectura direccional.
+- se comparan seis modelos de regresión y se evalúan con R², MAE y una lectura direccional.
 
 La matriz de diseño, las predicciones de la prueba final y las matrices de confusión se guardan como
 artefactos reproducibles en `outputs/analisis/06_modelos/`.
@@ -172,12 +172,13 @@ prueba una sola vez en la prueba final 2021–octubre de 2026. La muestra de la 
 
 ### Evaluación por dirección
 
-Además de R² y MAE, se convierte el signo del cambio en una clasificación binaria para evaluar
-aciertos, falsos positivos y falsos negativos. Los meses con cambio exactamente cero se excluyen de
-esa lectura porque no tienen dirección. LightGBM acierta más el signo en la prueba final (62,2 % frente a
-58,0 %), pero eso no cambia al ganador: la selección usa R² en validación y el acierto ignora la
-magnitud del error. Las matrices agregadas están en
-`outputs/analisis/06_modelos/matriz_confusion_modelos.csv` y por producto en
+Además de R² y MAE, se compara el signo de la predicción con el signo del cambio observado para
+contar aciertos, falsos positivos y falsos negativos. Los meses con cambio exactamente cero se
+excluyen porque no tienen dirección. Esa lectura no es un clasificador: no entrena una clase, solo
+interpreta el signo de una predicción continua. LightGBM acierta más el signo en la prueba final
+(62,2 %), seguido por OLS y Ridge (59,2 %) y Random Forest (58,0 %), pero eso no cambia al ganador:
+la selección usa R² en validación y el acierto ignora la magnitud del error. Las matrices agregadas
+están en `outputs/analisis/06_modelos/matriz_confusion_modelos.csv` y por producto en
 `matriz_confusion_producto.csv`.
 
 ---
@@ -206,7 +207,7 @@ proyecto-mercados-mayoristas/
 │   ├── modelos.py                   variables y métricas compartidas
 │   ├── pipeline/                    datos y modelos
 │   ├── analisis/                    EDA, estructura y evaluación
-│   ├── clasificacion/               clasificadores de dirección
+│   ├── clasificacion/               exploración posterior, fuera de esta entrega
 │   ├── informe/                     tablas, figuras y generación del informe
 │   ├── validar_fase*.py             validadores de fase
 │   └── ...
@@ -269,9 +270,6 @@ genera los resultados en `outputs/`.
 .venv/bin/python scripts/analisis/05.2_evaluacion_modelos.py
 .venv/bin/python scripts/analisis/05.3_n_etapas.py
 
-# Clasificación de la dirección
-.venv/bin/python scripts/clasificacion/01_clasificadores_direccion.py
-
 # Artefactos de resultados
 .venv/bin/python scripts/informe/07_resultados_informe.py
 ```
@@ -302,7 +300,7 @@ Si `jupyter` no está en el `PATH`, usa el binario de tu instalación. Por ejemp
 - `outputs/_manifests/`: manifiestos y hashes de cada fase.
 - `notebooks/01_resultados.ipynb`: recorrido ejecutivo con tablas y figuras.
 - `notebooks/02_guia_detallada.ipynb`: guía paso a paso, también versionada.
-- `informe.pdf`: informe final con 11 tablas, 11 figuras, 12 ecuaciones y un anexo con la matriz completa.
+- `informe.pdf`: informe final con 11 tablas, 10 figuras, 12 ecuaciones y un anexo con la matriz completa.
 - `informe.docx`: fuente editable del informe.
 
 El índice de tablas y figuras se genera dentro de `outputs/`. El informe se regenera al final del

@@ -27,7 +27,6 @@ RAIZ = Path(__file__).resolve().parent.parent.parent
 INFORME = RAIZ / "outputs" / "informe"
 TAB = INFORME / "tablas"
 FIG = INFORME / "figuras"
-FIG_CLAS = RAIZ / "outputs" / "clasificacion_direccion" / "figuras"
 AN = RAIZ / "outputs" / "analisis"
 FORMULAS = Path(tempfile.mkdtemp(prefix="formulas_informe_"))
 plt.rcParams["mathtext.fontset"] = "stix"
@@ -271,9 +270,9 @@ def portada(doc: Document) -> None:
 def resumen(doc: Document) -> None:
     doc.add_heading("Resumen", level=1)
     p(doc,
-      "Este trabajo analiza los precios mayoristas de alimentos en el Perú y compara cuatro "
-      "árboles de regresión (Árbol de Decisión, Random Forest, XGBoost y LightGBM) con dos árboles "
-      "de clasificación (Árbol de Decisión y LightGBM). A partir del SISAP–MIDAGRI se construyó un panel "
+      "Este trabajo analiza los precios mayoristas de alimentos en el Perú y compara seis modelos "
+      "de regresión: OLS, Ridge, Árbol de Decisión, Random Forest, XGBoost y LightGBM. A partir del "
+      "SISAP–MIDAGRI se construyó un panel "
       "de 24 departamentos y 9 categorías, con 43 855 observaciones limpias; se normalizaron "
       "unidades, se detectaron atípicos y se construyeron cambios logarítmicos, rezagos y armónicos. "
       "La estimación contemporánea y el pronóstico a un mes se evaluaron con entrenamiento "
@@ -281,9 +280,8 @@ def resumen(doc: Document) -> None:
       "heterogénea: la distancia aporta (p = 0,022) y el modelo con distancia y zona explica 54 % de "
       "la variación. Random Forest obtiene el mejor ordenamiento contemporáneo, con R² positivo en "
       "papa, cebolla y zanahoria; Ridge y OLS son mejores para pronosticar un mes en papa, cebolla y "
-      "arroz. La lectura direccional se complementa con exactitud, precisión, recall, F1 y ROC-AUC, "
-      "y se entrena un clasificador de la dirección al mes siguiente con Árbol de Decisión (gini y "
-      "entropía) y LightGBM. "
+      "arroz. El torneo de regresión incluye seis modelos y se complementa con una lectura "
+      "direccional del signo de la predicción, no con un clasificador aparte. "
       "Conclusiones: Lima aporta información predictiva parcial y el desempeño depende del producto "
       "y del horizonte, por lo que no conviene un modelo único.")
     p(doc, "Palabras clave: precios mayoristas, modelos basados en árboles, Random Forest, XGBoost, validación temporal.",
@@ -291,9 +289,9 @@ def resumen(doc: Document) -> None:
 
     doc.add_heading("Abstract", level=1)
     p(doc,
-      "This paper studies wholesale food prices in Peru and compares four regression trees "
-      "(Decision Tree, Random Forest, XGBoost, and LightGBM) with two classification trees "
-      "(Decision Tree and LightGBM). Methodology: using SISAP–MIDAGRI data, we built a panel of 24 "
+      "This paper studies wholesale food prices in Peru and compares six regression models: OLS, "
+      "Ridge, Decision Tree, Random Forest, XGBoost, and LightGBM. Methodology: using SISAP–MIDAGRI "
+      "data, we built a panel of 24 "
       "departments and 9 categories with 43,855 clean observations; units were normalized, outliers "
       "were flagged, and log changes, lags, and annual harmonics were constructed. Contemporary "
       "estimation and one-month forecasting were evaluated with 2012–2017 training, 2018–2020 "
@@ -302,9 +300,8 @@ def resumen(doc: Document) -> None:
       "54% of the variation. "
       "Random Forest ranks first in contemporary estimation, with positive R² in potato, onion, and "
       "carrot; Ridge and OLS perform better for one-month forecasts in potato, onion, and rice. "
-      "The directional reading is complemented with accuracy, precision, recall, F1, and ROC-AUC, "
-      "and a next-month direction classifier is trained with Decision Tree (gini and entropy) and "
-      "LightGBM. "
+      "The regression tournament includes six models and is complemented with a directional reading "
+      "of the prediction sign, not with a separate classifier. "
       "Conclusions: Lima provides partial predictive information and performance depends on product "
       "and horizon, so a single model is not appropriate.")
     p(doc, "Keywords: wholesale prices, tree-based models, Random Forest, XGBoost, temporal validation.",
@@ -342,8 +339,8 @@ def introduccion(doc: Document) -> None:
     doc.add_heading("1.3. Objetivo y alcance", level=2)
     p(doc,
       "Construir un conjunto de datos auditado, describir su estructura, formular las ecuaciones "
-      "de transformación y de los modelos, construir la matriz de predictores y comparar cuatro "
-      "familias con R², MAE, acierto direccional y matrices de confusión. La selección se hace en "
+      "de transformación y de los modelos, construir la matriz de predictores y comparar seis "
+      "modelos de regresión con R², MAE, acierto de signo y matrices de confusión. La selección se hace en "
       "validación; la prueba final se mantiene intacta hasta el cierre.")
     p(doc,
       "El alcance es predictivo y asociativo: no se identifican efectos causales ni se modela el "
@@ -373,8 +370,8 @@ def metodologia(doc: Document) -> None:
     p(doc,
       "La selección descarga los datos de SISAP. El preprocesamiento audita nulos, duplicados, "
       "unidades y atípicos. La transformación normaliza a S/ kg, aplica logaritmos y construye "
-      "cambios, rezagos y armónicos. La minería compara cuatro modelos. La evaluación usa R², "
-      "MAE, mejora frente a una referencia y acierto direccional.")
+      "cambios, rezagos y armónicos. La minería compara seis modelos de regresión. La evaluación "
+      "usa R², MAE, mejora frente a una referencia y acierto de signo.")
 
     doc.add_heading("2.2. Diseño temporal y control de filtración", level=2)
     p(doc,
@@ -653,8 +650,9 @@ def modelos(doc: Document) -> None:
     doc.add_heading("6.1. De la heterogeneidad a la comparación de modelos", level=2)
     p(doc,
       "El EDA mostró que la relación con Lima cambia por producto y que la serie tiene "
-      "estacionalidad, rezagos y valores atípicos. Esas características justifican comparar una "
-      "familia lineal, una regularizada y dos familias de árboles. La comparación no supone que el "
+      "estacionalidad, rezagos y valores atípicos. Esas características justifican comparar seis "
+      "modelos de regresión: dos referencias lineales (OLS y Ridge) y cuatro modelos de árbol "
+      "(Árbol de Decisión, Random Forest, XGBoost y LightGBM). La comparación no supone que el "
       "modelo más flexible sea mejor: el rendimiento debe medirse fuera de la muestra (James et "
       "al., 2021).")
 
@@ -671,7 +669,14 @@ def modelos(doc: Document) -> None:
       "λ la intensidad de la penalización. En este trabajo λ = 1 y Ridge "
       "estandariza los predictores antes de estimar; OLS es el caso sin penalización.")
 
-    doc.add_heading("6.3. Random Forest", level=2)
+    doc.add_heading("6.3. Árbol de Decisión", level=2)
+    p(doc,
+      "El Árbol de Decisión es la referencia interpretable de particiones recursivas (Breiman et "
+      "al., 1984). Divide el espacio de predictores en regiones y predice una constante en cada "
+      "hoja. Se usa profundidad máxima 5 y hoja mínima de 5 observaciones. Su ventaja es la "
+      "transparencia; su límite, la alta varianza cuando el árbol crece demasiado.")
+
+    doc.add_heading("6.4. Random Forest", level=2)
     p(doc,
       "Random Forest combina muchos árboles entrenados sobre muestras bootstrap y promedia sus "
       "predicciones (Breiman, 2001). La ecuación 9 representa el predictor agregado.")
@@ -684,7 +689,15 @@ def modelos(doc: Document) -> None:
       "árbol individual, aunque no elimina el sesgo ni garantiza que el modelo generalize a otro "
       "período.")
 
-    doc.add_heading("6.4. LightGBM", level=2)
+    doc.add_heading("6.5. XGBoost", level=2)
+    p(doc,
+      "XGBoost es un boosting de gradiente con regularización (Chen y Guestrin, 2016). A diferencia "
+      "del boosting clásico, penaliza la complejidad de los árboles y usa derivadas de segundo orden. "
+      "Se usan 300 árboles, tasa de aprendizaje 0,05, profundidad 4 y submuestreo de filas y "
+      "columnas. Es una alternativa a LightGBM: ambos optimizan una función de pérdida aditiva, "
+      "pero difieren en la forma de construir y podar los árboles.")
+
+    doc.add_heading("6.6. LightGBM", level=2)
     p(doc,
       "LightGBM usa boosting de árboles (Ke et al., 2017), una familia que construye el modelo "
       "corrigiendo errores de forma secuencial (Friedman, 2001). La ecuación 10 resume la "
@@ -697,7 +710,7 @@ def modelos(doc: Document) -> None:
       "la tasa de aprendizaje. Se usan 300 árboles, tasa 0,05 y siete hojas. El modelo puede "
       "capturar no linealidades, pero también puede sobreajustar cuando el N es pequeño.")
 
-    doc.add_heading("6.5. Métricas de evaluación", level=2)
+    doc.add_heading("6.7. Métricas de evaluación", level=2)
     p(doc,
       "La métrica principal de la estimación contemporánea es el R², porque mide cuánta variación "
       "del cambio observado se explica. La ecuación 11 lo define.")
@@ -726,28 +739,18 @@ def modelos(doc: Document) -> None:
     p(doc,
       "El acierto direccional complementa las métricas anteriores. Se calcula sobre los meses con "
       "cambio distinto de cero y compara el signo de la predicción con el signo observado. Es una "
-      "lectura binaria: no distingue un error de 0,1 % de uno de 5 %, por eso no se usa como "
-      "criterio único de selección.")
+      "lectura binaria de la regresión, no un clasificador: no distingue un error de 0,1 % de uno "
+      "de 5 %, por eso no se usa como criterio único de selección. La matriz de confusión de la "
+      "sección 7.5 tampoco entrena una clase; solo cuenta coincidencias de signo entre la "
+      "predicción continua y el valor observado. No debe interpretarse como un modelo de "
+      "subida/bajada.")
 
-    doc.add_heading("6.6. Modelos de clasificación de la dirección", level=2)
+    doc.add_heading("6.8. Protocolo de selección", level=2)
     p(doc,
-      "Además de la regresión, el trabajo incluye una tarea de clasificación binaria: predecir si el "
-      "precio del mes siguiente sube o no sube. El target es 1 cuando el log-precio de t+1 supera al "
-      "de t, y 0 en caso contrario. Se usan los mismos predictores del pronóstico y la misma "
-      "separación temporal, de modo que la comparación sea coherente con la parte de regresión.")
-    p(doc,
-      "Se entrenan dos clasificadores basados en árboles: Árbol de Decisión con criterio gini y "
-      "LightGBM. El Árbol de Decisión aporta interpretabilidad y una frontera de decisión simple "
-      "(Breiman et al., 1984); LightGBM aporta boosting con regularización y crecimiento leaf-wise "
-      "(Ke et al., 2017). La evaluación usa exactitud, precisión, recall, F1, ROC-AUC y matriz de "
-      "confusión (Sokolova y Lapalme, 2009; Fawcett, 2006).")
-
-    doc.add_heading("6.7. Protocolo de selección", level=2)
-    p(doc,
-      "Cada modelo se entrena con 2012–2017 y se evalúa en 2018–2020. El ganador se elige por el "
-      "rango promedio de R² en validación, no por el mejor resultado de un solo producto. La prueba "
-      "final se usa una sola vez para comprobar si la señal se sostiene. Cambiar el ganador después "
-      "de ver la prueba final sería seleccionar sobre el conjunto de prueba.")
+      "Los seis modelos se entrenan con 2012–2017 y se evalúan en 2018–2020. El ganador se elige "
+      "por el rango promedio de R² en validación, no por el mejor resultado de un solo producto. La "
+      "prueba final se usa una sola vez para comprobar si la señal se sostiene. Cambiar el ganador "
+      "después de ver la prueba final sería seleccionar sobre el conjunto de prueba.")
 
 
 def resultados(doc: Document) -> None:
@@ -755,18 +758,19 @@ def resultados(doc: Document) -> None:
     doc.add_heading("7.1. Validación: orden relativo de los modelos", level=2)
     ranking = cargar("tabla_08_torneo.csv").rename(columns={
         "modelo": "Modelo", "rank_promedio": "Rango", "r2_medio": "R² medio",
-        "r2_mediano": "R² mediano", "acierto_medio": "Acierto medio",
+        "r2_mediano": "R² mediano", "acierto_medio": "Acierto de signo (%)",
         "productos_rankeados": "Productos"})
+    ranking["Modelo"] = ranking["Modelo"].replace({"Arbol": "Árbol de Decisión"})
     tabla(doc, ranking, 7, "Ranking de estimación contemporánea en validación.",
-          columnas=["Modelo", "Rango", "R² medio", "R² mediano", "Acierto medio", "Productos"],
-          decimales={"Rango": 2, "R² medio": 3, "R² mediano": 3, "Acierto medio": 1, "Productos": 0},
-          anchos=[1.2, 0.55, 0.75, 0.8, 0.9, 0.65], font=7.5)
+          columnas=["Modelo", "Rango", "R² medio", "R² mediano", "Acierto de signo (%)", "Productos"],
+          decimales={"Rango": 2, "R² medio": 3, "R² mediano": 3, "Acierto de signo (%)": 1, "Productos": 0},
+          anchos=[1.2, 0.55, 0.75, 0.8, 1.0, 0.6], font=7.5)
     p(doc,
       "El ranking se calcula solo con los cuatro productos que alcanzan los mínimos de muestra en "
       "validación. En validación, todos los R² son negativos. Random Forest ocupa el primer lugar "
-      "por rango promedio (1,50), seguido por Ridge (1,75), OLS (2,75) y LightGBM (4,00). La "
-      "diferencia entre los dos primeros es pequeña y el nivel absoluto no permite hablar de un "
-      "ajuste alto.")
+      "por rango promedio (2,00), seguido por Ridge (2,25), XGBoost (3,25), OLS (3,50), Árbol de "
+      "Decisión (4,25) y LightGBM (5,75). La diferencia entre los dos primeros es pequeña y el "
+      "nivel absoluto no permite hablar de un ajuste alto.")
     p(doc,
       "El resultado debe leerse como un orden relativo. La validación 2018–2020 fue un período "
       "volátil y con pocas observaciones por producto; en ese contexto, un R² negativo indica que "
@@ -798,7 +802,7 @@ def resultados(doc: Document) -> None:
       "productos pueden estar más expuestos a costos internacionales, regulación o estructuras de "
       "mercado distintas.")
     figura(doc, "12_ganador_vs_observado.png", 9,
-           "Cambio observado y predicciones de los cuatro modelos en la prueba final.", ancho=6.2)
+           "Cambio observado y predicciones de los seis modelos en la prueba final.", ancho=6.2)
 
     doc.add_heading("7.3. Pronóstico a un mes", level=2)
     pronostico = cargar("tabla_23_pronostico_holdout.csv").rename(columns={
@@ -826,7 +830,78 @@ def resultados(doc: Document) -> None:
       "(Meyer y von Cramon-Taubadel, 2004). No hay un modelo único para los seis productos: la "
       "decisión práctica depende de la tarea y del producto.")
 
-    doc.add_heading("7.4. Contraste de hipótesis y síntesis", level=2)
+    doc.add_heading("7.4. Comparación de los seis modelos de regresión", level=2)
+    p(doc,
+      "El torneo reúne los seis modelos con los mismos predictores y las mismas ventanas: OLS, "
+      "Ridge, Árbol de Decisión, Random Forest, XGBoost y LightGBM. OLS y Ridge son las "
+      "referencias lineales; los cuatro restantes cubren desde un árbol único hasta boosting con "
+      "regularización (Breiman et al., 1984; Chen y Guestrin, 2016; Ke et al., 2017). La tabla 10 "
+      "resume magnitud y acierto de signo; no es una tabla de clasificación.")
+    nowcast = pd.read_csv(AN / "06_modelos" / "torneo_nowcast_metricas.csv")
+    nowcast = nowcast[nowcast.conjunto == "principal"]
+    val = nowcast[nowcast.periodo == "desarrollo"].groupby("modelo").agg(
+        r2_val=("r2", "mean"), mae_val=("mae", "mean"), acierto_val=("acierto", "mean"))
+    prueba = nowcast[nowcast.periodo == "holdout"].groupby("modelo").agg(
+        r2_prueba=("r2", "mean"), mae_prueba=("mae", "mean"), acierto_prueba=("acierto", "mean"))
+    seis = val.join(prueba).reindex(["OLS", "Ridge", "Arbol", "Random Forest", "XGBoost", "LightGBM"])
+    seis.index = ["OLS", "Ridge", "Árbol de Decisión", "Random Forest", "XGBoost", "LightGBM"]
+    seis = seis.reset_index().rename(columns={
+        "index": "Modelo", "r2_val": "R² validación", "mae_val": "MAE validación",
+        "r2_prueba": "R² prueba", "mae_prueba": "MAE prueba",
+        "acierto_val": "Acierto validación (%)", "acierto_prueba": "Acierto prueba (%)"})
+    tabla(doc, seis, 10, "Comparación de los seis modelos de regresión.",
+          decimales={"R² validación": 3, "MAE validación": 4, "R² prueba": 3,
+                     "MAE prueba": 4, "Acierto validación (%)": 1,
+                     "Acierto prueba (%)": 1},
+          anchos=[1.25, 0.85, 0.85, 0.8, 0.8, 0.95, 0.9], font=7,
+          nota="Promedios simples sobre los seis productos. El acierto de signo se calcula sobre meses con cambio distinto de cero; no es una clasificación entrenada.")
+    p(doc,
+      "En validación, Ridge tiene el mejor R² promedio (-0,661), seguido por Random Forest (-0,687) "
+      "y OLS (-0,689); XGBoost logra el mejor acierto de signo (55,0 %). En la prueba final, Ridge "
+      "(-0,020) y OLS (-0,024) conservan los mejores R² promedio, mientras que LightGBM alcanza el "
+      "mejor acierto (61,7 %). El ranking por producto de la tabla 7 sigue favoreciendo a Random "
+      "Forest porque promedia posiciones, no magnitudes: Ridge gana en promedio pero no es el más "
+      "consistente en todos los productos.")
+    p(doc,
+      "La comparación no mezcla escalas: R² y MAE miden magnitud; el acierto de signo solo indica "
+      "cuántas veces la predicción continua apunta en la dirección correcta. Un modelo puede acertar "
+      "el signo y equivocarse en la magnitud, o explicar mejor la varianza y fallar en los meses de "
+      "subida. Por eso el ganador se elige por R² en validación y el acierto se reporta como "
+      "diagnóstico complementario.")
+
+    doc.add_heading("7.5. Matriz de confusión de signo de la regresión", level=2)
+    p(doc,
+      "La matriz de confusión de la tabla 11 y la figura 10 no entrenan un clasificador. Se "
+      "construyen tomando el signo de la predicción continua de cada modelo de regresión y "
+      "comparándolo con el signo del cambio observado, después de excluir los meses con cambio "
+      "exactamente cero. Sirven para leer cuántas subidas y bajadas acierta cada regresor, pero la "
+      "decisión sigue siendo una predicción de magnitud, no una probabilidad de clase. No deben "
+      "interpretarse como un modelo de subida/bajada.")
+    confusion = pd.read_csv(AN / "06_modelos" / "matriz_confusion_modelos.csv")
+    confusion = confusion.set_index("modelo").reindex(
+        ["OLS", "Ridge", "Arbol", "Random Forest", "XGBoost", "LightGBM"]).reset_index()
+    confusion = confusion.rename(columns={
+        "modelo": "Modelo", "TP": "Acierta +", "FN": "Falla +",
+        "FP": "Falso +", "TN": "Acierta −", "n": "N", "acierto": "Coincidencia (%)"})
+    confusion["Modelo"] = confusion["Modelo"].replace({
+        "Arbol": "Árbol de Decisión", "Random Forest": "Random Forest",
+        "XGBoost": "XGBoost", "LightGBM": "LightGBM"})
+    tabla(doc, confusion, 11, "Matriz de confusión de signo de los seis modelos de regresión.",
+          columnas=["Modelo", "Acierta +", "Falla +", "Falso +",
+                    "Acierta −", "N", "Coincidencia (%)"],
+          decimales={"Coincidencia (%)": 1, "N": 0},
+          anchos=[1.3, 0.85, 0.8, 0.8, 0.85, 0.5, 1.0], font=7,
+          nota="Conteos sobre la prueba final, excluyendo cambios observados iguales a cero. Acierta +: predicción y observación positivas; Falla +: observación positiva no detectada; Falso +: predicción positiva con observación no positiva; Acierta −: ambas no positivas. No es un clasificador.")
+    figura(doc, "24_matriz_confusion.png", 10,
+           "Coincidencia de signo de los seis modelos de regresión en la prueba final.", ancho=6.2)
+    p(doc,
+      "La lectura es directa: LightGBM acierta 62,2 % de los signos, OLS y Ridge 59,2 %, Random "
+      "Forest 58,0 %, XGBoost 57,6 % y el Árbol de Decisión 57,3 %. Esas diferencias no cambian el "
+      "ganador del torneo, que se eligió por R² en validación: el acierto de signo trata igual un "
+      "error de 0,1 % que uno de 5 % y no mide la calidad de la magnitud. La matriz sirve para "
+      "interpretar la utilidad práctica del regresor, no para seleccionarlo.")
+
+    doc.add_heading("7.6. Contraste de hipótesis y síntesis", level=2)
     p(doc,
       "H1 se sostiene parcialmente. Lima contiene información contemporánea sobre los "
       "departamentos, pero la magnitud y la estabilidad cambian por producto: la evidencia es "
@@ -837,81 +912,10 @@ def resultados(doc: Document) -> None:
     p(doc,
       "La síntesis práctica es que no conviene desplegar un solo modelo para todos los productos. "
       "Para la estimación contemporánea, Random Forest es el mejor ordenamiento relativo, con "
-      "señal en tres productos. Para el pronóstico a un mes, Ridge u OLS son preferibles en papa, "
-      "cebolla y arroz, y la caminata aleatoria sigue siendo una referencia difícil de superar en "
-      "los demás. La selección debe hacerse por producto y por tarea.")
-
-
-    doc.add_heading("7.5. Comparación de los cuatro árboles de regresión", level=2)
-    p(doc,
-      "Los cuatro regresores basados en árboles se compararon con los mismos predictores y las "
-      "mismas ventanas: Árbol de Decisión, Random Forest, XGBoost y LightGBM. El Árbol de Decisión "
-      "es la referencia interpretable; Random Forest reduce la varianza por bagging; XGBoost y "
-      "LightGBM usan boosting con regularización (Breiman et al., 1984; Chen y Guestrin, 2016; Ke "
-      "et al., 2017).")
-    comp = pd.read_csv(AN / "06_modelos" / "torneo_complemento.csv")
-    comp = comp[comp.conjunto == "complemento"]
-    val = comp[comp.periodo == "desarrollo"].groupby("modelo").agg(
-        r2_val=("r2", "mean"), acierto_val=("acierto", "mean"))
-    prueba = comp[comp.periodo == "holdout"].groupby("modelo").agg(
-        r2_prueba=("r2", "mean"), acierto_prueba=("acierto", "mean"))
-    arboles = val.join(prueba).reindex(["Arbol", "Random Forest", "XGBoost", "LightGBM"])
-    arboles.index = ["Árbol de Decisión", "Random Forest", "XGBoost", "LightGBM"]
-    arboles = arboles.reset_index().rename(columns={
-        "index": "Modelo", "r2_val": "R² validación", "r2_prueba": "R² prueba",
-        "acierto_val": "Acierto validación (%)", "acierto_prueba": "Acierto prueba (%)"})
-    tabla(doc, arboles, 10, "Comparación de los cuatro árboles de regresión.",
-          decimales={"R² validación": 3, "R² prueba": 3,
-                     "Acierto validación (%)": 1, "Acierto prueba (%)": 1},
-          anchos=[1.35, 0.95, 0.95, 1.1, 1.1], font=7.5,
-          nota="Promedios simples sobre los seis productos. Es la comparación de los cuatro regresores.")
-    p(doc,
-      "En validación, Random Forest tiene el mejor R² promedio (-0,687) y XGBoost el mejor acierto "
-      "(55,0 %). En la prueba final, Random Forest conserva el mejor R² (-0,065) y LightGBM el mejor "
-      "acierto (61,7 %). Ninguna familia domina en las dos métricas: el orden depende de si se "
-      "prioriza la magnitud del error o la dirección.")
-
-    doc.add_heading("7.6. Torneo de clasificación de la dirección al mes siguiente", level=2)
-    p(doc,
-      "La clasificación se evalúa por separado para no mezclar métricas de regresión con métricas de "
-      "clasificación. El target es binario: 1 si el precio del mes siguiente sube, 0 si no. Se "
-      "reportan exactitud, precisión, recall, F1 y ROC-AUC en la prueba final, además de la matriz "
-      "de confusión.")
-    clas_val = pd.read_csv(RAIZ / "outputs" / "clasificacion_direccion" / "tablas" / "metricas_validacion.csv")
-    clas_prueba = pd.read_csv(RAIZ / "outputs" / "clasificacion_direccion" / "tablas" / "metricas_prueba.csv")
-    keep = ["Árbol de Decisión (gini)", "LightGBM"]
-    clas_val = clas_val[clas_val.modelo.isin(keep)].set_index("modelo")
-    clas_prueba = clas_prueba[clas_prueba.modelo.isin(keep)].set_index("modelo")
-    filas = []
-    for modelo, etiqueta in [("Árbol de Decisión (gini)", "Árbol de Decisión (gini)"),
-                             ("LightGBM", "LightGBM")]:
-        filas.append({
-            "Modelo": etiqueta,
-            "F1 validación": clas_val.loc[modelo, "f1"],
-            "Exactitud prueba": 100 * clas_prueba.loc[modelo, "accuracy"],
-            "Precisión prueba": clas_prueba.loc[modelo, "precision"],
-            "Recall prueba": clas_prueba.loc[modelo, "recall"],
-            "F1 prueba": clas_prueba.loc[modelo, "f1"],
-            "ROC-AUC prueba": clas_prueba.loc[modelo, "roc_auc"],
-        })
-    clas = pd.DataFrame(filas)
-    tabla(doc, clas, 11, "Torneo de clasificación de la dirección al mes siguiente.",
-          decimales={"F1 validación": 3, "Exactitud prueba": 1, "Precisión prueba": 3,
-                     "Recall prueba": 3, "F1 prueba": 3, "ROC-AUC prueba": 3},
-          anchos=[1.6, 0.85, 0.9, 0.9, 0.8, 0.7, 0.9], font=7.2,
-          nota="Target: 1 si el precio del mes siguiente sube. El criterio de entropía se probó y quedó ligeramente por debajo de gini en F1; por eso no se agrega como una fila extra.")
-    figura(doc, "matrices_confusion_clasificadores.png", 10,
-           "Matrices de confusión de los clasificadores en la prueba final.",
-           ancho=6.1, carpeta=FIG_CLAS)
-    figura(doc, "comparativa_clasificadores.png", 11,
-           "Comparación de métricas de los clasificadores en la prueba final.",
-           ancho=5.8, carpeta=FIG_CLAS)
-    p(doc,
-      "El Árbol de Decisión con gini obtiene exactitud 58,5 %, recall 74,3 % y F1 0,667; es el más "
-      "equilibrado para detectar subidas. LightGBM clasificador alcanza el mejor ROC-AUC (0,621), "
-      "pero su recall cae a 30,3 %: con el umbral 0,5 deja pasar muchas subidas. Se probó también "
-      "entropía; su F1 fue 0,663, muy cerca de gini, pero no se añade como modelo extra para "
-      "mantener seis árboles en total: cuatro de regresión y dos de clasificación.")
+      "señal en tres productos; OLS y Ridge quedan como referencias lineales con mejor R² promedio "
+      "en la prueba, pero sin el mismo orden por producto. Para el pronóstico a un mes, Ridge u OLS "
+      "son preferibles en papa, cebolla y arroz, y la caminata aleatoria sigue siendo una referencia "
+      "difícil de superar en los demás. La selección debe hacerse por producto y por tarea.")
 
 
 def conclusiones(doc: Document) -> None:
@@ -928,11 +932,11 @@ def conclusiones(doc: Document) -> None:
       "departamentos. Sin embargo, la geografía no reemplaza la información mensual: los modelos "
       "predictivos usan Lima, los rezagos y la estacionalidad, y su desempeño cambia por producto.")
     p(doc,
-      "El resultado central es que no hay un modelo único. Random Forest obtiene el mejor "
-      "ordenamiento en la estimación contemporánea, con R² positivo en papa, cebolla y zanahoria. "
-      "Para el pronóstico a un mes, Ridge y OLS mejoran la caminata aleatoria en papa, cebolla y "
-      "arroz, mientras que Random Forest y LightGBM no la superan. La evidencia respalda H1 de "
-      "forma parcial y H2 de forma clara.")
+      "El resultado central es que no hay un modelo único. En el torneo de seis modelos de "
+      "regresión, Random Forest obtiene el mejor ordenamiento en la estimación contemporánea, con "
+      "R² positivo en papa, cebolla y zanahoria. Para el pronóstico a un mes, Ridge y OLS mejoran "
+      "la caminata aleatoria en papa, cebolla y arroz, mientras que Random Forest y LightGBM no la "
+      "superan. La evidencia respalda H1 de forma parcial y H2 de forma clara.")
 
     doc.add_heading("8.2. Límites y extensiones", level=2)
     p(doc,
@@ -958,7 +962,6 @@ def referencias(doc: Document) -> None:
         "Breiman, L., Friedman, J. H., Olshen, R. A., y Stone, C. J. (1984). Classification and regression trees. Wadsworth.",
         "Chen, T., y Guestrin, C. (2016). XGBoost: A scalable tree boosting system. Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining, 785–794.",
         "Fackler, P. L., y Goodwin, B. K. (2001). Spatial price analysis. En B. L. Gardner y G. C. Rausser (Eds.), Handbook of agricultural economics (Vol. 1, pp. 971–1024). Elsevier.",
-        "Fawcett, T. (2006). An introduction to ROC analysis. Pattern Recognition Letters, 27(8), 861–874.",
         "Fayyad, U., Piatetsky-Shapiro, G., y Smyth, P. (1996). From data mining to knowledge discovery in databases. AI Magazine, 17(3), 37–54.",
         "Friedman, J. H. (2001). Greedy function approximation: A gradient boosting machine. The Annals of Statistics, 29(5), 1189–1232.",
         "Hoerl, A. E., y Kennard, R. W. (1970). Ridge regression: Biased estimation for nonorthogonal problems. Technometrics, 12(1), 55–67.",
@@ -969,7 +972,6 @@ def referencias(doc: Document) -> None:
         "Meyer, J., y von Cramon-Taubadel, S. (2004). Asymmetric price transmission: A survey. Journal of Agricultural Economics, 55(3), 581–611.",
         "Ministerio de Desarrollo Agrario y Riego. (2026). Sistema de Información de Abastecimiento y Precios (SISAP): Precios de ciudades.",
         "Ravallion, M. (1986). Testing market integration. American Journal of Agricultural Economics, 68(1), 102–109.",
-        "Sokolova, M., y Lapalme, G. (2009). A systematic analysis of performance measures for classification tasks. Information Processing & Management, 45(4), 427–437.",
         "Tukey, J. W. (1977). Exploratory data analysis. Addison-Wesley.",
     ]
     for item in entradas:

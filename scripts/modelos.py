@@ -91,6 +91,15 @@ def modelos_complemento() -> dict:
     return modelos
 
 
+def modelos_torneo() -> dict:
+    """Seis modelos de regresión del torneo: dos lineales y cuatro árboles."""
+    modelos = modelos_principales().copy()
+    modelos["Arbol"] = DecisionTreeRegressor(max_depth=5, min_samples_leaf=5, random_state=0)
+    if xgb is not None:
+        modelos["XGBoost"] = xgb.XGBRegressor(**XGB)
+    return modelos
+
+
 def metricas(real: np.ndarray, pred: np.ndarray, base: np.ndarray) -> dict:
     from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
     real, pred, base = np.asarray(real), np.asarray(pred), np.asarray(base)
