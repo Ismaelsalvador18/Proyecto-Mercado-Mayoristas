@@ -22,14 +22,11 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 from docx.shared import Inches, Pt, RGBColor
 from PIL import Image
-from sklearn.metrics import (accuracy_score, f1_score, precision_score,
-                             recall_score, roc_auc_score)
 
 RAIZ = Path(__file__).resolve().parent.parent.parent
 INFORME = RAIZ / "outputs" / "informe"
 TAB = INFORME / "tablas"
 FIG = INFORME / "figuras"
-FIG_CLAS = RAIZ / "outputs" / "clasificacion_direccion" / "figuras"
 AN = RAIZ / "outputs" / "analisis"
 FORMULAS = Path(tempfile.mkdtemp(prefix="formulas_informe_"))
 plt.rcParams["mathtext.fontset"] = "stix"
@@ -204,9 +201,8 @@ def tabla(
         doc.add_paragraph()
 
 
-def figura(doc: Document, nombre: str, numero: int, titulo: str,
-           ancho: float = 6.2, carpeta: Path = FIG) -> None:
-    ruta = carpeta / nombre
+def figura(doc: Document, nombre: str, numero: int, titulo: str, ancho: float = 6.2) -> None:
+    ruta = FIG / nombre
     if not ruta.exists():
         raise FileNotFoundError(f"No existe la figura: {ruta}")
     doc.add_picture(str(ruta), width=Inches(ancho))
@@ -848,104 +844,66 @@ def resultados(doc: Document) -> None:
       "los demás. La selección debe hacerse por producto y por tarea.")
 
 
-    doc.add_heading("7.6. Comparación de los cuatro modelos basados en árboles", level=2)
+    doc.add_heading("7.6. Comparación de los seis modelos basados en árboles", level=2)
     p(doc,
-      "Además del torneo principal, se contrastaron las cuatro familias de árboles con los mismos "
-      "predictores y las mismas ventanas: Árbol de Decisión, Random Forest, XGBoost y LightGBM. El "
-      "Árbol de Decisión aporta la referencia interpretable de particiones recursivas (Breiman et "
-      "al., 1984); Random Forest reduce la varianza por bagging; XGBoost y LightGBM usan boosting "
-      "con regularización y crecimiento distinto del árbol (Chen y Guestrin, 2016; Ke et al., 2017).")
+      "La comparación reúne seis modelos basados en árboles: cuatro regresores y dos clasificadores. "
+      "Los regresores son Árbol de Decisión, Random Forest, XGBoost y LightGBM; los clasificadores "
+      "son Árbol de Decisión con criterio gini y LightGBM. El Árbol de Decisión aporta la referencia "
+      "interpretable de particiones recursivas (Breiman et al., 1984); Random Forest reduce la "
+      "varianza por bagging; XGBoost y LightGBM usan boosting con regularización (Chen y Guestrin, "
+      "2016; Ke et al., 2017).")
     comp = pd.read_csv(AN / "06_modelos" / "torneo_complemento.csv")
     comp = comp[comp.conjunto == "complemento"]
     val = comp[comp.periodo == "desarrollo"].groupby("modelo").agg(
         r2_val=("r2", "mean"), acierto_val=("acierto", "mean"))
     prueba = comp[comp.periodo == "holdout"].groupby("modelo").agg(
         r2_prueba=("r2", "mean"), acierto_prueba=("acierto", "mean"))
-    arboles = val.join(prueba).reindex(["Arbol", "Random Forest", "XGBoost", "LightGBM"])
-    arboles.index = ["Árbol de Decisión", "Random Forest", "XGBoost", "LightGBM"]
-    arboles = arboles.reset_index().rename(columns={
-        "index": "Modelo", "r2_val": "R² validación", "acierto_val": "Acierto validación (%)",
-        "r2_prueba": "R² prueba", "acierto_prueba": "Acierto prueba (%)"})
-    tabla(doc, arboles, 11, "Comparación de los cuatro modelos basados en árboles.",
-          decimales={"R² validación": 3, "Acierto validación (%)": 1,
-                     "R² prueba": 3, "Acierto prueba (%)": 1},
-          anchos=[1.35, 0.9, 1.2, 0.85, 1.15], font=7.5,
-          nota="Promedios simples sobre los seis productos. La tabla resume el torneo complementario, no el ranking principal.")
-    p(doc,
-      "En validación, Random Forest tiene el mejor R² promedio (-0,687) y XGBoost el mejor acierto "
-      "(55,0 %). En la prueba final, Random Forest conserva el mejor R² (-0,065) y LightGBM el mejor "
-      "acierto (61,7 %). Ninguna familia domina en las dos métricas: el orden depende de si se "
-      "prioriza la magnitud del error o la dirección. Esa tensión es la misma que aparece en el "
-      "torneo principal y refuerza la idea de que no hay un modelo único.")
-
-    doc.add_heading("7.7. Lectura direccional como clasificación binaria", level=2)
-    p(doc,
-      "Para acercar la evaluación a una lectura de clasificación, se convierte el signo del cambio "
-      "observado y el signo de la predicción en dos clases: sube y no sube. Se excluyen los cambios "
-      "exactamente cero. La exactitud, precisión, recall y F1 resumen el acierto de esa lectura "
-      "(Sokolova y Lapalme, 2009); el ROC-AUC mide la capacidad de ordenar positivos y negativos "
-      "(Fawcett, 2006).")
-    pred = pd.read_csv(AN / "06_modelos" / "predicciones_holdout.csv")
-    pred = pred[pred.observado != 0].copy()
-    pred["y"] = (pred.observado > 0).astype(int)
-    pred["pred"] = (pred.prediccion > 0).astype(int)
     filas = []
-    for modelo, grupo in pred.groupby("modelo"):
+    for modelo, etiqueta in [
+            ("Arbol", "Árbol de Decisión (regresión)"),
+            ("Random Forest", "Random Forest (regresión)"),
+            ("XGBoost", "XGBoost (regresión)"),
+            ("LightGBM", "LightGBM (regresión)")]:
         filas.append({
-            "Modelo": modelo,
-            "Exactitud": accuracy_score(grupo.y, grupo.pred),
-            "Precisión": precision_score(grupo.y, grupo.pred, zero_division=0),
-            "Recall": recall_score(grupo.y, grupo.pred, zero_division=0),
-            "F1": f1_score(grupo.y, grupo.pred, zero_division=0),
-            "ROC-AUC": roc_auc_score(grupo.y, grupo.prediccion),
+            "Modelo": etiqueta, "Tarea": "Regresión",
+            "R² validación": val.loc[modelo, "r2_val"],
+            "R² prueba": prueba.loc[modelo, "r2_prueba"],
+            "Acierto/Exactitud prueba (%)": prueba.loc[modelo, "acierto_prueba"],
+            "F1 prueba": None, "ROC-AUC prueba": None,
         })
-    metricas_dir = pd.DataFrame(filas).sort_values("F1", ascending=False)
-    tabla(doc, metricas_dir, 12, "Métricas direccionales en la prueba final.",
-          decimales={"Exactitud": 3, "Precisión": 3, "Recall": 3, "F1": 3, "ROC-AUC": 3},
-          anchos=[1.2, 0.85, 0.85, 0.75, 0.65, 0.8], font=7.5,
-          nota="Lectura binaria de las predicciones de regresión; no es un clasificador entrenado con una función de pérdida de clasificación.")
+    clas_val = pd.read_csv(RAIZ / "outputs" / "clasificacion_direccion" / "tablas" / "metricas_validacion.csv")
+    clas_prueba = pd.read_csv(RAIZ / "outputs" / "clasificacion_direccion" / "tablas" / "metricas_prueba.csv")
+    clas_val = clas_val.set_index("modelo")
+    clas_prueba = clas_prueba.set_index("modelo")
+    for modelo, etiqueta in [
+            ("Árbol de Decisión (gini)", "Árbol de Decisión gini (clasificación)"),
+            ("LightGBM", "LightGBM (clasificación)")]:
+        filas.append({
+            "Modelo": etiqueta, "Tarea": "Clasificación",
+            "R² validación": None, "R² prueba": None,
+            "Acierto/Exactitud prueba (%)": 100 * clas_prueba.loc[modelo, "accuracy"],
+            "F1 prueba": clas_prueba.loc[modelo, "f1"],
+            "ROC-AUC prueba": clas_prueba.loc[modelo, "roc_auc"],
+        })
+    arboles = pd.DataFrame(filas)
+    tabla(doc, arboles, 11, "Comparación de los seis modelos basados en árboles.",
+          columnas=["Modelo", "Tarea", "R² validación", "R² prueba",
+                    "Acierto/Exactitud prueba (%)", "F1 prueba", "ROC-AUC prueba"],
+          decimales={"R² validación": 3, "R² prueba": 3,
+                     "Acierto/Exactitud prueba (%)": 1, "F1 prueba": 3, "ROC-AUC prueba": 3},
+          anchos=[1.55, 0.8, 0.8, 0.7, 1.15, 0.65, 0.8], font=6.9,
+          nota="Los cuatro primeros son regresores y los dos últimos clasificadores. Las métricas no son directamente comparables entre tareas: la tabla reporta la métrica natural de cada una.")
     p(doc,
-      "LightGBM obtiene el mayor F1 (0,662) y la mayor exactitud (0,622); OLS y Ridge alcanzan el "
-      "mayor recall (0,660). El ROC-AUC se mantiene alrededor de 0,63 en los cuatro modelos, lo que "
-      "indica una capacidad de ordenamiento moderada. Esta lectura es útil para comunicar la "
-      "dirección de las predicciones de regresión; en la sección 7.8 se entrena un clasificador "
-      "específico para ese objetivo, con su propia función de pérdida y su propia matriz de confusión.")
-
-
-    doc.add_heading("7.8. Clasificación de la dirección al mes siguiente", level=2)
+      "En regresión, Random Forest tiene el mejor R² promedio en validación (-0,687) y en prueba "
+      "(-0,065); LightGBM obtiene el mejor acierto direccional en prueba (61,7 %). En clasificación, "
+      "el Árbol de Decisión con gini obtiene exactitud 58,5 % y F1 0,667; LightGBM clasificador "
+      "alcanza un ROC-AUC de 0,621, pero su recall cae a 0,303. Se probó también el criterio de "
+      "entropía: su F1 fue 0,663, ligeramente menor que el de gini, por eso se reporta gini.")
     p(doc,
-      "Para atender de forma explícita la parte de clasificación, se entrenaron dos familias de "
-      "árboles sobre el mismo universo de Puno y los seis productos. El target es binario: 1 si el "
-      "log-precio del mes siguiente es mayor que el actual, 0 si no. Se usan los predictores del "
-      "pronóstico (nivel propio, nivel de Lima, mediana de otros departamentos y armónicos) y la "
-      "misma separación temporal. Se comparan Árbol de Decisión con criterio gini, Árbol de Decisión "
-      "con entropía y LightGBM clasificador.")
-    val = pd.read_csv(RAIZ / "outputs" / "clasificacion_direccion" / "tablas" / "metricas_validacion.csv")
-    prueba = pd.read_csv(RAIZ / "outputs" / "clasificacion_direccion" / "tablas" / "metricas_prueba.csv")
-    val = val[["modelo", "accuracy", "f1", "roc_auc"]].rename(columns={
-        "modelo": "Modelo", "accuracy": "Exactitud validación",
-        "f1": "F1 validación", "roc_auc": "ROC-AUC validación"})
-    prueba = prueba[["modelo", "accuracy", "f1", "roc_auc"]].rename(columns={
-        "modelo": "Modelo", "accuracy": "Exactitud prueba",
-        "f1": "F1 prueba", "roc_auc": "ROC-AUC prueba"})
-    clas = val.merge(prueba, on="Modelo").sort_values("F1 prueba", ascending=False)
-    tabla(doc, clas, 13, "Clasificación de la dirección al mes siguiente.",
-          decimales={"Exactitud validación": 3, "F1 validación": 3,
-                     "ROC-AUC validación": 3, "Exactitud prueba": 3,
-                     "F1 prueba": 3, "ROC-AUC prueba": 3},
-          anchos=[1.7, 0.8, 0.7, 0.85, 0.8, 0.7, 0.85], font=7.2,
-          nota="Target: 1 si el precio del mes siguiente sube. Prueba final 2021–2026. El clasificador se entrena con los predictores del pronóstico.")
-    figura(doc, "matrices_confusion_clasificadores.png", 11,
-           "Matrices de confusión de los clasificadores en la prueba final.",
-           ancho=6.2, carpeta=FIG_CLAS)
-    p(doc,
-      "El Árbol de Decisión con gini obtiene la mayor exactitud y F1 en la prueba final (0,585 y "
-      "0,667); el árbol con entropía queda muy cerca (0,588 y 0,663). LightGBM tiene el mejor "
-      "ROC-AUC (0,621), pero su recall cae a 0,303: ordena mejor las probabilidades, aunque con el "
-      "umbral 0,5 deja pasar muchos meses de subida. El resultado muestra que la elección depende "
-      "de la métrica: si se prioriza F1, el árbol de decisión es preferable; si se prioriza el "
-      "ordenamiento, LightGBM. Esta sección sí es una clasificación entrenada, no una simple "
-      "lectura del signo de una regresión.")
+      "La tabla deja una conclusión útil: el mejor modelo depende de la tarea. Para predecir la "
+      "magnitud del cambio, Random Forest es la referencia; para clasificar la dirección, el Árbol "
+      "de Decisión con gini es el más equilibrado en F1. Las métricas de clasificación se reportan "
+      "con exactitud, F1 y ROC-AUC (Sokolova y Lapalme, 2009; Fawcett, 2006).")
 
 
 def conclusiones(doc: Document) -> None:

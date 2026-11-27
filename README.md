@@ -45,7 +45,7 @@ Los nombres internos se conservan en archivos y columnas para no romper el códi
 | Hay valor predictivo contemporáneo | Random Forest: R² = 0,270 en papa, 0,218 en cebolla y 0,080 en zanahoria; acierto 69,5 / 64,4 / 52,9 % |
 | El pronóstico a un mes es específico | Ridge y OLS mejoran el MAE en papa, cebolla y arroz; ambos empeoran en zanahoria, aceite y huevos |
 | Lectura direccional | LightGBM: F1 = 0,662 y exactitud = 0,622; OLS y Ridge: recall = 0,660; ROC-AUC cercano a 0,63 |
-| Clasificación de la dirección | Árbol de Decisión gini: exactitud = 0,585 y F1 = 0,667; LightGBM: ROC-AUC = 0,621, pero recall = 0,303 |
+| Clasificación de la dirección | Árbol de Decisión gini: exactitud = 58,5 % y F1 = 0,667; LightGBM: ROC-AUC = 0,621, pero recall = 0,303 |
 
 **Conclusión:** la referencia de Lima aporta información predictiva contemporánea, pero el
 desempeño depende del producto y del horizonte. No hay un modelo único para las seis categorías.
@@ -302,7 +302,7 @@ Si `jupyter` no está en el `PATH`, usa el binario de tu instalación. Por ejemp
 - `outputs/_manifests/`: manifiestos y hashes de cada fase.
 - `notebooks/01_resultados.ipynb`: recorrido ejecutivo con tablas y figuras.
 - `notebooks/02_guia_detallada.ipynb`: guía paso a paso, también versionada.
-- `informe.pdf`: informe final con 13 tablas, 11 figuras, 12 ecuaciones y un anexo con la matriz completa.
+- `informe.pdf`: informe final con 11 tablas, 10 figuras, 12 ecuaciones y un anexo con la matriz completa.
 - `informe.docx`: fuente editable del informe.
 
 El índice de tablas y figuras se genera dentro de `outputs/`. El informe se regenera al final del
